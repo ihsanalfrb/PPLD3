@@ -6,8 +6,7 @@ test:
   script:
     - ls -la
     - vendor/bin/phpunit --colors
-    - cp .env.backup .env
-   
+       
 # coverage:
 #   type: deploy
 #   dependencies:
