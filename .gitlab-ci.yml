@@ -1,8 +1,10 @@
+image: php:5.6
+
+
 before_script:
   - bash .gitlab-ci.sh
 
 test:
-  image: php:5.6
   script:
     - vendor/bin/phpunit --colors --coverage-html ./report
 
@@ -16,13 +18,27 @@ coverage:
     paths:
       - public/
 
-# staging:
-#   type: deploy
-#   dependencies:
-#     - test
-#   script:
-#   - apt-get update -qy
-#   - apt-get install -y ruby-dev
-#   - gem install dpl
-#   - cd lipsy
-#   - dpl --provider=heroku --app=ppldep --api-key=dbcbb340-0714-4db6-9508-15b84165ed4b
+staging:
+  type: deploy
+  dependencies:
+    - test
+  script:
+  - apt-get update -qy
+  - apt-get install -y ruby-dev
+  - gem install dpl
+  - cp .env.staging .env
+  - dpl --provider=heroku --app=batique-staging --api-key=0ed5e2a2-11f9-43d3-98ad-425ee0680012
+  only: 
+  - gitlab-ci-runner
+
+production:
+  type: deploy
+  dependencies:
+    - test
+  script:
+  - apt-get update -qy
+  - apt-get install -y ruby-dev
+  - gem install dpl
+  - dpl --provider=heroku --app=batique --api-key=0ed5e2a2-11f9-43d3-98ad-425ee0680012
+  only: 
+  - master
