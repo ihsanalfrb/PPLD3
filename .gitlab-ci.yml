@@ -5,6 +5,7 @@ test:
   image: php:5.6
   script:
     - ls -la
+    - composer install
     - vendor/bin/phpunit --colors
     - cp .env-backup .env
    

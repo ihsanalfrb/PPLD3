@@ -16,6 +16,7 @@ curl -sS https://getcomposer.org/installer | php
 php composer.phar install
 
 composer install
+composer -v
 
 # Copy over testing configuration.
 mv .env .env-backup
