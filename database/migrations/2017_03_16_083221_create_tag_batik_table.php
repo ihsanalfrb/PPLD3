@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrateTagBatikTable extends Migration
+class CreateTagBatikTable extends Migration
 {
     /**
      * Run the migrations.
