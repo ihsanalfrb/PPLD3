@@ -4,18 +4,17 @@ before_script:
 test:
   image: php:5.6
   script:
-    - ls -la
-    - vendor/bin/phpunit --colors
-       
-# coverage:
-#   type: deploy
-#   dependencies:
-#     - test
-#   script:
-#     - mv lipsy/htmlcov/ public/
-#   artifacts:
-#     paths:
-#       - public/
+    - vendor/bin/phpunit --colors --coverage-html ./report
+
+coverage:
+  type: deploy
+  dependencies:
+    - test
+  script:
+    - mv report/ public/
+  artifacts:
+    paths:
+      - public/
 
 # staging:
 #   type: deploy
