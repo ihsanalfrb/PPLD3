@@ -15,9 +15,6 @@ docker-php-ext-install mbstring mcrypt pdo_mysql curl json intl gd xml zip bz2 o
 curl -sS https://getcomposer.org/installer | php
 php composer.phar install
 
-composer install
-composer -v
-
 # Copy over testing configuration.
 mv .env .env-backup
 cp .env.testing .env
@@ -28,4 +25,4 @@ php artisan config:cache
 
 # Run database migrations.
 touch database/testing.sqlite
-php artisan migrate --database=testing --env=testing
+php artisan migrate --env=testing
