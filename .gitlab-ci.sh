@@ -16,7 +16,7 @@ curl -sS https://getcomposer.org/installer | php
 php composer.phar install
 
 # Copy over testing configuration.
-mv .env .env-backup
+cp .env .env.backup
 cp .env.testing .env
 
 # Generate an application key. Re-cache.
