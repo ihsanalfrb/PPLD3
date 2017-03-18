@@ -15,7 +15,7 @@ class CreateTagBatikTable extends Migration
     {
         Schema::create('tag_batik', function (Blueprint $table) {
             $table->string('id_batik');
-            $table->string('matriks_pola_batik');
+            $table->string('tag');
         });
     }
 
