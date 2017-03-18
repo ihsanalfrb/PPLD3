@@ -15,7 +15,8 @@ class CreatePolaBatikTable extends Migration
     {
         Schema::create('pola_batik', function (Blueprint $table) {
             $table->string('id_batik');
-            $table->string('tag');
+            $table->string('gambar_pola_batik');
+            $table->string('matriks_pola_batik');
         });
     }
 
