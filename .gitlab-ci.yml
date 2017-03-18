@@ -4,25 +4,49 @@ before_script:
 test:
   image: php:5.6
   script:
-    - vendor/bin/phpunit --colors --coverage-html ./report
+    - mkdir report
+    - vendor/bin/phpunit --colors
 
 coverage:
   type: deploy
+  image: php:5.6
   dependencies:
     - test
   script:
-    - mv report/ public/
+    - mkdir report
+    - echo "zend_extension=\"/usr/lib/php5/20100525/xdebug.so\"" >> ~/etc/php5/apache2/php.ini 
+    - echo "xdebug.remote_enable=1" >> ~/etc/php5/apache2/php.ini 
+    - echo "xdebug.remote_handler=dbgp xdebug.remote_mode=req" >> ~/etc/php5/apache2/php.ini 
+    - echo "xdebug.remote_host=127.0.0.1 xdebug.remote_port=9000" >> ~/etc/php5/apache2/php.ini
+    - service apache2 restart
+    - vendor/bin/phpunit --colors --coverage-html report/
+    - ls -la
   artifacts:
     paths:
       - public/
 
-# staging:
-#   type: deploy
-#   dependencies:
-#     - test
-#   script:
-#   - apt-get update -qy
-#   - apt-get install -y ruby-dev
-#   - gem install dpl
-#   - cd lipsy
-#   - dpl --provider=heroku --app=ppldep --api-key=dbcbb340-0714-4db6-9508-15b84165ed4b
+staging:
+  type: deploy
+  image: ruby:2.2.4
+  script:
+  - apt-get update -qy
+  - apt-get install -y ruby-dev
+  - apt-get install rubygems-integration
+  - gem install dpl
+  - dpl --provider=heroku --app=batique-staging --api-key=0ed5e2a2-11f9-43d3-98ad-425ee0680012
+  only: 
+  - gitlab-ci-runner
+
+production:
+  type: deploy
+  image: ruby:2.2
+  dependencies:
+    - test
+  script:
+  - apt-get update -qy
+  - apt-get install -y ruby-dev
+  - apt-get install rubygems-integration
+  - gem install dpl
+  - dpl --provider=heroku --app=batique --api-key=0ed5e2a2-11f9-43d3-98ad-425ee0680012
+  only: 
+  - master
