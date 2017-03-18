@@ -13,7 +13,7 @@ coverage:
   dependencies:
     - test
   script:
-    - mv report/ public/
+    - ls -la
   artifacts:
     paths:
       - public/
@@ -26,7 +26,6 @@ staging:
   - apt-get update -qy
   - apt-get install -y ruby-dev
   - gem install dpl
-  - cp .env.staging .env
   - dpl --provider=heroku --app=batique-staging --api-key=0ed5e2a2-11f9-43d3-98ad-425ee0680012
   only: 
   - gitlab-ci-runner
