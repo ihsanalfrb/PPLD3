@@ -6,13 +6,16 @@ before_script:
 
 test:
   script:
-    - vendor/bin/phpunit --colors --coverage-html ./report
+    - mkdir report
+    - vendor/bin/phpunit --colors --coverage-html report/
 
 coverage:
   type: deploy
   dependencies:
     - test
   script:
+    - mkdir report
+    - vendor/bin/phpunit --colors --coverage-html report/
     - ls -la
   artifacts:
     paths:
@@ -25,6 +28,7 @@ staging:
   script:
   - apt-get update -qy
   - apt-get install -y ruby-dev
+  - apt-get install rubygems-integration
   - gem install dpl
   - dpl --provider=heroku --app=batique-staging --api-key=0ed5e2a2-11f9-43d3-98ad-425ee0680012
   only: 
@@ -37,6 +41,7 @@ production:
   script:
   - apt-get update -qy
   - apt-get install -y ruby-dev
+  - apt-get install rubygems-integration
   - gem install dpl
   - dpl --provider=heroku --app=batique --api-key=0ed5e2a2-11f9-43d3-98ad-425ee0680012
   only: 
