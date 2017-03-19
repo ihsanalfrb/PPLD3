@@ -21,7 +21,9 @@ coverage:
 
 staging:
   type: deploy
-  image: ruby:2.2.4
+  image:
+    - ruby:2.2.4
+    - php:5.6
   dependencies:
   - test
   script:
@@ -30,7 +32,7 @@ staging:
   - apt-get install rubygems-integration
   - gem install dpl
   - dpl --provider=heroku --app=batique-staging --api-key=0ed5e2a2-11f9-43d3-98ad-425ee0680012
-  only: 
+  only:
   - gitlab-ci-runner
 
 production:
@@ -44,7 +46,5 @@ production:
   - apt-get install rubygems-integration
   - gem install dpl
   - dpl --provider=heroku --app=batique --api-key=0ed5e2a2-11f9-43d3-98ad-425ee0680012
-  only: 
+  only:
   - master
-
-   
