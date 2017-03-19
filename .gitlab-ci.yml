@@ -12,12 +12,11 @@ coverage:
   dependencies:
     - test
   script:
-    - mkdir report
-    - vendor/bin/phpunit --colors --coverage-html report/
+    - vendor/bin/phpunit --colors > report/report.md
     - ls -la
   artifacts:
     paths:
-      - public/
+      - report/
 
 staging:
   type: deploy
