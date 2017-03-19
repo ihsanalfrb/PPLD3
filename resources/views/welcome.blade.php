@@ -79,7 +79,8 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Coba deploy (sukses)
+                    <img src="http://imgur.com/a/rowLC" />
                 </div>
 
                 <div class="links">
