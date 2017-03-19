@@ -1,5 +1,4 @@
 <?php
-<<<<<<< .merge_file_Urg84S
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +14,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-=======
-/**
- * Created by PhpStorm.
- * User: Ivan
- * Date: 3/17/17
- * Time: 2:32 PM
- */
->>>>>>> .merge_file_A9iGM5
