@@ -1,2 +1,1 @@
-worker: php artisan key:generate && php artisan config:cache && php artisan migrate
-web: php artisan serve
+web: vendor/bin/heroku-php-apache2 public/
