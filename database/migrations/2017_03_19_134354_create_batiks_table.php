@@ -15,7 +15,10 @@ class CreateBatiksTable extends Migration
     {
         Schema::create('batiks', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('nama_batik');
+            $table->text('makna_batik');
+            $table->text('sejarah_batik');
+            $table->string('asal_daerah');
         });
     }
 
