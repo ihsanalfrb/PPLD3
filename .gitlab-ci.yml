@@ -5,9 +5,8 @@ pre_dependency:
 
 test:
   image: php:5.6
-  dependencies:
-    - pre_dependency
   script:
+    - bash .gitlab-ci.sh
     - vendor/bin/phpunit --colors
 
 coverage:
