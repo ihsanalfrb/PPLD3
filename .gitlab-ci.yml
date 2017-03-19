@@ -4,7 +4,6 @@ before_script:
 test:
   image: php:5.6
   script:
-    - mkdir report
     - vendor/bin/phpunit --colors
 
 coverage:
@@ -14,9 +13,6 @@ coverage:
     - test
   script:
     - mkdir report
-    - cd /etc
-    - ls -la
-    - service apache2 restart
     - vendor/bin/phpunit --colors --coverage-html report/
     - ls -la
   artifacts:
@@ -26,6 +22,8 @@ coverage:
 staging:
   type: deploy
   image: ruby:2.2.4
+  dependencies:
+  - test
   script:
   - apt-get update -qy
   - apt-get install -y ruby-dev
@@ -39,7 +37,7 @@ production:
   type: deploy
   image: ruby:2.2
   dependencies:
-    - test
+  - test
   script:
   - apt-get update -qy
   - apt-get install -y ruby-dev
@@ -49,7 +47,4 @@ production:
   only: 
   - master
 
-   # - echo "zend_extension=\"/usr/lib/php5/20100525/xdebug.so\"" >> /etc/php5/apache2/php.ini 
-   #  - echo "xdebug.remote_enable=1" >> /etc/php5/apache2/php.ini 
-   #  - echo "xdebug.remote_handler=dbgp xdebug.remote_mode=req" >> /etc/php5/apache2/php.ini 
-   #  - echo "xdebug.remote_host=127.0.0.1 xdebug.remote_port=9000" >> /etc/php5/apache2/php.ini
+   
