@@ -1,7 +1,5 @@
-pre_dependency:
-  image: php:5.6
-  script:
-    - bash .gitlab-ci.sh
+before_script:
+  - bash .gitlab-ci.sh
 
 test:
   image: php:5.6
@@ -13,42 +11,40 @@ coverage:
   type: deploy
   image: php:5.6
   dependencies:
-    - pre_dependency
     - test
   script:
-    - mkdir report
-    - vendor/bin/phpunit --colors --coverage-html report/
+    - vendor/bin/phpunit --colors > report/report.md
     - ls -la
   artifacts:
     paths:
-      - public/
+      - report/
 
 staging:
   type: deploy
   image: ruby:2.2.4
   dependencies:
-    - pre_dependency
-    - test
+  - test
   script:
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
-    - apt-get install rubygems-integration
-    - gem install dpl
-    - dpl --provider=heroku --app=batique-staging --api-key=0ed5e2a2-11f9-43d3-98ad-425ee0680012
-  only:
+  - apt-get update -qy
+  - apt-get install -y ruby-dev
+  - apt-get install rubygems-integration
+  - gem install dpl
+  - dpl --provider=heroku --app=batique-staging --api-key=0ed5e2a2-11f9-43d3-98ad-425ee0680012
+  only: 
   - gitlab-ci-runner
 
 production:
   type: deploy
   image: ruby:2.2
   dependencies:
-    - pre_dependency
-    - test
+  - test
   script:
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
-    - apt-get install rubygems-integration
-    - gem install dpl
-    - dpl --provider=heroku --app=batique --api-key=0ed5e2a2-11f9-43d3-98ad-425ee0680012
-  only:
-    - master
+  - apt-get update -qy
+  - apt-get install -y ruby-dev
+  - apt-get install rubygems-integration
+  - gem install dpl
+  - dpl --provider=heroku --app=batique --api-key=0ed5e2a2-11f9-43d3-98ad-425ee0680012
+  only: 
+  - master
+
+   
