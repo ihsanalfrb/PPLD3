@@ -20,7 +20,7 @@ staging:
   - gem install dpl
   - dpl --provider=heroku --app=batique-staging --api-key=0ed5e2a2-11f9-43d3-98ad-425ee0680012
   only:
-  - heroku-config
+  - develop
 
 production:
   type: deploy
