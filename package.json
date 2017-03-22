@@ -1,0 +1,37 @@
+{
+  "name": "ppld3",
+  "version": "1.0.0",
+  "description": "ppl batique web apps",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://rizqyfaishal27@gitlab.com/PPL2017csui/PPLD3.git"
+  },
+  "keywords": [
+    "ppl3d",
+    "web apps",
+    "batique",
+    "fasilkom"
+  ],
+  "author": "rizqyfaishal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/PPL2017csui/PPLD3/issues"
+  },
+  "homepage": "https://gitlab.com/PPL2017csui/PPLD3#README",
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-image": "^2.7.5",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.1.1"
+  }
+}
