@@ -1,5 +1,7 @@
 @extends("layouts.app")
 
 @section("content")
-    <h1>Hello World</h1>
+    <section style="display: table;height: 100vh;width: 100%;">
+        <h1 style="display: table-cell;vertical-align: middle;text-align: center;">Content Here</h1>
+    </section>
 @endsection
