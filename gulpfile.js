@@ -25,7 +25,7 @@ gulp.task('concat-js', function(){
 });
 
 gulp.task('watch-sass', function(){
-	gulp.watch('./resources/assets/sass/**/*.sass',['compile-sass']);
+	gulp.watch(['./resources/assets/sass/**/*.{sass,scss}'],['compile-sass']);
 });
 
 gulp.task('watch-concat-js', function(){
@@ -33,8 +33,18 @@ gulp.task('watch-concat-js', function(){
 });
 
 gulp.task('optimize-images', function(){
-	return gulp.src('./resources/assets/images/**/*.png')
-		.pipe(image())
+	return gulp.src('./resources/assets/images/*')
+		// .pipe(image({
+	 //      pngquant: true,
+	 //      optipng: false,
+	 //      zopflipng: true,
+	 //      jpegRecompress: false,
+	 //      jpegoptim: true,
+	 //      mozjpeg: true,
+	 //      gifsicle: true,
+	 //      svgo: true,
+	 //      concurrent: 10
+	 //    }))
 		.pipe(gulp.dest('./public/images/'));
 });
 
