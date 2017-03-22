@@ -18,3 +18,4 @@
 */
 
 Route::get('/', 'PageController@index');
+Route::resource('batik','BatikController');
