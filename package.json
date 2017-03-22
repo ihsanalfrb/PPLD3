@@ -1,18 +1,37 @@
 {
-  "private": true,
-  "scripts": {
-    "dev": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch-poll": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --watch-poll --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "hot": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "production": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  "name": "ppld3",
+  "version": "1.0.0",
+  "description": "ppl batique web apps",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
   },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://rizqyfaishal27@gitlab.com/PPL2017csui/PPLD3.git"
+  },
+  "keywords": [
+    "ppl3d",
+    "web apps",
+    "batique",
+    "fasilkom"
+  ],
+  "author": "rizqyfaishal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/PPL2017csui/PPLD3/issues"
+  },
+  "homepage": "https://gitlab.com/PPL2017csui/PPLD3#README",
   "devDependencies": {
-    "axios": "^0.15.3",
-    "bootstrap-sass": "^3.3.7",
-    "jquery": "^3.1.1",
-    "laravel-mix": "^0.8.1",
-    "lodash": "^4.17.4",
-    "vue": "^2.1.10"
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-image": "^2.7.5",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.1.1"
   }
 }
