@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'PageController@index');
+Route::get('/rincian_info', 'RincianInfoBatikController@index');
+Route::get('/rincian_info/{id}', 'RincianInfoBatikController@show');
