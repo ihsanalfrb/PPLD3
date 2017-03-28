@@ -28,7 +28,5 @@ class PageController extends Controller
         ]);
     }
 
-    public function list_kategori(Request $request){
-
-    }
+    
 }
