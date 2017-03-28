@@ -13,7 +13,7 @@ class RincianInfoBatikController extends Controller
      */
     public function index()
     {
-        return view('rincian_info');
+        return view('rincian_informasi');
     }
 
     /**
@@ -116,3 +116,4 @@ class RincianInfoBatikController extends Controller
         return getBatikInfoFromDB($resolvedIDs);
     }
 }
+ 

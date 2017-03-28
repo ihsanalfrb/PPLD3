@@ -15,7 +15,8 @@
 $factory->define(App\PolaBatik::class, function (Faker\Generator $faker) {
 
     return [
-        'gambar_pola_batik' => $faker->address,
-        'matriks_pola_batik' => $faker->address
+        'gambar_pola_batik' => $faker->imageUrl('900','300'),
+        'matriks_pola_batik' => $faker->address,
+        'batik_id' => factory(\App\Batik::class)->create()->id
     ];
 });

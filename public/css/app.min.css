@@ -6405,6 +6405,10 @@ footer {
   color: red;
 }
 
+.well {
+  margin-bottom: 2rem;
+}
+
 body {
   font-size: 16px;
   background-color: white;
