@@ -19,7 +19,7 @@ class CreateBatikTable extends Migration
             $table->text('makna_batik');
             $table->text('sejarah_batik');
             $table->string('cluster_batik');
-            $table->string('asal_daerah');            
+            $table->string('asal_daerah');
             $table->timestamps();
             $table->softDeletes();
         });
