@@ -18,4 +18,5 @@
 */
 
 Route::get('/', 'PageController@index');
+Route::get('/daftar_kategori', 'PageController@daftar_kategori');
 Route::resource('batik','BatikController');
