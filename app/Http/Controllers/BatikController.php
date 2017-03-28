@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Batik;
 use Illuminate\Http\Request;
 
 class BatikController extends Controller
@@ -21,9 +22,17 @@ class BatikController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($namabatik, $maknabatik, $sejarahbatik, $asaldaerah)
     {
         //
+        $batik = new Batik();
+
+        $batik->nama_batik = $namabatik;
+        $batik->makna_batik = $maknabatik;
+        $batik->sejarah_batik = $sejarahbatik;
+        $batik->asal_daerah = $asaldaerah;
+        $batik->save();
+
     }
 
     /**
