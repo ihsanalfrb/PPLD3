@@ -442,15 +442,25 @@ class BatikTableSeeder extends Seeder
     }
 
     public function create_batik_model($namabatik, $maknabatik, $sejarahbatik, $cluster, $asaldaerah, $gambarpola, $matrikspola) {
-        $batik = new Batik();
+//        $batik = new Batik();
+//
+//        $batik->nama_batik = $namabatik;
+//        $batik->makna_batik = $maknabatik;
+//        $batik->sejarah_batik = $sejarahbatik;
+//        $batik->cluster_batik = $cluster;
+//        $batik->asal_daerah = $asaldaerah;
+//        $batik->gambar_pola_batik = $gambarpola;
+//        $batik->matriks_pola_batik = $matrikspola;
+//        $batik->save();
 
-        $batik->nama_batik = $namabatik;
-        $batik->makna_batik = $maknabatik;
-        $batik->sejarah_batik = $sejarahbatik;
-        $batik->cluster_batik = $cluster;
-        $batik->asal_daerah = $asaldaerah;
-        $batik->gambar_pola_batik = $gambarpola;
-        $batik->matriks_pola_batik = $matrikspola;
-        $batik->save();
+        Batik::create([
+            'nama_batik' => $namabatik,
+            'makna_batik' => $maknabatik,
+            'sejarah_batik' => $sejarahbatik,
+            'cluster_batik' => $cluster,
+            'asal_daerah' => $asaldaerah,
+            'gambar_pola_batik' => $gambarpola,
+            'matriks_pola_batik' => $matrikspola
+        ]);
     }
 }
