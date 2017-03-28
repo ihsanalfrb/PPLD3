@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Fascades\DB;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -20,7 +20,8 @@ class PageController extends Controller
       $asalDaerahs = DB::table('batik')->pluck('asal_daerah');
 
       return view('daftar_kategori', [
-        'clusters' => $clusters, 'asalDaerahs' => $asalDaerahs
+        'clusters' => $clusters,
+        'asalDaerahs' => $asalDaerahs
       ]);
     }
 }

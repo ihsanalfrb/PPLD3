@@ -1,6 +1,7 @@
 @extends("layouts.app")
 
 @section("content")
+  <br>
   <section>
     <aside class="menu">
       <p class="menu-label">
