@@ -80,7 +80,7 @@ class TagBatikController extends Controller
     public function update(Request $request, $id)
     {
         $updateTarget=TagBatik::where('id', $id)->first();
-        $user->update(['tag_batik'=>($request->input("tag_batik")));
+        $user->update(['tag_batik'=>($request->input("tag_batik")]);
     }
 
     /**
