@@ -14,6 +14,8 @@ class TagBatikTableSeeder extends Seeder
     public function run()
     {
         //
+        DB::table('tag_batik')->delete();
+        DB::table('batik_tag_batik')->delete();
 //        DB::table('tag_batik')->insert([
 //            array('id_batik' => '', 'tag_batik' => ''),
 //            array('id_batik' => '', 'tag_batik' => ''),
@@ -200,14 +202,17 @@ class TagBatikTableSeeder extends Seeder
 
     public function create_tag_batik_model($tag, $namabatik) {
         if (App\TagBatik::where('tag_batik','=',$tag)->get()->isEmpty()) {
-            $tagbatik = new TagBatik();
-            $tagbatik->tag_batik = $tag;
-            $tagbatik->save() ;
+           $tagbatik = new TagBatik();
+           $tagbatik->tag_batik = $tag;
+           $tagbatik->save() ;
+            TagBatik::create(['tag_batik' => $tag]);
         }
 
 
-        $idbatik = App\Batik::where('nama_batik','=',$namabatik)->first()->pluck('id')->first();
-        $idtagbatik = App\TagBatik::where('tag_batik','=',$tag)->first()->pluck('id')->first();
-        DB::table('batik_pola_batik')->insert(array('batik_id'=>$idbatik, 'pola_batik_id'=>$idtagbatik));
+
+        // $idbatik = App\Batik::where('nama_batik','=',$namabatik)->first()->pluck('id')->first();
+        // $idtagbatik = App\TagBatik::where('tag_batik','=',$tag)->first()->pluck('id')->first();
+        //
+        // DB::table('batik_pola_batik')->insert(array('batik_id'=>$idbatik, 'pola_batik_id'=>$idtagbatik));
     }
 }

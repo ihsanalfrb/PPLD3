@@ -14,6 +14,8 @@ class PolaBatikTableSeeder extends Seeder
     public function run()
     {
         //
+        DB::table('pola_batik')->delete();
+        DB::table('batik_pola_batik')->delete();
         // DB::table('pola_batik')->insert([
         //     array('gambar_pola_batik' => 'CPK001-Arum Dalu.png', 'matriks_pola_batik' => ''),
         //     array('gambar_pola_batik' => 'CPK003-Blibar11.png', 'matriks_pola_batik' => ''),

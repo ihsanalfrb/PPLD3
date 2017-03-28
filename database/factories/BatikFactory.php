@@ -18,5 +18,7 @@ $factory->define(App\Batik::class, function (Faker\Generator $faker) {
         'makna_batik' => $faker->paragraph,
         'sejarah_batik' => $faker->paragraph,
         'asal_daerah' => $faker->streetName,
+        'gambar_pola_batik' => $faker->imageUrl('900','300'),
+        'matriks_pola_batik' => $faker->address
     ];
 });

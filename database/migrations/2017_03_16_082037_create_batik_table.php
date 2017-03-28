@@ -20,6 +20,8 @@ class CreateBatikTable extends Migration
             $table->text('sejarah_batik');
             $table->string('cluster_batik')->nullable();
             $table->string('asal_daerah');
+            $table->string('gambar_pola_batik');
+            $table->string('matriks_pola_batik')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

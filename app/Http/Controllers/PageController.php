@@ -18,7 +18,7 @@ class PageController extends Controller
     public function rincian_informasi($id){
         $batik = Batik::where('id','=',$id)->first();
         if(is_null($batik)){
-            return response()->isNotFound();
+          abort(404);
         }
         $tag_batiks = TagBatik::all();
         return view('rincian_info',[
@@ -28,5 +28,5 @@ class PageController extends Controller
         ]);
     }
 
-    
+
 }
