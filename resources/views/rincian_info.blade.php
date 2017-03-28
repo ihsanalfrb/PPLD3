@@ -2,16 +2,16 @@
 
 @section('content')
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="public/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/blog-post.css" rel="stylesheet">
+    <link href="public/css/blog-post.css" rel="stylesheet">
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="public/js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="public/js/bootstrap.min.js"></script>
 
-    TEST
-    <h2> {{ $nilai }}</h2>
+    <h1> {{ $nilai }}</h1>
+    tes
 
     <!-- Page Content -->
     <div class="container">

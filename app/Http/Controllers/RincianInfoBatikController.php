@@ -83,7 +83,7 @@ class RincianInfoBatikController extends Controller
         //
     }
 
-    
+
     /* Function that will match batik by its distinct value,
         will return array of batik information
     @param  batikIDs collection of id processed by identifyUserImageResult(implemented later)
@@ -113,6 +113,6 @@ class RincianInfoBatikController extends Controller
     function identifyRelatedBatikResult($batikObjects){
         $resolvedIDs;
         // later implementation
-        return getBatikInfoFromDB($resolvedIDs);                    
+        return getBatikInfoFromDB($resolvedIDs);
     }
 }
