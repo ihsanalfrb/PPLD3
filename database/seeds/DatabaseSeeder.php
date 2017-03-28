@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(BatikTableSeeder::class);
         $this->call(TagBatikTableSeeder::class);
-        $this->call(PolaBatikTableSeeder::class);
+//        $this->call(PolaBatikTableSeeder::class);
     }
 }
