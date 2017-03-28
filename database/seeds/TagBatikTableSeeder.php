@@ -202,9 +202,10 @@ class TagBatikTableSeeder extends Seeder
 
     public function create_tag_batik_model($tag, $namabatik) {
         if (App\TagBatik::where('tag_batik','=',$tag)->get()->isEmpty()) {
-            $tagbatik = new TagBatik();
-            $tagbatik->tag_batik = $tag;
-            $tagbatik->save() ;
+//            $tagbatik = new TagBatik();
+//            $tagbatik->tag_batik = $tag;
+//            $tagbatik->save() ;
+            TagBatik::create(['tag_batik' => $tag]);
         }
 
         $idbatik = App\Batik::where('nama_batik','=',$namabatik)->pluck('id')->first();
