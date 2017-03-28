@@ -29,8 +29,8 @@ class UpdateTablePolaBatik extends Migration
      */
     public function down()
     {
-//        Schema::table('pola_batik', function (Blueprint $table) {
-//            $table->dropForeign('pola_batik_batik_id_foreign');
-//        });
+      //  Schema::table('pola_batik', function (Blueprint $table) {
+      //      $table->dropForeign('pola_batik_batik_id_foreign');
+      //  });
     }
 }
