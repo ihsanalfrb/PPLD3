@@ -13,13 +13,13 @@ class UpdateTablePolaBatik extends Migration
      */
     public function up()
     {
-        Schema::table('pola_batik', function (Blueprint $table) {
-            $table->foreign('batik_id')
-                ->references('id')
-                ->on('batik')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-        });
+//        Schema::table('pola_batik', function (Blueprint $table) {
+//            $table->foreign('batik_id')
+//                ->references('id')
+//                ->on('batik')
+//                ->onDelete('cascade')
+//                ->onUpdate('cascade');
+//        });
     }
 
     /**
@@ -29,8 +29,8 @@ class UpdateTablePolaBatik extends Migration
      */
     public function down()
     {
-        Schema::table('pola_batik', function (Blueprint $table) {
-            $table->dropForeign('pola_batik_batik_id_foreign');
-        });
+//        Schema::table('pola_batik', function (Blueprint $table) {
+//            $table->dropForeign('pola_batik_batik_id_foreign');
+//        });
     }
 }
