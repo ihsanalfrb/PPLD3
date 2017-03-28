@@ -16,7 +16,7 @@ class PolaBatik extends Model
 
 
     public function batik(){
-    	return $this->belongsTo('App\Batik');
+    	return $this->belongsTo('App\Batik','batik_id');
     }
 
 }

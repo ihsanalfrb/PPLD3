@@ -15,7 +15,7 @@
         <!-- code for header -->
         @include("components._navbar")
 
-        <div class="container">
+        <div class="container main-content">
             @yield("content")
         </div>
 
