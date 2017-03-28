@@ -14,8 +14,10 @@ class CreateTagBatikTable extends Migration
     public function up()
     {
         Schema::create('tag_batik', function (Blueprint $table) {
-            $table->string('id_batik');
+            $table->increments('id');
             $table->string('tag_batik');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

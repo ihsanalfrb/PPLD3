@@ -14,9 +14,12 @@ class CreatePolaBatikTable extends Migration
     public function up()
     {
         Schema::create('pola_batik', function (Blueprint $table) {
-            $table->string('id_batik');
+            $table->increments('id');
+            $table->integer('batik_id')->unsigned();
             $table->string('gambar_pola_batik');
             $table->string('matriks_pola_batik');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
