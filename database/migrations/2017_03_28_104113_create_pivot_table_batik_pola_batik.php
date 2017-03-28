@@ -13,24 +13,24 @@ class CreatePivotTableBatikPolaBatik extends Migration
      */
     public function up()
     {
-        Schema::create('batik_pola_batik', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('batik_id')->unsigned();
-            $table->integer('pola_batik_id')->unsigned();
-            $table->foreign('batik_id')
-                ->references('id')
-                ->on('batik')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-            $table->foreign('pola_batik_id')
-                ->references('id')
-                ->on('pola_batik')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-            $table->timestamps();
-        });
+//        Schema::create('batik_pola_batik', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->integer('batik_id')->unsigned();
+//            $table->integer('pola_batik_id')->unsigned();
+//            $table->foreign('batik_id')
+//                ->references('id')
+//                ->on('batik')
+//                ->onUpdate('cascade')
+//                ->onDelete('cascade');
+//
+//            $table->foreign('pola_batik_id')
+//                ->references('id')
+//                ->on('pola_batik')
+//                ->onUpdate('cascade')
+//                ->onDelete('cascade');
+//
+//            $table->timestamps();
+//        });
     }
 
     /**
@@ -40,10 +40,10 @@ class CreatePivotTableBatikPolaBatik extends Migration
      */
     public function down()
     {
-        Schema::table('batik_pola_batik', function(Blueprint $table){
-            $table->dropForeign('batik_pola_batik_batik_id_foreign');
-            $table->dropForeign('batik_pola_batik_pola_batik_id_foreign');
-        });
-        Schema::dropIfExists('batik_pola_batik');
+//        Schema::table('batik_pola_batik', function(Blueprint $table){
+//            $table->dropForeign('batik_pola_batik_batik_id_foreign');
+//            $table->dropForeign('batik_pola_batik_pola_batik_id_foreign');
+//        });
+//        Schema::dropIfExists('batik_pola_batik');
     }
 }
