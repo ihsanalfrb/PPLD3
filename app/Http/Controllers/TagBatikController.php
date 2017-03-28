@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\TagBatik;
 use Illuminate\Http\Request;
 
 class TagBatikController extends Controller
@@ -21,9 +22,13 @@ class TagBatikController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($tag)
     {
         //
+        $tagbatik = new TagBatik();
+
+        $tagbatik->tag_batik = $tag;
+        $tagbatik->save();
     }
 
     /**
