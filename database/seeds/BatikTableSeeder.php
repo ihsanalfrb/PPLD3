@@ -440,12 +440,13 @@ class BatikTableSeeder extends Seeder
        $this->create_batik_model('Parang Tarupulo', 'absde', 'efgh', '', 'Jepara');
     }
 
-    public function create_batik_model($namabatik, $maknabatik, $sejarahbatik, $asaldaerah) {
+    public function create_batik_model($namabatik, $maknabatik, $sejarahbatik, $cluster, $asaldaerah) {
         $batik = new Batik();
 
         $batik->nama_batik = $namabatik;
         $batik->makna_batik = $maknabatik;
         $batik->sejarah_batik = $sejarahbatik;
+        $batik->cluster_batik = $cluster;
         $batik->asal_daerah = $asaldaerah;
         $batik->save();
     }
