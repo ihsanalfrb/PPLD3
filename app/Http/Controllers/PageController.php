@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Batik;
+use App\TagBatik;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -11,5 +13,22 @@ class PageController extends Controller
     	return view('index',[
     		'title' => 'Welcome Batique'
     	]);
+    }
+
+    public function rincian_informasi($id){
+        $batik = Batik::where('id','=',$id)->first();
+        if(is_null($batik)){
+            return response()->isNotFound();
+        }
+        $tag_batiks = TagBatik::all();
+        return view('rincian_info',[
+            'title' => $batik->nama_batik,
+            'data' => $batik,
+            'tag_batiks' => $tag_batiks
+        ]);
+    }
+
+    public function list_kategori(Request $request){
+
     }
 }
