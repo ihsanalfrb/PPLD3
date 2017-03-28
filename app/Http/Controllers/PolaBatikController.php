@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PolaBatik;
 use Illuminate\Http\Request;
 
 class PolaBatikController extends Controller
@@ -21,9 +22,15 @@ class PolaBatikController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($batikid, $gambar, $matriks)
     {
         //
+        $polabatik = new PolaBatik();
+
+        $polabatik->batik_id = $batikid;
+        $polabatik->gambar_pola_batik = $gambar;
+        $polabatik->matriks_pola_batik = $matriks;
+        $polabatik->save();
     }
 
     /**
