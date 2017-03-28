@@ -325,7 +325,7 @@ class BatikTableSeeder extends Seeder
        $this->create_batik_model('Sumber Lintang2', 'absde', 'efgh', '', 'Solo', 'CPK074-Sumber Lintang2.png', '');
        $this->create_batik_model('Sumber Lintang3', 'absde', 'efgh', '', 'Solo', 'CPK074-Sumber Lintang3.png', '');
        $this->create_batik_model('Triloka', 'absde', 'efgh', '', 'Yogyakarta', 'CPK079-Triloka.png', '');
-       $this->create_batik_model('Ceplok Kawung Gringsing', 'absde', 'efgh', '', 'Yogyakarta', 'KWG001-Ceplok Kawung Grinsing.png', '');
+       $this->create_batik_model('Ceplok Kawung Grinsing', 'absde', 'efgh', '', 'Yogyakarta', 'KWG001-Ceplok Kawung Grinsing.png', '');
        $this->create_batik_model('Kawung Beton', 'absde', 'efgh', 'Kawung', 'Yogyakarta', 'KWG002-Kawung Beton.png', '');
        $this->create_batik_model('Kawung Brendhi', 'absde', 'efgh', 'Kawung', 'Yogyakarta', 'KWG004-Kawung Brendhi.png', '');
        $this->create_batik_model('Kawung Cacah Gori', 'absde', 'efgh', 'Kawung', 'Yogyakarta', 'KWG005-Kawung Cacah Gori.png', '');

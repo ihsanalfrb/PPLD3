@@ -8,7 +8,7 @@
                 <hr>
                 <p><span class="fa fa-clock"></span> Posted on August 24, 2013 at 9:00 PM</p>
                 <hr>
-                <img class="img-responsive" src="{{ $data->gambar_pola_batik }}" alt="">
+                <img class="img-responsive" src="http://kawung.mhs.cs.ui.ac.id/~rahadyan.awinda/batik_pictures/{{ $data->gambar_pola_batik }}" alt="">
                 <hr>
                 <div class="makna-batik">
                     <h3>Makna Batik</h3>

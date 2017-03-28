@@ -205,14 +205,13 @@ class TagBatikTableSeeder extends Seeder
            $tagbatik = new TagBatik();
            $tagbatik->tag_batik = $tag;
            $tagbatik->save() ;
-            TagBatik::create(['tag_batik' => $tag]);
         }
 
 
 
-        // $idbatik = App\Batik::where('nama_batik','=',$namabatik)->first()->pluck('id')->first();
-        // $idtagbatik = App\TagBatik::where('tag_batik','=',$tag)->first()->pluck('id')->first();
-        //
-        // DB::table('batik_pola_batik')->insert(array('batik_id'=>$idbatik, 'pola_batik_id'=>$idtagbatik));
+        $idbatik = App\Batik::where('nama_batik','=',$namabatik)->first()->id;
+        $idtagbatik = App\TagBatik::where('tag_batik','=',$tag)->first()->id;
+    
+        DB::table('batik_tag_batik')->insert(array('batik_id'=>$idbatik, 'tag_batik_id'=>$idtagbatik));
     }
 }
