@@ -12,13 +12,13 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-// $factory->define(App\User::class, function (Faker\Generator $faker) {
-//     static $password;
-
-//     return [
-//         'name' => $faker->name,
-//         'email' => $faker->unique()->safeEmail,
-//         'password' => $password ?: $password = bcrypt('secret'),
-//         'remember_token' => str_random(10),
-//     ];
-// });
+$factory->define(App\Batik::class, function (Faker\Generator $faker) {
+    return [
+        'nama_batik' => $faker->name,
+        'makna_batik' => $faker->paragraph,
+        'sejarah_batik' => $faker->paragraph,
+        'asal_daerah' => $faker->streetName,
+        'gambar_pola_batik' => $faker->imageUrl('900','300'),
+        'matriks_pola_batik' => $faker->address
+    ];
+});

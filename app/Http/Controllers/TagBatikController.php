@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Batik;
+use App\TagBatik;
 use Illuminate\Http\Request;
 
-class BatikController extends Controller
+class TagBatikController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class BatikController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -22,40 +22,39 @@ class BatikController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($namabatik, $maknabatik, $sejarahbatik, $asaldaerah)
+    public function create($tag)
     {
         //
-        $batik = new Batik();
+        $tagbatik = new TagBatik();
 
-        $batik->nama_batik = $namabatik;
-        $batik->makna_batik = $maknabatik;
-        $batik->sejarah_batik = $sejarahbatik;
-        $batik->asal_daerah = $asaldaerah;
-        $batik->save();
-
+        $tagbatik->tag_batik = $tag;
+        $tagbatik->save() ;
     }
 
     /**
      * Store a newly created resource in storage.
+     ****
+     * Store all variable from request to add another batik's tag
+     * [Notice] WIll store all variable that has been defined by /app/TagBatik.php
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $new_batik = Batik::create($request->all());
-
+        $new_tag_batik = TagBatik::create($request->all());
     }
-
     /**
      * Display the specified resource.
-     *
+     ****
+     * Show a row of batik's tag based on id
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+         $selected = TagBatik::where('id', $id)->first();
+         echo Response::json($selected);
     }
 
     /**
@@ -71,6 +70,8 @@ class BatikController extends Controller
 
     /**
      * Update the specified resource in storage.
+     ****
+     * [Notice] only tag_batik field that will be changed.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -78,7 +79,8 @@ class BatikController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updateTarget=TagBatik::where('id', $id)->first();
+        $user->update(['tag_batik'=>($request->input("tag_batik"))]);
     }
 
     /**
@@ -89,6 +91,7 @@ class BatikController extends Controller
      */
     public function destroy($id)
     {
-        $batik = Batik::where('id','=',$id);
+       $destroyTarget=TagBatik::where('id', $id)->first();
+       $destroyTarget->delete();
     }
 }

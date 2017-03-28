@@ -1,0 +1,34 @@
+.most-viewed-list {
+	margin-top: 3rem;
+	padding: 2rem;
+	border-top: 1px solid #777777;
+	.list-content {
+		margin-top: 2rem;
+	}
+	.bordered-right {
+		padding-right: 3rem;
+		border-right: 1px solid #777777;
+		margin-right: 3rem;
+	}
+}
+
+.category-list {
+	a {
+		display: inline-block;
+		&.small {
+			font-size: 0.8rem;
+		}
+		&.medium {
+			font-size: 1.2rem;
+		}
+		&.large {
+			font-size: 1.5rem;
+		}
+		&.normal {
+			font-size: 1rem;
+		}
+		&.red	 {
+			color: red;
+		}
+	}
+}

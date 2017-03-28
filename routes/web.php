@@ -12,3 +12,7 @@
 */
 
 Route::get('/', 'PageController@index');
+Route::get('/rincian_info/{id}', 'PageController@rincian_informasi');
+Route::resource('batiks','BatikController');
+Route::resource('tag_batiks','TagBatikController');
+Route::resource('pola_batiks','PolaBatikController');
