@@ -12,4 +12,10 @@ class PageController extends Controller
     		'title' => 'Welcome Batique'
     	]);
     }
+    public function rincian_informasi(){
+
+    	return view('rincian_informasi',[
+    		'title' => 'Rincian Informasi'
+    	]);
+    }
 }
