@@ -18,7 +18,7 @@ class CreateBatikTable extends Migration
             $table->string('nama_batik');
             $table->text('makna_batik');
             $table->text('sejarah_batik');
-            $table->string('cluster_batik');
+            $table->string('cluster_batik')->nullable();
             $table->string('asal_daerah');
             $table->timestamps();
             $table->softDeletes();
