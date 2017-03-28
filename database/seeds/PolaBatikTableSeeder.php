@@ -1,6 +1,6 @@
 <?php
 
-Use App\Batik;
+use App\Batik;
 use App\PolaBatik;
 use Illuminate\Database\Seeder;
 
@@ -443,13 +443,14 @@ class PolaBatikTableSeeder extends Seeder
     }
 
     public function create_pola_batik_model($gambarpola, $matrikspola, $namabatik) {
+
         $polabatik = new PolaBatik();
         $polabatik->gambar_pola_batik = $gambarpola;
         $polabatik->matriks_pola_batik = $matrikspola;
         $polabatik->save();
 
         $idbatik = App\Batik::where('nama_batik','=',$namabatik)->first()->pluck('id');
-        $idpolabatik = App\PolaBatk::where('gambar_pola_batik','=',$gambarpola)->first()->pluck('id');
-        DB::table('batik_pola_batik')->insert('batik_id' => $idbatik, 'pola_batik_id' => $idpolabatik);
+        $idpolabatik = App\PolaBatik::where('gambar_pola_batik','=',$gambarpola)->first()->pluck('id');
+        DB::table('batik_pola_batik')->insert(array('batik_id'=>$idbatik, 'pola_batik_id'=>$idpolabatik));
     }
 }
