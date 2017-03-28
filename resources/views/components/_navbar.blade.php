@@ -1,7 +1,7 @@
 <nav class="nav has-shadow">
   <div class="container">
     <div class="nav-left">
-        <a class="nav-item is-brand" href="http://bulma.io">
+        <a class="nav-item is-brand" href="{{ action('PageController@index') }}">
           <img src="{{ URL::asset('images/logo.png')}}" alt="Bulma: a modern CSS framework based on Flexbox">
         </a>
         <a class="nav-item is-tab is-hidden-mobile is-active" href="#">Knowledge</a>

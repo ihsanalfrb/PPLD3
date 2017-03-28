@@ -17,7 +17,7 @@ class RincianInformasiTest extends TestCase
     public function test_rincian_informasi_page_should_return_status_200()
     {
 
-        $response = $this->get('/batiks');
+        $response = $this->get('/rincian_info/1');
         $response->assertStatus(200);
     }
 

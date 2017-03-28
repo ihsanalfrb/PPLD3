@@ -16,7 +16,7 @@ class DaftarKategoriTest extends TestCase
      */
     public function test_daftar_kategori_page_should_return_status_200()
     {
-        $response = $this->get('/tag_batiks');
+        $response = $this->get('/daftar_kategori');
         $response->assertStatus(200);
     }
 
