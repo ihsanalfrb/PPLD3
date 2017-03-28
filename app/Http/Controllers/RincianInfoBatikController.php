@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Batik;
 use Illuminate\Http\Request;
 
-class BatikController extends Controller
+class RincianInfoBatikController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +13,7 @@ class BatikController extends Controller
      */
     public function index()
     {
+        return view('rincian_informasi');
     }
 
     /**
@@ -21,17 +21,9 @@ class BatikController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($namabatik, $maknabatik, $sejarahbatik, $asaldaerah)
+    public function create()
     {
         //
-        $batik = new Batik();
-
-        $batik->nama_batik = $namabatik;
-        $batik->makna_batik = $maknabatik;
-        $batik->sejarah_batik = $sejarahbatik;
-        $batik->asal_daerah = $asaldaerah;
-        $batik->save();
-
     }
 
     /**
@@ -42,7 +34,7 @@ class BatikController extends Controller
      */
     public function store(Request $request)
     {
-        $new_batik = Batik::create($request->all());
+        //
     }
 
     /**
@@ -53,7 +45,8 @@ class BatikController extends Controller
      */
     public function show($id)
     {
-        //
+      $nilai = 'eksperimen '.$id;
+      return view('rincian_info', ['nilai' => $nilai]);
     }
 
     /**
@@ -87,6 +80,40 @@ class BatikController extends Controller
      */
     public function destroy($id)
     {
-        $batik = Batik::where('id','=',$id);
+        //
+    }
+
+
+    /* Function that will match batik by its distinct value,
+        will return array of batik information
+    @param  batikIDs collection of id processed by identifyUserImageResult(implemented later)
+
+    */
+    function getBatikInfoFromDB($batikIDs){
+        foreach ($batikIDs as $id) {
+            $batikInfoRAW = DB::table('batik')->where('id', $id)->first();
+            //deprecated
+            // $result = $result->merge($batikInfoRAW);
+            $result->push($batikInfoRAW);
+        }
+
+        if ($result->count() > 0){ // If there is releated batik
+            echo Response::json($result);
+        }
+        else{
+            // default : no object is shown as there is no related batik
+            // move to another landing page
+        }
+
+
+    }
+    /* Function that will receive image/imageURL from pattern recognition machine
+    and resolve it to array of id
+    */
+    function identifyRelatedBatikResult($batikObjects){
+        $resolvedIDs;
+        // later implementation
+        return getBatikInfoFromDB($resolvedIDs);
     }
 }
+ 

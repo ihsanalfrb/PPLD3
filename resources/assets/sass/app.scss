@@ -1,8 +1,18 @@
 @import "bulma";
 @import "variables";
+@import "modules/utilities";
+@import "modules/heading";
 @import "modules/navbar";
 @import "modules/footer";
+@import "pages/index";
+@import "pages/rincian_info";
 
 body {
+	font-size: 16px;
 	background-color: white;
+	.container {
+		&.main-content {
+			padding-top: 4rem;
+		}
+	}
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Batik;
+use App\PolaBatik;
 use Illuminate\Http\Request;
 
-class BatikController extends Controller
+class PolaBatikController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +14,7 @@ class BatikController extends Controller
      */
     public function index()
     {
+        //
     }
 
     /**
@@ -21,17 +22,15 @@ class BatikController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($namabatik, $maknabatik, $sejarahbatik, $asaldaerah)
+    public function create($batikid, $gambar, $matriks)
     {
         //
-        $batik = new Batik();
+        $polabatik = new PolaBatik();
 
-        $batik->nama_batik = $namabatik;
-        $batik->makna_batik = $maknabatik;
-        $batik->sejarah_batik = $sejarahbatik;
-        $batik->asal_daerah = $asaldaerah;
-        $batik->save();
-
+        $polabatik->batik_id = $batikid;
+        $polabatik->gambar_pola_batik = $gambar;
+        $polabatik->matriks_pola_batik = $matriks;
+        $polabatik->save();
     }
 
     /**
@@ -42,7 +41,7 @@ class BatikController extends Controller
      */
     public function store(Request $request)
     {
-        $new_batik = Batik::create($request->all());
+        //
     }
 
     /**
@@ -87,6 +86,6 @@ class BatikController extends Controller
      */
     public function destroy($id)
     {
-        $batik = Batik::where('id','=',$id);
+        //
     }
 }
