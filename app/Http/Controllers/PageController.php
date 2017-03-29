@@ -10,20 +10,25 @@ use Illuminate\Support\Facades\DB;
 class PageController extends Controller
 {
     public function index(){
-
+      $tag_batiks = TagBatik::all();
     	return view('index',[
-    		'title' => 'Welcome Batique'
-    	]);
+    		'title' => 'Welcome Batique',
+        'tag_batiks' => $tag_batiks
+      ]);
     }
 
-    public function daftar_kategori()
+    public function show_category($id)
     {
-      $clusters = DB::table('batik')->pluck('cluster');
-      $asalDaerahs = DB::table('batik')->pluck('asal_daerah');
+      $tag_batik = TagBatik::where('id','=',$id)->first();
+      if(is_null($tag_batik)){
+        abort(404);
+      }
+      $batiks = $tag_batik->batiks()->get();
 
       return view('daftar_kategori', [
-        'clusters' => $clusters,
-        'asalDaerahs' => $asalDaerahs
+        'judulKategori' => $tag_batik->tag_batik,
+        'batiks' => $batiks,
+        'tag_batiks' => TagBatik::all()
       ]);
     }
     public function rincian_informasi($id){

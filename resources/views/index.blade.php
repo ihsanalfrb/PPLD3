@@ -91,21 +91,12 @@
     					</div>
     				</div>
     				<div class="column is-4">
-    					<div class="category-list">
-    						<a href="#" class="normal">Category 1</a>
-    						<a href="#" class="large">Category 1</a>
-    						<a href="#" class="medium">Category 1</a>
-    						<a href="#" class="large red">Category 1</a>
-    						<a href="#" class="medium">Category 1</a>
-    						<a href="#" class="medium red">Category 1</a>
-    						<a href="#" class="small">Category 1</a>
-    						<a href="#" class="large">Category 1</a>
-    						<a href="#" class="medium">Category 1</a>
-    						<a href="#" class="medium">Category 1</a>
-    						<a href="#" class="small">Category 1</a>
-    						<a href="#" class="normal">Category 1</a>
-
-    					</div>
+              <div class="category-list">
+                  <h2 class="text-center">Batik Categories</h2>
+                  @foreach($tag_batiks as $tag)
+                      <a href="{{ action('PageController@show_category',$tag->id)}}">{{ $tag->tag_batik }}</a>
+                  @endforeach
+              </div>
     				</div>
     			</div>
     		</div>
