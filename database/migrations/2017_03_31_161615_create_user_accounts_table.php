@@ -15,6 +15,13 @@ class CreateUserAccountsTable extends Migration
     {
         Schema::create('user_accounts', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('email');
+            $table->string('username');
+            $table->string('password');
+            $table->string('nama');
+            $table->date('tanggal_lahir');
+            $table->string('jenis_kelamin');
+            $table->date('created_at');
             $table->timestamps();
         });
     }
