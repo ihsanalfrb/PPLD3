@@ -27,6 +27,6 @@ class CommentsSeeder extends Seeder
 //        $idbatik = App\Batik::where('nama_batik','=',$namabatik)->first()->id;
 //        $idtagbatik = App\TagBatik::where('tag_batik','=',$tag)->first()->id;
 //
-//        DB::table('batik_tag_batik')->insert(array('batik_id'=>$idbatik, 'tag_batik_id'=>$idtagbatik));
+//        DB::table('comments')->insert(array('batik_id'=>$idbatik, 'tag_batik_id'=>$idtagbatik));
     }
 }
