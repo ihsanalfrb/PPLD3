@@ -11,7 +11,7 @@ class Batik extends Model
 	use SoftDeletes;
 
     protected $table = 'batik';
-    protected $fillable = ['nama_batik','makna_batik','sejarah_batik','asal_daerah'];
+    protected $fillable = ['nama_batik','makna_batik','sejarah_batik','asal_daerah','gambar_pola_batik','matriks_pola_batik'];
     protected $dates = ['delete_at'];
 
 
