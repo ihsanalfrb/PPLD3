@@ -13,4 +13,12 @@ class Thread extends Model
     protected $table = 'threads';
     protected $fillable = ['nama_thread','created_by','created_at','views', 'replies'];
     protected $dates = ['delete_at'];
+
+    public function comments() {
+        return $this->hasMany('App\Comment', 'thread_id');
+    }
+
+    public function creator() {
+        return $this->belongsTo('App\UserAccount','created_by');
+    }
 }
