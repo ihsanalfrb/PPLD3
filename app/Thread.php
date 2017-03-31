@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Thread extends Model
 {
     //
+    use SoftDeletes;
+
+    protected $table = 'threads';
+    protected $fillable = ['nama_thread','created_by','created_at','views', 'replies'];
+    protected $dates = ['delete_at'];
 }
