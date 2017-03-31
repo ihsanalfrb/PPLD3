@@ -43,4 +43,12 @@ class PageController extends Controller
             'tag_batiks' => $tag_batiks
         ]);
     }
+
+    public function daftar_thread() {
+        $threads = Thread::all();
+        return view('daftar_thread',[
+            'title' => 'Welcome Batique',
+            'threads' => $threads
+        ]);
+    }
 }
