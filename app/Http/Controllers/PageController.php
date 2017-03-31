@@ -32,18 +32,21 @@ class PageController extends Controller
       ]);
     }
 
-    public function show_category($id)
+    public function categories()
     {
-      $tag_batik = TagBatik::where('id','=',$id)->first();
-      if(is_null($tag_batik)){
-        abort(404);
-      }
-      $batiks = $tag_batik->batiks()->get();
+      $batiks = Batik::all();
+      $asal_daerahs = [];
+      $clusters = [];
 
-      return view('daftar_kategori', [
-        'judulKategori' => $tag_batik->tag_batik,
-        'batiks' => $batiks,
-        'tag_batiks' => TagBatik::all()
+      foreach($batiks as $batik){
+        if(!array_key_exists($batik->asal_daerah, $asal_daerahs)){
+          $asal_daerahs[$batik->asal_daerah] = [];
+        }
+        array_push($asal_daerahs[$batik->asal_daerah], $batik);
+
+      }
+      return view('categories',[
+          'asal_daerahs' => $asal_daerahs
       ]);
     }
     public function rincian_informasi($id){
