@@ -12,4 +12,12 @@ class UserAccount extends Model
     protected $table = 'user_accounts';
     protected $fillable = ['email','username','password','nama', 'tanggal_lahir', 'jenis_kelamin', 'created_at'];
     protected $dates = ['delete_at'];
+
+    public function post_comment() {
+        return $this->hasMany('App\Comment', 'comment_by');
+    }
+
+    public function create_thread() {
+        return $this->belongsToMany('App\Thread', 'created_by');
+    }
 }
