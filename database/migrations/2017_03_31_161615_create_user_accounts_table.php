@@ -18,7 +18,8 @@ class CreateUserAccountsTable extends Migration
             $table->string('email');
             $table->string('username');
             $table->string('password');
-            $table->string('nama');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');
             $table->timestamps();
