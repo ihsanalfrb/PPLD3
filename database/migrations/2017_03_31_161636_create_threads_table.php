@@ -13,7 +13,7 @@ class CreateThreadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ThreadsSeeder', function (Blueprint $table) {
+        Schema::create('threads', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_thread');
             $table->string('created_by');
