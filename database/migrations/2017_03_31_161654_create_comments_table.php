@@ -13,13 +13,12 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('CommentsSeeder', function (Blueprint $table) {
             $table->increments('id');
             $table->string('judul_komentar');
             $table->string('isi_komentar');
             $table->string('comment_by');
             $table->string('thread_id');
-            $table->date('created_at');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('CommentsSeeder');
     }
 }

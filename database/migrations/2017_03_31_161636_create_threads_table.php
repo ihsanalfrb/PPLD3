@@ -13,11 +13,10 @@ class CreateThreadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('threads', function (Blueprint $table) {
+        Schema::create('ThreadsSeeder', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_thread');
             $table->string('created_by');
-            $table->date('created_at');
             $table->integer('views');
             $table->integer('replies');
             $table->timestamps();
@@ -31,6 +30,6 @@ class CreateThreadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('threads');
+        Schema::dropIfExists('ThreadsSeeder');
     }
 }
