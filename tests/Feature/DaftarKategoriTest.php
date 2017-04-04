@@ -19,7 +19,7 @@ class DaftarKategoriTest extends TestCase
      *
      * @return void
      */
-    public function test_rincian_informasi_page_response()
+    public function test_daftar_kategori_page_response()
     {
 
         $this->batik = factory(TagBatik::class)->make();
