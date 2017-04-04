@@ -3,7 +3,7 @@
 use App\Thread;
 use Illuminate\Database\Seeder;
 
-class ThreadsSeeder extends Seeder
+class ForumThreadsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
