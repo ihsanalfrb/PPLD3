@@ -48,7 +48,7 @@ class PageController extends Controller
         $threads = Thread::all();
         return view('daftar_thread',[
             'title' => 'Welcome Batique',
-            'ThreadsSeeder' => $threads
+            'threads' => $threads
         ]);
     }
 }
