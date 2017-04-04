@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateThreadsTable extends Migration
+class CreateForumThreadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateThreadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('threads', function (Blueprint $table) {
+        Schema::create('forum_threads', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_thread');
             $table->string('created_by');
@@ -30,6 +30,6 @@ class CreateThreadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ThreadsSeeder');
+        Schema::dropIfExists('forum_threads');
     }
 }
