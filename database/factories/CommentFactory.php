@@ -18,7 +18,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Batik::class, function (Faker\Generator $faker) {
+$factory->define(App\Comment::class, function (Faker\Generator $faker) {
     return [
         'judul_komentar' => $faker->title,
         'isi_komentar' => $faker->paragraph,

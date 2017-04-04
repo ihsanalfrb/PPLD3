@@ -18,7 +18,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Batik::class, function (Faker\Generator $faker) {
+$factory->define(App\UserAccount::class, function (Faker\Generator $faker) {
     return [
         'email' => $faker->email,
         'username' => $faker->userName,
