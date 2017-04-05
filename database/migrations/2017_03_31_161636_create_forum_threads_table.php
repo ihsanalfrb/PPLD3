@@ -20,6 +20,7 @@ class CreateForumThreadsTable extends Migration
             $table->integer('views');
             $table->integer('replies');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

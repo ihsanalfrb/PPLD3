@@ -23,6 +23,7 @@ class CreateUserAccountsTable extends Migration
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
