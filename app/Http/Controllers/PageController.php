@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Batik;
 use App\TagBatik;
+use App\Thread;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -41,6 +42,14 @@ class PageController extends Controller
             'title' => $batik->nama_batik,
             'data' => $batik,
             'tag_batiks' => $tag_batiks
+        ]);
+    }
+
+    public function daftar_thread() {
+        $threads = Thread::all();
+        return view('daftar_thread',[
+            'title' => 'Welcome Batique',
+            'threads' => $threads
         ]);
     }
 }

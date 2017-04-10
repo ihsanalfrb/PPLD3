@@ -15,8 +15,8 @@ class PolaBatik extends Model
     protected $dates = ['delete_at'];
 
 
-    public function batik(){
-    	return $this->belongsTo('App\Batik','batik_id');
-    }
+//    public function batik(){
+//    	return $this->belongsTo('App\Batik','batik_id');
+//    }
 
 }
