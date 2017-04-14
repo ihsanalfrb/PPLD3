@@ -43,4 +43,34 @@ class PageController extends Controller
             'tag_batiks' => $tag_batiks
         ]);
     }
+
+    public function daftar_batik($filter) {
+        $asal_daerah = $filter['asal_daerah'];
+        $tag = $filter['tag'];
+        $cluster = $filter['cluster'];
+        $batik = Batik::all();
+        if (is_null($asal_daerah)) {
+
+        } else {
+            $batik = $batik->where('asal_daerah','=',$asal_daerah);
+        }
+
+        if (is_null($cluster)) {
+
+        } else {
+            $batik = $batik->where('cluster_batik','=',$cluster);
+        }
+
+        if (is_null($tag)) {
+
+        } else {
+            $tags_id = TagBatik::all()->where('tag_batik','=',$tag)->pluck('id');
+            $batiks_id = DB::table('batik_tag_batik')->where('tag_batik_id',$tags_id)->value('batik_id');
+            $batik = $batik->where('id','=',$batiks_id);
+        }
+
+        return view('daftar_batik',[
+            'data' => $batik
+        ]);
+    }
 }
