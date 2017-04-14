@@ -66,7 +66,7 @@ class PageController extends Controller
         } else {
             $tags_id = TagBatik::all()->where('tag_batik','=',$tag)->pluck('id');
             $batiks_id = DB::table('batik_tag_batik')->where('tag_batik_id',$tags_id)->value('batik_id');
-            $batik = $batik->whereIn('id',$batiks_id,true)->;
+            $batik = $batik->whereIn('id',$batiks_id,true);
         }
 
         return view('daftar_batik',[
