@@ -42,18 +42,21 @@ class PageController extends Controller
         if(!array_key_exists($batik->asal_daerah, $asal_daerahs)){
           $asal_daerahs[$batik->asal_daerah] = [];
         }
-        array_push($asal_daerahs[$batik->asal_daerah], $batik);
+        if (count($asal_daerahs[$batik->asal_daerah]) < 3)
+          array_push($asal_daerahs[$batik->asal_daerah], $batik);
 
         if(is_null($batik->cluster_batik) || $batik->cluster_batik == '' ){
           if(!array_key_exists('uncategorized', $clusters)){
             $clusters['uncategorized'] = [];
           }
-          array_push($clusters['uncategorized'], $batik);
+          if (count($clusters['uncategorized']) < 3)
+            array_push($clusters['uncategorized'], $batik);
         }else {
           if(!array_key_exists($batik->cluster_batik, $clusters)){
             $clusters[$batik->cluster_batik] = [];
           }
-          array_push($clusters[$batik->cluster_batik], $batik);
+          if (count($clusters[$batik->cluster_batik]) < 3)
+            array_push($clusters[$batik->cluster_batik], $batik);
         }
       }
       return view('categories',[
