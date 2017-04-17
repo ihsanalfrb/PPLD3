@@ -48,7 +48,7 @@ class PageController extends Controller
     public function daftar_thread() {
         $threads = Thread::all();
         return view('daftar_thread',[
-            'title' => 'Welcome Batique',
+            'title' => 'Forums',
             'threads' => $threads
         ]);
     }
