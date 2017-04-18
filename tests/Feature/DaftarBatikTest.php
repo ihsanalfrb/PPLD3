@@ -24,8 +24,7 @@ class DaftarBatikTest extends TestCase
         $tag = $batiks[0]['tag'];
         $cluster = $batiks[0]['cluster'];
         $asal_daerah = $batiks[0]['asal_daerah'];
-        $filter = array(['tag' => $tag, 'cluster' => $cluster, 'asal_daerah' => $asal_daerah]);
-        $response = $this->get('/daftar_batik/'.$filter);
+        $response = $this->get('/daftar_batik/'.$cluster.'/'.$asal_daerah.'/'.$tag);
         $response-> assertStatus(200);
     }
 }
