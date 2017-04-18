@@ -13,6 +13,12 @@ class ForumThreadsSeeder extends Seeder
     public function run()
     {
         //
+        DB::table('forum_threads')->delete();
+        $this->create_thread_model('Parang vs Kawung', '', '10', '10');
+        $this->create_thread_model('Asal mula Batik', '', '11', '1');
+        $this->create_thread_model('Batik Modern atau Keraton?', '', '0', '0');
+        $this->create_thread_model('Cara merawat kain batik', '', '2', '2');
+        $this->create_thread_model('Cara membuat batik tulis', '', '8', '0');
     }
 
     public function create_thread_model($namathread, $createdby, $views, $replies) {
