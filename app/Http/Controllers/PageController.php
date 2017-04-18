@@ -44,10 +44,7 @@ class PageController extends Controller
         ]);
     }
 
-    public function daftar_batik($filter) {
-        $asal_daerah = $filter['asal_daerah'];
-        $tag = $filter['tag'];
-        $cluster = $filter['cluster'];
+    public function daftar_batik($cluster, $asal_daerah, $tag) {
         $batik = Batik::all();
         if (is_null($asal_daerah)) {
 
