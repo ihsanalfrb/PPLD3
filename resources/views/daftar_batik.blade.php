@@ -17,7 +17,7 @@
 
         <!-- Projects Row -->
         <div class="row">
-            @for($x = 1; $x <= 4; $x++)
+            @for($x = 0; $x < 4; $x++)
             <div class="col-md-4 portfolio-item">
                 <a href="#">
                     <img class="img-responsive" src="http://kawung.mhs.cs.ui.ac.id/~rahadyan.awinda/batik_pictures/{{ $data[(4*$i)+$x]->gambar_pola_batik }}" alt="">
