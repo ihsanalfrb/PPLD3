@@ -14,11 +14,11 @@ class ForumThreadsSeeder extends Seeder
     {
         //
         DB::table('forum_threads')->delete();
-        $this->create_thread_model('Parang vs Kawung', '', '10', '10');
-        $this->create_thread_model('Asal mula Batik', '', '11', '1');
-        $this->create_thread_model('Batik Modern atau Keraton?', '', '0', '0');
-        $this->create_thread_model('Cara merawat kain batik', '', '2', '2');
-        $this->create_thread_model('Cara membuat batik tulis', '', '8', '0');
+        $this->create_thread_model('Parang vs Kawung', 'admin', '10', '2');
+        $this->create_thread_model('Asal mula Batik', 'admin', '11', '2');
+        $this->create_thread_model('Batik Modern atau Keraton?', 'admin', '3', '2');
+        $this->create_thread_model('Cara merawat kain batik', 'default1', '2', '2');
+        $this->create_thread_model('Cara membuat batik tulis', 'default1', '8', '2');
     }
 
     public function create_thread_model($namathread, $createdby, $views, $replies) {

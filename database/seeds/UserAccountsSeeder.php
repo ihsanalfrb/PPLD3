@@ -3,6 +3,7 @@
 use App\UserAccount;
 use Illuminate\Database\Seeder;
 
+
 class UserAccountsSeeder extends Seeder
 {
     /**
@@ -13,6 +14,9 @@ class UserAccountsSeeder extends Seeder
     public function run()
     {
         //
+        DB::table('user_accounts')->delete();
+        $this->create_user_account_model('admin@batique.com', 'admin','batiqueadmin', 'admin','admin', \Carbon\Carbon::now(),'N');
+        $this->create_user_account_model('example1@domain1.com', 'default1','admin', 'default','1' , \Carbon\Carbon::now(),'L');
     }
 
     public function create_user_account_model($email, $username, $password, $firstname, $lastname, $tanggallahir, $jeniskelamin) {
