@@ -15,11 +15,11 @@ class UserAccountsSeeder extends Seeder
     {
         //
         DB::table('user_accounts')->delete();
-        $this->create_user_account_model('admin@batique.com', 'admin','batiqueadmin', 'admin','admin', \Carbon\Carbon::now(),'N');
-        $this->create_user_account_model('example1@domain1.com', 'default1','admin', 'default','1' , \Carbon\Carbon::now(),'L');
+        $this->create_user_account_model('admin@batique.com', 'admin','batiqueadmin', 'admin','admin', \Carbon\Carbon::now(),'N', 'T');
+        $this->create_user_account_model('example1@domain1.com', 'default1','admin', 'default','1' , \Carbon\Carbon::now(),'L','F');
     }
 
-    public function create_user_account_model($email, $username, $password, $firstname, $lastname, $tanggallahir, $jeniskelamin) {
+    public function create_user_account_model($email, $username, $password, $firstname, $lastname, $tanggallahir, $jeniskelamin, $isadmin) {
         $useraccount = new UserAccount();
         $useraccount->email = $email;
         $useraccount->password = $password;
@@ -28,6 +28,11 @@ class UserAccountsSeeder extends Seeder
         $useraccount->last_name = $lastname;
         $useraccount->tanggal_lahir = $tanggallahir;
         $useraccount->jenis_kelamin = $jeniskelamin;
+        if($isadmin == 'T') {
+            $useraccount->isadmin = true;
+        } else {
+            $useraccount->isadmin = false;
+        }
         $useraccount->save();
 
 //        $idbatik = App\Batik::where('nama_batik','=',$namabatik)->first()->id;
