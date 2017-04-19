@@ -20,11 +20,17 @@ class DaftarBatikTest extends TestCase
      */
     public function test_daftar_batik_page_response()
     {
-        $batiks = factory(Batik::class, 3)->create();
-        $tag = $batiks[0]['tag'];
-        $cluster = $batiks[0]['cluster'];
-        $asal_daerah = $batiks[0]['asal_daerah'];
-        $response = $this->get('/daftar_batik/'.$cluster.'/'.$asal_daerah.'/'.$tag);
+        $this->batiks = factory(Batik::class, 3)->create();
+        $random_number = rand(0, 2);
+        $tag = $this->batiks[$random_number]->tag;
+        $cluster = $this->batiks[$random_number]->cluster_batik;
+        $asal_daerah = $this->batiks[$random_number]->asal_daerah;
+
+        $response = $this->get('/daftar_batik/'.$cluster);
+        $response-> assertStatus(200);
+        $response = $this->get('/daftar_batik/'.$asal_daerah);
+        $response-> assertStatus(200);
+        $response = $this->get('/daftar_batik/'.$tag);
         $response-> assertStatus(200);
     }
 }
