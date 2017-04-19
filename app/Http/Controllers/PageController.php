@@ -63,22 +63,35 @@ class PageController extends Controller
     }
 
     public function daftar_batik_cluster($cluster) {
-        $batik = Batik::where('cluster_batik','=',$cluster)->all();
+        $batik = Batik::where('cluster_batik','=',$cluster)->paginate(16);
         $sum = $batik->count();
         return view('daftar_batik',[
             'title' => 'Batiks',
             'data' => $batik,
-            'sum' => $sum
+            'sum' => $sum,
+            'header' => 'Batik dengan pola ' . $cluster
         ]);
     }
 
+    public function daftar_batik_uncategorized(){
+      $batik = Batik::where('cluster_batik','=',"")->paginate(16);
+      $sum = $batik->count();
+      return view('daftar_batik',[
+          'title' => 'Batiks',
+          'data' => $batik,
+          'sum' => $sum,
+          'header' => 'Batik dengan pola yang belum dikategorikan'
+      ]);
+    }
+
     public function daftar_batik_daerah($asal_daerah) {
-        $batik = Batik::where('asal_daerah','=',$asal_daerah)->all()->all();
+        $batik = Batik::where('asal_daerah','=',$asal_daerah)->paginate(15);
         $sum = $batik->count();
         return view('daftar_batik',[
             'title' => 'Batiks',
             'data' => $batik,
-            'sum' => $sum
+            'sum' => $sum,
+            'header' => 'Batik yang berasal dari ' . $asal_daerah
         ]);
     }
 
@@ -96,12 +109,13 @@ class PageController extends Controller
     }
 
     public function daftar_batik_all() {
-        $batik = Batik::all()->all();
-        $sum = $batik->count();
+        $batik = Batik::paginate(16);
+        $sum = count($batik);
         return view('daftar_batik',[
             'title' => 'Batiks',
             'data' => $batik,
-            'sum' => $sum
+            'sum' => $sum,
+            'header' => 'Semua Batik'
         ]);
     }
 }
