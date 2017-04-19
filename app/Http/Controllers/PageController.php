@@ -97,7 +97,7 @@ class PageController extends Controller
 
     public function daftar_batik_all() {
         $batik = Batik::all()->all();
-        $sum = $batik->count();
+        $sum = count($batik);
         return view('daftar_batik',[
             'title' => 'Batiks',
             'data' => $batik,

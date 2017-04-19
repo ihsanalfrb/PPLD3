@@ -12,12 +12,12 @@
             </div>
         </div>
         <!-- /.row -->
-        {{$sum}}
+
         @for($i = 0; $i < ($sum/4); $i++)
 
         <!-- Projects Row -->
         <div class="row">
-            @for($x = 0; $x < 4; $x++)
+            @for($x = 0; $x < 4 and (4*$i)+$x < $sum; $x++)
             <div class="col-md-4 portfolio-item">
                 <a href="#">
                     <img class="img-responsive" src="http://kawung.mhs.cs.ui.ac.id/~rahadyan.awinda/batik_pictures/{{ $data[(4*$i)+$x]->gambar_pola_batik }}" alt="">
