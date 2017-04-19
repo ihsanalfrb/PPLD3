@@ -12,7 +12,8 @@
             </div>
         </div>
         <!-- /.row -->
-        @for($i = 0; $i < ($data/4); $i++)
+        {{$sum}}
+        @for($i = 0; $i < ($sum/4); $i++)
 
         <!-- Projects Row -->
         <div class="row">

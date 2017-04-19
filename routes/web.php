@@ -24,5 +24,5 @@ Route::get('/rincian_info/{id}', 'PageController@rincian_informasi');
 Route::resource('batiks','BatikController');
 Route::resource('tag_batiks','TagBatikController');
 Route::resource('pola_batiks','PolaBatikController');
-Route::get('/daftar_batik/{cluster}/{asal_daerah}/{tag}', 'PageController@daftar_batik');
-Route::get('/daftar_batik/', 'PageController@daftar_batik');
+Route::get('/daftar_batik/{cluster}/{asal_daerah}/{tag}', 'PageController@daftar_batik_filter');
+Route::get('/daftar_batik/', 'PageController@daftar_batik_all');
