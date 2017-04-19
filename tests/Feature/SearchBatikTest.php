@@ -21,7 +21,7 @@ class SearchBatikTest extends TestCase
         $this->batik = factory(Batik::class)->make();
         $this->batiks = factory(Batik::class, 3)->create();
         $random_id = rand(0,2);
-        $cluster_sample = $this->batiks[$random_id]->cluster;
+        $cluster_sample = $this->batiks[$random_id]->cluster_batik;
         $asal_daerah_sample = $this->batiks[$random_id]->asal_daerah;
         $array_of_words = explode(' ', trim($this->batiks[$random_id]->makna_batik));
         $content_sample = $array_of_words[0].' '.$array_of_words[1].' '.$array_of_words[2];
