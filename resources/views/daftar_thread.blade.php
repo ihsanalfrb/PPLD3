@@ -39,11 +39,11 @@
                     </div>
                     <div class="summary">
 
-                        <h3><a href="#" class="question-hyperlink">{{$thread->nama_thread}}</a></h3>
+                        <h3><a href="{{ action("ThreadController@show", $thread->id) }}" class="question-hyperlink">{{$thread->nama_thread}}</a></h3>
 
                         <div class="started">
                             <a href="#" class="started-link">posted <span title="2017-04-13 13:39:37Z" class="relativetime">{{$thread->created_at}}</span></a>
-                            <a href="#">{{\App\UserAccount::where('id','=',$thread->created_by)->pluck('username')}}</a>
+{{--                            <a href="#">{{\App\UserAccount::where('id','=',$thread->created_by)->pluck('username')}}</a>--}}
                         </div>
                     </div>
                 </div>

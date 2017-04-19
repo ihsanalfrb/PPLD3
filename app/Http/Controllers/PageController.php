@@ -32,6 +32,7 @@ class PageController extends Controller
         'tag_batiks' => TagBatik::all()
       ]);
     }
+
     public function rincian_informasi($id){
         $batik = Batik::where('id','=',$id)->first();
         if(is_null($batik)){
@@ -52,4 +53,5 @@ class PageController extends Controller
             'threads' => $threads
         ]);
     }
+
 }

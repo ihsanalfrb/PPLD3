@@ -5,6 +5,8 @@ use Illuminate\Database\Seeder;
 
 class ForumThreadsSeeder extends Seeder
 {
+
+
     /**
      * Run the database seeds.
      *
@@ -22,11 +24,13 @@ class ForumThreadsSeeder extends Seeder
     }
 
     public function create_thread_model($namathread, $createdby, $views, $replies) {
+        $faker = Faker\Factory::create();
         $thread = new Thread();
         $thread->nama_thread = $namathread;
         $thread->created_by = $createdby;
         $thread->views = $views;
         $thread->replies = $replies;
+        $thread->content = $faker->paragraph;
         $thread->save();
 
 //        $idbatik = App\Batik::where('nama_batik','=',$namabatik)->first()->id;

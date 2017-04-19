@@ -28,3 +28,10 @@ Route::resource('pola_batiks','PolaBatikController');
 Route::resource('forum_threads','ThreadController');
 Route::resource('useraccounts','UserAccountController');
 Route::resource('comments','CommentController');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+Route::get('/dashboard', 'DashboardController@home');
+

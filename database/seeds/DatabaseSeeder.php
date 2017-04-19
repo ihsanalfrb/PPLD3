@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(BatikTableSeeder::class);
-        $this->call(TagBatikTableSeeder::class);
-        $this->call(UserAccountsSeeder::class);
-        $this->call(ForumThreadsSeeder::class);
+//        $this->call(BatikTableSeeder::class);
+//        $this->call(TagBatikTableSeeder::class);
+//        $this->call(UserAccountsSeeder::class);
+//        $this->call(ForumThreadsSeeder::class);
         $this->call(CommentsSeeder::class);
-//        $this->call(PolaBatikTableSeeder::class);
+        $this->call(PolaBatikTableSeeder::class);
     }
 }
