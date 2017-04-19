@@ -25,4 +25,7 @@ Route::resource('batiks','BatikController');
 Route::resource('tag_batiks','TagBatikController');
 Route::resource('pola_batiks','PolaBatikController');
 Route::get('/daftar_batik/{cluster}/{asal_daerah}/{tag}', 'PageController@daftar_batik_filter');
+Route::get('/daftar_batik/{cluster}', 'PageController@daftar_batik_cluster');
+Route::get('/daftar_batik/{asal_daerah}', 'PageController@daftar_batik_daerah');
+Route::get('/daftar_batik/{tag}', 'PageController@daftar_batik_tag');
 Route::get('/daftar_batik/', 'PageController@daftar_batik_all');
