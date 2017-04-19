@@ -63,7 +63,7 @@ class CommentController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -80,9 +80,12 @@ class CommentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+
     {
+        
         $destroyTarget=Comment::where('id', $id)->first();
         //Soft Delete
         $destroyTarget->delete();
+        return "OK";
     }
 }

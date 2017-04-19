@@ -22,6 +22,8 @@ Route::get('/show_category/{id}', 'PageController@show_category');
 Route::resource('batik','BatikController');
 Route::get('/rincian_info/{id}', 'PageController@rincian_informasi');
 Route::get('/daftar_thread/', 'PageController@daftar_thread');
+Route::get('/daftar_thread/', 'PageController@daftar_thread');
+
 //Route::resource('batiks','BatikController');
 Route::resource('tag_batiks','TagBatikController');
 Route::resource('pola_batiks','PolaBatikController');
