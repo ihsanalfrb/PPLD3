@@ -18,3 +18,9 @@ Route::resource('batiks','BatikController');
 Route::resource('tag_batiks','TagBatikController');
 Route::resource('pola_batiks','PolaBatikController');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+Route::get('/dashboard', 'DashboardController@home');
+

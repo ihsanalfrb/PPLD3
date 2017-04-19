@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Batik;
 use App\TagBatik;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -14,6 +15,7 @@ class PageController extends Controller
     		'title' => 'Welcome Batique'
     	]);
     }
+
 
     public function rincian_informasi($id){
         $batik = Batik::where('id','=',$id)->first();
@@ -28,5 +30,5 @@ class PageController extends Controller
         ]);
     }
 
-    
+
 }
