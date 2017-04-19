@@ -4,10 +4,10 @@
     <!-- Page Content -->
     <div class="container">
         <!-- Page Header -->
-        <div class="row">
-            <div class="col-lg-12">
+        <div class="columns">
+            <div class="column is-8">
                 <h1 class="page-header">{{$title}}
-                    <small>Secondary Text</small>
+                    <small> -- {{$header}}</small>
                 </h1>
             </div>
         </div>
@@ -16,23 +16,30 @@
         @for($i = 0; $i < ($sum/4); $i++)
 
         <!-- Projects Row -->
-        <div class="row">
+        <div class="columns">
             @for($x = 0; $x < 4 and (4*$i)+$x < $sum; $x++)
-            <div class="col-md-4 portfolio-item">
+            <div class="column is-1">
                 <a href="#">
                     <img class="img-responsive" src="http://kawung.mhs.cs.ui.ac.id/~rahadyan.awinda/batik_pictures/{{ $data[(4*$i)+$x]->gambar_pola_batik }}" alt="">
                 </a>
-                <hr>
+            </div>
+            <div class="column is-2">
                 <h3>
-                    <a href="#">{{$data[(4*$i)+$x]->nama_batik}}</a>
+                    <a href="{{ action('PageController@rincian_informasi',$data[(4*$i)+$x]->id)}}">{{$data[(4*$i)+$x]->nama_batik}}</a>
                 </h3>
                 <p>
-                    <a href="#">{{$data[(4*$i)+$x]->cluster_batik}}</a>
+                    @if(is_null($data[(4*$i)+$x]->cluster_batik) or $data[(4*$i)+$x]->cluster_batik == '')
+                      <a href="{{ action('PageController@daftar_batik_cluster',$data[(4*$i)+$x]->cluster_batik)}}">uncategorized</a>
+                    @else
+                      <a href="{{ action('PageController@daftar_batik_cluster',$data[(4*$i)+$x]->cluster_batik)}}">{{$data[(4*$i)+$x]->cluster_batik}}</a>
+                    @endif
+
                 </p>
-                <p>
-                    <a href="#">{{$data[(4*$i)+$x]->asal_daerah}}</a>
+                <p style=>
+                    <a href="{{ action('PageController@daftar_batik_daerah',$data[(4*$i)+$x]->asal_daerah)}}">{{$data[(4*$i)+$x]->asal_daerah}}</a>
                 </p>
             </div>
+            <hr>
             @endfor
         </div>
         <!-- /.row -->
@@ -40,33 +47,8 @@
         @endfor
         <hr>
         <!-- Pagination -->
-        <div class="row text-center">
-            <div class="col-lg-12">
-                <ul class="pagination">
-                    <li>
-                        <a href="#">&laquo;</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+
+        {{ $data->render() }}
         <!-- /.row -->
     </div>
 @endsection
