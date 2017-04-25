@@ -7,9 +7,9 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use App\Batik;
+use App\TagBatik;
 
-class RincianInformasiTest extends TestCase
+class DaftarKategoriTest extends TestCase
 {
 
     use DatabaseMigrations;
@@ -19,7 +19,7 @@ class RincianInformasiTest extends TestCase
      *
      * @return void
      */
-    public function test_rincian_informasi_page_response()
+    public function test_daftar_kategori_page_response()
     {
 
         $this->batik = factory(Batik::class)->make();
@@ -37,7 +37,7 @@ class RincianInformasiTest extends TestCase
           $randomID = rand();
 
           if($randomID != $this->batiks[0]->id && $randomID != $this->batiks[1]->id && $randomID != $this->batiks[2]->id){
-            $response = $this->get('/rincian_info/'.$randomID);
+            $response = $this->get('/show_category/'.$randomID);
             $response-> assertStatus(404);
             break;
           }
