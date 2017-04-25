@@ -18,8 +18,7 @@
 */
 
 Route::get('/', 'PageController@index');
-Route::get('/show_category/{id}', 'PageController@show_category');
-Route::resource('batik','BatikController');
+Route::get('/daftar_kategori', 'PageController@list_kategori');
 Route::get('/rincian_info/{id}', 'PageController@rincian_informasi');
 Route::get('/daftar_thread/', 'PageController@daftar_thread');
 //Route::resource('batiks','BatikController');
@@ -38,3 +37,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/dashboard', 'DashboardController@home');
+

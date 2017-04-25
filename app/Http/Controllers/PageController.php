@@ -10,11 +10,10 @@ use Illuminate\Support\Facades\DB;
 class PageController extends Controller
 {
     public function index(){
-      $tag_batiks = TagBatik::all();
+
     	return view('index',[
-    		'title' => 'Welcome Batique',
-        'tag_batiks' => $tag_batiks
-      ]);
+    		'title' => 'Welcome Batique'
+    	]);
     }
 
     public function show_category($id)
@@ -31,10 +30,11 @@ class PageController extends Controller
         'tag_batiks' => TagBatik::all()
       ]);
     }
+
     public function rincian_informasi($id){
         $batik = Batik::where('id','=',$id)->first();
         if(is_null($batik)){
-          abort(404);
+            return response()->isNotFound();
         }
         $tag_batiks = TagBatik::all();
         return view('rincian_info',[
@@ -118,4 +118,5 @@ class PageController extends Controller
             'header' => 'Semua Batik'
         ]);
     }
+
 }
