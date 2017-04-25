@@ -24,14 +24,7 @@ class CommentsSeeder extends Seeder
         $this->create_comment_model('No Joke', 'yeah',1, 4 );
         $this->create_comment_model('The truth?', 'Yes i can',1, 5 );
     }
-    /**
-     * Method helper to insert dummy comment.
-     * param $judulkomentar string
-     * param $isikomentar string
-     * param $commentby string
-     * param $threadid string 
-     * @return void
-     */
+
     public function create_comment_model($judulkomentar, $isikomentar, $commentby, $threadid) {
 
         $comment = new Comment();

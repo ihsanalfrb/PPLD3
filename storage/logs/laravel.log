@@ -4323,10 +4323,18 @@ Stack trace:
 #55 /home/rizqy/Documents/Projects/PPLD3/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #56 /home/rizqy/Documents/Projects/PPLD3/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #57 /home/rizqy/Documents/Projects/PPLD3/server.php(21): require_once('/home/rizqy/Doc...')
+<<<<<<< HEAD
+=======
+>>>>>>> ec047bacccc850b0f0bdab4738c77c5b5ccbb9cf
+>>>>>>> 4c8c83c69bb317e1de81e2d86137e14223e9f156
 #58 {main}
 
 Next exception 'Illuminate\Database\QueryException' with message 'SQLSTATE[42P01]: Undefined table: 7 ERROR:  relation "tag_batik" does not exist
 LINE 1: select * from "tag_batik" where "tag_batik"."deleted_at" is ...
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 4c8c83c69bb317e1de81e2d86137e14223e9f156
                       ^ (SQL: select * from "tag_batik" where "tag_batik"."deleted_at" is null)' in /home/geraldo/PhpstormProjects/ppl/PPLD3/vendor/laravel/framework/src/Illuminate/Database/Connection.php:647
 Stack trace:
 #0 /home/geraldo/PhpstormProjects/ppl/PPLD3/vendor/laravel/framework/src/Illuminate/Database/Connection.php(607): Illuminate\Database\Connection->runQueryCallback('select * from "...', Array, Object(Closure))
@@ -17195,6 +17203,7 @@ Stack trace:
 #64 /home/rizqy/Documents/Projects/PPLD3/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #65 /home/rizqy/Documents/Projects/PPLD3/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #66 /home/rizqy/Documents/Projects/PPLD3/server.php(21): require_once('/home/rizqy/Doc...')
+<<<<<<< HEAD
 #67 {main}  [2017-04-25 13:44:15] local.ERROR: exception 'PDOException' with message 'SQLSTATE[42701]: Duplicate column: 7 ERROR:  column "is_admin" of relation "users" already exists' in /home/geraldo/PhpstormProjects/ppl/PPLD3/vendor/laravel/framework/src/Illuminate/Database/Connection.php:449
 Stack trace:
 #0 /home/geraldo/PhpstormProjects/ppl/PPLD3/vendor/laravel/framework/src/Illuminate/Database/Connection.php(449): PDOStatement->execute()
@@ -17856,3 +17865,7 @@ Stack trace:
 #33 /home/geraldo/PhpstormProjects/ppl/PPLD3/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(123): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #34 /home/geraldo/PhpstormProjects/ppl/PPLD3/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #35 {main}  
+=======
+#67 {main}  
+>>>>>>> ec047bacccc850b0f0bdab4738c77c5b5ccbb9cf
+>>>>>>> 4c8c83c69bb317e1de81e2d86137e14223e9f156
