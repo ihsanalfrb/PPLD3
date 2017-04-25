@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Thread;
 use Illuminate\Http\Request;
 use App\Comment;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['store']]);
+    }
     //
     /**
      * Display a listing of the resource.
@@ -36,7 +42,9 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-
+        $comment = new Comment($request->all());
+        Auth::user()->comments()->save($comment);
+        return redirect()->back();
     }
 
     /**

@@ -451,8 +451,8 @@ class PolaBatikTableSeeder extends Seeder
         $polabatik->matriks_pola_batik = $matrikspola;
         $polabatik->save();
 
-        $idbatik = App\Batik::where('nama_batik','=',$namabatik)->first()->pluck('id')->first();
-        $idpolabatik = App\PolaBatik::where('gambar_pola_batik','=',$gambarpola)->first()->pluck('id')->first();
+        $idbatik = App\Batik::where('nama_batik','=',$namabatik)->first()->id;
+        $idpolabatik = App\PolaBatik::where('gambar_pola_batik','=',$gambarpola)->first()->id;
         DB::table('batik_pola_batik')->insert(array('batik_id'=>$idbatik, 'pola_batik_id'=>$idpolabatik));
     }
 }

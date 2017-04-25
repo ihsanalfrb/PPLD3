@@ -48,7 +48,11 @@ class ThreadController extends Controller
      */
     public function show($id)
     {
-        //
+        $thread = Thread::where('id', '=', $id)->with('comments')->first();
+        return view('show_thread', [
+            'title' => $thread->nama_thread,
+            'thread' => $thread
+        ]);
     }
 
     /**
