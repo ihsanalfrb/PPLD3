@@ -26,11 +26,13 @@ class DaftarBatikTest extends TestCase
         $cluster = $this->batiks[$random_number]->cluster_batik;
         $asal_daerah = $this->batiks[$random_number]->asal_daerah;
 
-        $response = $this->get('/daftar_batik/'.$cluster);
+        $response = $this->get('/daftar_batik/cluster/'.$cluster);
         $response-> assertStatus(200);
-        $response = $this->get('/daftar_batik/'.$asal_daerah);
+        $response = $this->get('/daftar_batik/asal/'.$asal_daerah);
         $response-> assertStatus(200);
-        $response = $this->get('/daftar_batik/'.$tag);
+        $response = $this->get('/daftar_batik');
+        $response-> assertStatus(200);
+        $response = $this->get('/daftar_batik/cluster');
         $response-> assertStatus(200);
     }
 }
