@@ -93,7 +93,16 @@ class CommentController extends Controller
         
         $destroyTarget=Comment::where('id', $id)->first();
         //Soft Delete
-        $destroyTarget->delete();
-        return "OK";
+        if(is_null(Auth::user())){
+            abort(401, 'Unauthorized');
+        }
+        if($destroyTarget->comment_author->id==Auth::user()->id){
+
+            $destroyTarget->delete();
+            return redirect()->back();
+        }else{
+            return response()->view('error_403', [], 403);
+        }
+
     }
 }

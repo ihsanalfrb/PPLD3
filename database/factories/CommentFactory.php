@@ -22,7 +22,7 @@ $factory->define(App\Comment::class, function (Faker\Generator $faker) {
     return [
         'judul_komentar' => $faker->title,
         'isi_komentar' => $faker->paragraph,
-        'comment_by' => $faker->randomDigitNotNull,
-        'thread_id' => $faker->randomDigitNotNull
+        'comment_by' => rand(1,10),
+        'thread_id' => rand(1,10)
     ];
 });

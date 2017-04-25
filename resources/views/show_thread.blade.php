@@ -11,6 +11,15 @@
                 <h4>{{ $comment->judul_komentar }}</h4>
                 <p>Comment by: {{ $comment->comment_author->name }}</p>
                 <p>{{ $comment->isi_komentar }}</p>
+                
+                @if($comment->comment_author->id == $current_user->id)
+                    <form action="{{ action('CommentController@destroy', $comment->id) }}" method="POST">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit">Delete</button>
+                    </form>
+                @endif
+            
             </div>
         @endforeach
     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Thread;
+use Illuminate\Support\Facades\Auth;
 
 class ThreadController extends Controller
 {
@@ -51,7 +52,8 @@ class ThreadController extends Controller
         $thread = Thread::where('id', '=', $id)->with('comments')->first();
         return view('show_thread', [
             'title' => $thread->nama_thread,
-            'thread' => $thread
+            'thread' => $thread,
+            'current_user' => Auth::user()
         ]);
     }
 
