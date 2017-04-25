@@ -102,4 +102,10 @@
     		</div>
     	</div>
     </section>
+    <script>
+      $(document).ready(function() {
+        $('#nav_knowledge').addClass("is-active");
+      });
+    </script>
+
 @endsection

@@ -6,6 +6,7 @@
       <hr>
       <div class="columns" style="height:62vh">
         <div class="column is-3 part1">
+          <h3>Pilih kategori batik berdasarkan</h3>
           <p id="asal" > <a onclick="show_daerah()" href="#asal">asal daerah </a> </p>
           <p id="pola" >  <a onclick="show_clusters()" href="#pola"> pola </a></p>
         </div>
@@ -30,6 +31,9 @@
       var kategori ='';
 
       $(document).ready(function() {
+
+        $('#nav_categories').addClass("is-active");
+
         if(window.location.hash) {
           var splittedHash = window.location.hash.substring(1).split("="); //Puts hash in variable, and removes the # character
 

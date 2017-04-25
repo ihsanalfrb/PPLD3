@@ -4,23 +4,15 @@
         <a class="nav-item is-brand" href="{{ action('PageController@index') }}">
           <img src="{{ URL::asset('images/logo.png')}}" alt="Bulma: a modern CSS framework based on Flexbox">
         </a>
-        <a class="nav-item is-tab is-hidden-mobile is-active" href="#">Knowledge</a>
+        <a id="nav_knowledge" class="nav-item is-tab is-hidden-mobile" href="#">Knowledge</a>
+        <a id="nav_categories" class="nav-item is-tab is-hidden-mobile" href="{{ action('PageController@categories')}}">Categories</a>
         <a class="nav-item is-tab is-hidden-mobile" href="#">Forums</a>
         <a class="nav-item is-tab is-hidden-mobile" href="#">Learn More</a>
         <a class="nav-item is-tab is-hidden-mobile" href="#">About Us</a>
+
+
       </div>
-      <div class="nav-center">
-        <a class="nav-item" href="https://github.com/rizqyfaishal">
-          <span class="icon">
-            <i class="fa fa-github"></i>
-          </span>
-        </a>
-        <a class="nav-item" href="https://twitter.com/jgthms">
-          <span class="icon">
-            <i class="fa fa-twitter"></i>
-          </span>
-        </a>
-      </div>
+
       <span id="nav-toggle" class="nav-toggle">
       <span></span>
       <span></span>
@@ -40,5 +32,5 @@
           </div>
         </span>
       </div>
-  </div>    
+  </div>
 </nav>
