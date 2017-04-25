@@ -35,4 +35,6 @@ php artisan config:cache
 touch database/testing.sqlite
 #Run dump-autoload for migrations
 php composer.phar dump-autoload
+php composer.phar install
 php artisan migrate --env=testing
+php composer.phar install
