@@ -33,6 +33,6 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment', 'comment_by');
     }
      public function create_thread() {
-        return $this->belongsToMany('App\Thread', 'created_by');
+        return $this->hasMany('App\Thread', 'created_by');
     }
 }
