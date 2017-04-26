@@ -50,6 +50,10 @@ class ThreadController extends Controller
     public function show($id)
     {
         $thread = Thread::where('id', '=', $id)->with('comments')->first();
+        if(is_null($thread)){
+            abort(404);
+        }
+        $thread->views = $thread->views + 1;
         return view('show_thread', [
             'title' => $thread->nama_thread,
             'thread' => $thread,

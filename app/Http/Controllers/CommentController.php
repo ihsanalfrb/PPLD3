@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostCommentRequest;
 use App\Thread;
 use Illuminate\Http\Request;
 use App\Comment;
@@ -40,11 +41,15 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostCommentRequest $request)
     {
         $comment = new Comment($request->all());
-        Auth::user()->comments()->save($comment);
-        return redirect()->back();
+        $saved = Auth::user()->comments()->save($comment);
+        if(!is_null($saved)){
+            return redirect()->back();
+        } else {
+            abort(500);
+        }
     }
 
     /**

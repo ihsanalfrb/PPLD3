@@ -28,7 +28,7 @@ class ForumThreadsSeeder extends Seeder
         $faker = Faker\Factory::create();
         $thread = new Thread();
         $thread->nama_thread = $namathread;
-        $thread->created_by = $createdby;
+        $thread->created_by = \App\User::first()->id;
         $thread->views = $views;
         $thread->replies = $replies;
         $thread->content = $faker->paragraph;

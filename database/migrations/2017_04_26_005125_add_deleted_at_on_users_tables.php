@@ -24,6 +24,8 @@ class AddDeletedAtOnUsersTables extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('user_accounts');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 }

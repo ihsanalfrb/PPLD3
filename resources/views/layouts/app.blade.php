@@ -21,6 +21,7 @@
 
         <!-- code for footer -->
         @include("components._footer")
+        <script src="http://bulma.io/javascript/bulma.js" type="text/javascript"></script>
         <script type="text/javascript" src="{{ URL::asset('js/app.min.js') }}"></script>
     </body>
 </html>
