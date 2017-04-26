@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Ivan
+ * Date: 3/17/17
+ * Time: 2:32 PM
+ */
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +18,9 @@
 */
 
 Route::get('/', 'PageController@index');
+Route::get('/categories', 'PageController@categories');
+Route::get('/show_tag/{id}', 'PageController@show_tag');
+Route::resource('batik','BatikController');
 Route::get('/rincian_info/{id}', 'PageController@rincian_informasi');
 Route::resource('batiks','BatikController');
 Route::resource('tag_batiks','TagBatikController');

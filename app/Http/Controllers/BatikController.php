@@ -14,7 +14,6 @@ class BatikController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -44,7 +43,6 @@ class BatikController extends Controller
     public function store(Request $request)
     {
         $new_batik = Batik::create($request->all());
-
     }
 
     /**
