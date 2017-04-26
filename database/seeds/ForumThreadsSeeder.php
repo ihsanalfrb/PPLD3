@@ -1,6 +1,7 @@
 <?php
 
 use App\Thread;
+use App\UserAccount;
 use Illuminate\Database\Seeder;
 
 class ForumThreadsSeeder extends Seeder
@@ -16,11 +17,11 @@ class ForumThreadsSeeder extends Seeder
     {
         //
         DB::table('forum_threads')->delete();
-        $this->create_thread_model('Parang vs Kawung', 'admin', '10', '2');
-        $this->create_thread_model('Asal mula Batik', 'admin', '11', '2');
-        $this->create_thread_model('Batik Modern atau Keraton?', 'admin', '3', '2');
-        $this->create_thread_model('Cara merawat kain batik', 'default1', '2', '2');
-        $this->create_thread_model('Cara membuat batik tulis', 'default1', '8', '2');
+        $this->create_thread_model('Parang vs Kawung', '', 'admin', '10', '2');
+        $this->create_thread_model('Asal mula Batik', '', 'admin', '11', '2');
+        $this->create_thread_model('Batik Modern atau Keraton?', '', 'admin', '3', '2');
+        $this->create_thread_model('Cara merawat kain batik', '', 'default1', '2', '2');
+        $this->create_thread_model('Cara membuat batik tulis', '', 'default1', '8', '2');
     }
 
 

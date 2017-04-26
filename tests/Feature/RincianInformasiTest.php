@@ -14,7 +14,7 @@ class RincianInformasiTest extends TestCase
 
     use DatabaseMigrations;
 
-    /**
+     /**
      * A basic test example.
      *
      * @return void

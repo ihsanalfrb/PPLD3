@@ -84,7 +84,6 @@ class PageController extends Controller
             'threads' => $threads
         ]);
     }
-
     public function daftar_batik_filter($cluster, $asal_daerah, $tag) {
         $batik = Batik::all();
 
