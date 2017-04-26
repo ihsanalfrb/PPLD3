@@ -7,14 +7,14 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use App\TagBatik;
+use App\Batik;
 
 class DaftarKategoriTest extends TestCase
 {
 
     use DatabaseMigrations;
 
-    /**
+     /**
      * A basic test example.
      *
      * @return void
@@ -22,28 +22,8 @@ class DaftarKategoriTest extends TestCase
     public function test_daftar_kategori_page_response()
     {
 
-        $this->batik = factory(TagBatik::class)->make();
-        $this->batiks = factory(TagBatik::class, 3)->create();
-        $response = $this->get('/show_category/'.$this->batiks[0]->id);
+        $response = $this->get('/categories');
         $response-> assertStatus(200);
-
-        $response = $this->get('/show_category/'.$this->batiks[1]->id);
-        $response-> assertStatus(200);
-
-        $response = $this->get('/show_category/'.$this->batiks[2]->id);
-        $response-> assertStatus(200);
-
-        while(true){
-            $randomID = rand();
-
-            if($randomID != $this->batiks[0]->id && $randomID != $this->batiks[1]->id && $randomID != $this->batiks[2]->id){
-                $response = $this->get('/show_category/'.$randomID);
-                $response-> assertStatus(404);
-                break;
-            }
-
-        }
     }
 
 }
-

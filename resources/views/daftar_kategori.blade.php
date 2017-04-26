@@ -29,9 +29,9 @@
             <div class="well">
                 <h3>Batik Categories</h3>
                 <div class="category-list">
-                    @foreach($tag_batiks as $tag)
+                   <!--  @foreach($tag_batiks as $tag)
                         <a href="{{ action('PageController@show_category',$tag->id)}}">{{ $tag->tag_batik }}</a>
-                    @endforeach
+                    @endforeach -->
                 </div>
             </div>
 

@@ -31,17 +31,26 @@ class RincianInformasiTest extends TestCase
         $response-> assertStatus(200);
 
         $response = $this->get('/rincian_info/'.$this->batiks[2]->id);
+
+        $this->batik = factory(TagBatik::class)->make();
+        $this->batiks = factory(TagBatik::class, 3)->create();
+        $response = $this->get('/show_tag/'.$this->batiks[0]->id);
+        $response-> assertStatus(200);
+
+        $response = $this->get('/show_tag/'.$this->batiks[1]->id);
+        $response-> assertStatus(200);
+
+        $response = $this->get('/show_tag/'.$this->batiks[2]->id);
         $response-> assertStatus(200);
 
         while(true){
-            $randomID = rand();
+          $randomID = rand();
 
-            if($randomID != $this->batiks[0]->id && $randomID != $this->batiks[1]->id && $randomID != $this->batiks[2]->id){
-                $response = $this->get('/rincian_info/'.$randomID);
-                $response-> assertStatus(404);
-                break;
-            }
-
+          if($randomID != $this->batiks[0]->id && $randomID != $this->batiks[1]->id && $randomID != $this->batiks[2]->id){
+              $response = $this->get('/rincian_info/'.$randomID);
+              $response-> assertStatus(404);
+              break;
+          }
         }
     }
 
