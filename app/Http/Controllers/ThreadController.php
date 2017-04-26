@@ -54,10 +54,15 @@ class ThreadController extends Controller
             abort(404);
         }
         $thread->views = $thread->views + 1;
-        return view('show_thread', [
-            'title' => $thread->nama_thread,
-            'thread' => $thread,
-            'current_user' => Auth::user()
-        ]);
+       if( $thread->update()){
+           return view('show_thread', [
+               'title' => $thread->nama_thread,
+               'thread' => $thread,
+               'current_user' => Auth::user()
+           ]);
+       } else {
+           abort(500);
+       }
+
     }
 }

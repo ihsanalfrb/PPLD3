@@ -6356,14 +6356,13 @@ h6 {
   font-size: 1rem;
 }
 
-footer {
+footer:not(.modal-card-foot) {
   background: url("../../images/bg_footer.png") no-repeat top;
   text-transform: uppercase;
   text-align: center;
   width: 100%;
   padding: 1rem;
-  bottom: 0;
-  position: absolute;
+  margin-top: 5em;
   color: #ccc;
 }
 
@@ -6416,6 +6415,7 @@ footer {
 }
 
 body {
+  position: relative;
   font-size: 16px;
   background-color: white;
 }

@@ -2,11 +2,16 @@
 
 @section('content')
     <h1>{{ $thread->nama_thread }}</h1>
-    <p>Author {{ $thread->creator->name }} &nbsp; | &nbsp; created at: {{ \Carbon\Carbon::parse($thread->created_at)->diffForHumans() }}</p>
+    <p>Author {{ $thread->creator->name }} &nbsp; | &nbsp; created at: {{ \Carbon\Carbon::parse($thread->created_at)->diffForHumans() }} &nbsp;|&nbsp; {{ $thread->views }} views</p>
     <hr>
     <div class="thread-content" style="padding: 2em 0;">
         {{ $thread->content }}
     </div>
+    @if(\Illuminate\Support\Facades\Session::has('comment_success'))
+        <div class="notification is-primary">
+            {{ \Illuminate\Support\Facades\Session::get('comment_success') }}
+        </div>
+    @endif
     <div class="thread-comments">
         <h4>Comments({{ $thread->comments()->count() }}):</h4>
         <div class="columns">

@@ -7,6 +7,7 @@ use App\Thread;
 use Illuminate\Http\Request;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CommentController extends Controller
 {
@@ -26,6 +27,7 @@ class CommentController extends Controller
         $comment = new Comment($request->all());
         $saved = Auth::user()->comments()->save($comment);
         if(!is_null($saved)){
+            Session::flash('comment_success', 'Komentar berhasil ditambahkan');
             return redirect()->back();
         } else {
             abort(500);
