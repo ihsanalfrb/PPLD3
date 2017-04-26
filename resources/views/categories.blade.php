@@ -100,6 +100,8 @@
 
           container += display_batik(value);
         });
+          var url = "{{action('PageController@daftar_batik_daerah', ':daerah' )}}"
+          container += '<a href="'+url.replace(':daerah', asal_daerah)+'">Show all Batik</a>';
         $('.part3').html(container);
       }
 
@@ -145,6 +147,8 @@
           container += display_batik(value);
 
         });
+        var url = "{{action('PageController@daftar_batik_cluster', ':cluster' )}}"
+        container += '<a href="'+url.replace(':cluster', cluster)+'">Show all Batik</a>';
         $('.part3').html(container);
       }
     </script>
