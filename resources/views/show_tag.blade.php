@@ -27,10 +27,10 @@
 
             <!-- Blog Categories Well -->
             <div class="well">
-                <h3>Batik Categories</h3>
+                <h3>Tags</h3>
                 <div class="category-list">
                     @foreach($tag_batiks as $tag)
-                        <a href="{{ action('PageController@show_category',$tag->id)}}">{{ $tag->tag_batik }}</a>
+                        <a href="{{ action('PageController@show_tag',$tag->id)}}">{{ $tag->tag_batik }}</a>
                     @endforeach
                 </div>
             </div>

@@ -24,20 +24,20 @@ class DaftarKategoriTest extends TestCase
 
         $this->batik = factory(TagBatik::class)->make();
         $this->batiks = factory(TagBatik::class, 3)->create();
-        $response = $this->get('/show_category/'.$this->batiks[0]->id);
+        $response = $this->get('/show_tag/'.$this->batiks[0]->id);
         $response-> assertStatus(200);
 
-        $response = $this->get('/show_category/'.$this->batiks[1]->id);
+        $response = $this->get('/show_tag/'.$this->batiks[1]->id);
         $response-> assertStatus(200);
 
-        $response = $this->get('/show_category/'.$this->batiks[2]->id);
+        $response = $this->get('/show_tag/'.$this->batiks[2]->id);
         $response-> assertStatus(200);
 
         while(true){
           $randomID = rand();
 
           if($randomID != $this->batiks[0]->id && $randomID != $this->batiks[1]->id && $randomID != $this->batiks[2]->id){
-            $response = $this->get('/show_category/'.$randomID);
+            $response = $this->get('/show_tag/'.$randomID);
             $response-> assertStatus(404);
             break;
           }
