@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostCommentRequest;
 use App\Thread;
 use Illuminate\Http\Request;
 use App\Comment;
@@ -20,11 +21,15 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostCommentRequest $request)
     {
         $comment = new Comment($request->all());
-        Auth::user()->comments()->save($comment);
-        return redirect()->back();
+        $saved = Auth::user()->comments()->save($comment);
+        if(!is_null($saved)){
+            return redirect()->back();
+        } else {
+            abort(500);
+        }
     }
 
     /**
@@ -51,7 +56,7 @@ class CommentController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -68,7 +73,21 @@ class CommentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+
     {
+        
+        $destroyTarget=Comment::where('id', $id)->first();
+        //Soft Delete
+        if(is_null(Auth::user())){
+            abort(401, 'Unauthorized');
+        }
+        if($destroyTarget->comment_author->id==Auth::user()->id){
+
+            $destroyTarget->delete();
+            return redirect()->back();
+        }else{
+            return response()->view('error_403', [], 403);
+        }
 
     }
 }

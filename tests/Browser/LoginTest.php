@@ -47,14 +47,14 @@ class LoginTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
-                    ->assertSee('E-Mail Address')
-                    ->assertSee('Password')
-                    ->assertTitle('Login')
-                    ->assertPathIs('/login')
-                    ->type('email',$this->user->email)
-                    ->type('password', 'secret')
-                    ->press('Login')
-                    ->assertPathIs('/home');
+                ->assertSee('E-Mail Address')
+                ->assertSee('Password')
+                ->assertTitle('Login')
+                ->assertPathIs('/login')
+                ->type('email',$this->user->email)
+                ->type('password', 'secret')
+                ->press('Login')
+                ->assertPathIs('/home');
 
         });
     }

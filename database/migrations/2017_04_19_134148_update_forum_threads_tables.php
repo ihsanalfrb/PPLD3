@@ -14,7 +14,7 @@ class UpdateForumThreadsTables extends Migration
     public function up()
     {
         Schema::table('forum_threads', function (Blueprint $table) {
-            $table->text('content');
+            $table->text('content')->nullable();
         });
     }
 

@@ -6362,8 +6362,8 @@ footer {
   text-align: center;
   width: 100%;
   padding: 1rem;
-  position: absolute;
   bottom: 0;
+  position: absolute;
   color: #ccc;
 }
 
@@ -6409,6 +6409,10 @@ footer {
 
 .well {
   margin-bottom: 2rem;
+}
+
+.comment-content {
+  padding: 1em 0;
 }
 
 body {

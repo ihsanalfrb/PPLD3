@@ -23,11 +23,12 @@ class ForumThreadsSeeder extends Seeder
         $this->create_thread_model('Cara membuat batik tulis', 'default1', '8', '2');
     }
 
+
     public function create_thread_model($namathread, $createdby, $views, $replies) {
         $faker = Faker\Factory::create();
         $thread = new Thread();
         $thread->nama_thread = $namathread;
-        $thread->created_by = $createdby;
+        $thread->created_by = \App\User::first()->id;
         $thread->views = $views;
         $thread->replies = $replies;
         $thread->content = $faker->paragraph;

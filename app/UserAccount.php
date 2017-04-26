@@ -10,7 +10,7 @@ class UserAccount extends Model
     use SoftDeletes;
 
     protected $table = 'user_accounts';
-    protected $fillable = ['email','username','password','first_name', 'last_name', 'tanggal_lahir', 'jenis_kelamin', 'created_at', 'isadmin'];
+    protected $fillable = ['email','username','password','first_name', 'last_name', 'tanggal_lahir', 'jenis_kelamin', 'created_at'];
     protected $dates = ['delete_at'];
 
     public function post_comment() {

@@ -46,11 +46,6 @@ class UserTest extends TestCase
         ]);
     }
 
-    public function test_database_has_column_is_admin(){
-        $this->assertDatabaseHas('users',[
-            'is_admin' => $this->user->is_admin
-        ]);
-    }
 
     public function test_database_has_column_remember_token(){
         $this->assertDatabaseHas('users',[
@@ -64,10 +59,6 @@ class UserTest extends TestCase
 
     public function test_user_has_password_attribute(){
         $this->assertArrayHasKey('password', $this->user->getAttributes());
-    }
-
-    public function test_user_has_is_admin_attribute(){
-        $this->assertArrayHasKey('is_admin', $this->user->getAttributes());
     }
 
     public function test_user_has_remember_token_attribute(){

@@ -23,6 +23,8 @@ Route::get('/show_tag/{id}', 'PageController@show_tag');
 Route::resource('batik','BatikController');
 Route::get('/rincian_info/{id}', 'PageController@rincian_informasi');
 Route::get('/daftar_thread/', 'PageController@daftar_thread');
+Route::get('/daftar_thread/', 'PageController@daftar_thread');
+
 //Route::resource('batiks','BatikController');
 Route::resource('tag_batiks','TagBatikController');
 Route::resource('pola_batiks','PolaBatikController');
