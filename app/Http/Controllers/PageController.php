@@ -152,24 +152,36 @@ class PageController extends Controller
         ]);
     }
 
-    public function search_batik(Request $request) {
-        $keywords = $request->input('keywords');
-        $batiks = Batik::where('upper(nama_batik)', 'like', '%upper('.$keywords.')%')
-            ->orWhere('upper(sejarah_batik)', 'like', '%upper('.$keywords.')%')
-            ->orWhere('upper(makna_batik)', 'like', '%upper('.$keywords.')%')->paginate(10);
+    public function search_batik($keywords = null) {
+//        $keywords = $request->input('keywords');
 
-        $categories = Batik::where('upper(cluster_batik)', 'like', '%upper('.$keywords.')%')->all();
-        $cities = Batik::where('upper(asal_daerah)', 'like', '%upper('.$keywords.')%')->all();
-        $tags = TagBatik::where('upper(tag_batik)', 'like', '%upper('.$keywords.')%')->all();
-
-        $sum = $batiks->count();
-        return view('daftar_batik',[
-            'title' => 'Hasil Pencarian "'.$keywords.'"' ,
+        if(is_null($keywords)){
+            $batiks = null;
+            $categories = null;
+            $cities = null;
+            $tags = null;
+            $sum = 0;
+        } else {
+            $batiks = Batik::where('nama_batik', 'ilike', '%'.$keywords.'%')
+                ->orWhere('sejarah_batik', 'ilike', '%'.$keywords.'%')
+                ->orWhere('makna_batik', 'ilike', '%'.$keywords.'%')->paginate(10);
+//            dd($batiks);
+            $categories = Batik::where('cluster_batik', 'ilike', '%'.$keywords.'%')->get();
+            $cities = Batik::where('asal_daerah', 'ilike', '%'.$keywords.'%')->get();
+            $tags = TagBatik::where('tag_batik', 'ilike', '%'.$keywords.'%')->get();
+            $sum = $batiks->count();
+        }
+        $tag_batiks = TagBatik::all();
+        return view('search_batik',[
+            'title' => 'Pencarian Batik',
             'batiks' => $batiks,
             'categories' => $categories,
             'cities' => $cities,
             'tags' => $tags,
-            'sum' => $sum
+            'tag_batiks' => $tag_batiks,
+            'sum' => $sum,
+            'keywords' => $keywords,
+            'header' => 'Hasil Pencarian '.$keywords
         ]);
     }
 }

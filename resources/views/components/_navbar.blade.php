@@ -21,17 +21,23 @@
       <div id="nav-menu" class="nav-right nav-menu">
         <span class="nav-item">
           <div class="field is-grouped">
-            <form action="{{ action('PageController@search_batik')}}" method="get">
             <p class="control is-expanded">
-              <input class="input" type="text" placeholder="Find a batik" name="keywords">
+              <input id="search_input" class="input" type="text" placeholder="Find a batik" name="keywords">
             </p>
             <p class="control">
-              <input class="button is-primary" type="submit" value="Search">
+              <a id="search_button" href="{{ action('PageController@search_batik', '')}}"><input class="button is-primary" type="submit" value="Search"></a>
             </p>
-              <input type="submit" value="Submit">
-            </form>
+
           </div>
         </span>
       </div>
+      <script>
+          $('#search_input').on('input',function(e){
+              var url = "{{ action('PageController@search_batik', ':keywords')}}"
+              $('#search_button').attr("href", url.replace(':keywords', $('#search_input').val()));
+          });
+
+
+      </script>
   </div>
 </nav>
