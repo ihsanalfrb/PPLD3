@@ -6,7 +6,8 @@
       <hr>
       <div class="columns" style="height:62vh">
         <div class="column is-3 part1">
-          <h3>Pilih kategori batik berdasarkan</h3>
+          <h4>Pilih kategori batik berdasarkan:</h4>
+          <br/>
           <p id="asal" > <a onclick="show_daerah()" href="#asal">asal daerah </a> </p>
           <p id="pola" >  <a onclick="show_clusters()" href="#pola"> pola </a></p>
         </div>
@@ -60,7 +61,7 @@
       });
 
       function show_daerah(){
-        var container = '';
+        var container = '<h4>Pilih asal daerah batik</h4><br/>';
         $.each(asal_daerahs, function(key,value){
           container += '<p id="asal_'+key+'" ><a onclick="show_batik_daerah(\''+key+'\')" href="#asal='+key+'">'+key+'</a></p>';
         });
@@ -73,7 +74,7 @@
       }
 
       function show_clusters(){
-        var container = '';
+        var container = '<h4>Pilih pola batik</h4><br/>';
         $.each(clusters, function(key,value){
           container += '<p id="pola_'+key+'"><a onclick="show_batik_cluster(\''+key+'\')" href="#pola='+key+'">'+key+'</a></p>';
         });
@@ -86,7 +87,7 @@
       }
 
       function show_batik_daerah(asal_daerah){
-        var container = '';
+        var container = '<h4>Batik yang berasal dari '+asal_daerah+' </h4><br/>';
 
         if(kategori !== ''){
           $('#asal_'+kategori+'').html('<a onclick="show_batik_daerah(\''+kategori+'\')" href="#asal='+kategori+'">'+kategori+'</a>');
@@ -128,7 +129,10 @@
       }
 
       function show_batik_cluster(cluster){
-        var container = '';
+        var container = '<h4>Batik dengan pola '+cluster+' </h4><br/>';
+        if(cluster === 'uncategorized'){
+          var container = '<h4>Batik dengan pola belum dikenal </h4><br/>';
+        }
 
         if(kategori !== ''){
           $('#pola_'+kategori+'').html('<a onclick="show_batik_cluster(\''+kategori+'\')" href="#pola='+kategori+'">'+kategori+'</a>');
