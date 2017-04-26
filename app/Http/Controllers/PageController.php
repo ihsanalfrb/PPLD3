@@ -164,4 +164,45 @@ class PageController extends Controller
         ]);
     }
 
+    public function search_batik($keywords = null) {
+//        $keywords = $request->input('keywords');
+
+        if(is_null($keywords)){
+            $batiks = null;
+            $categories = null;
+            $cities = null;
+            $tags = null;
+            $batiks_sum = 0;
+            $tags_sum = 0;
+            $cities_sum = 0;
+            $categories_sum = 0;
+        } else {
+            $batiks = Batik::where('nama_batik', 'ilike', '%'.$keywords.'%')
+                ->orWhere('sejarah_batik', 'ilike', '%'.$keywords.'%')
+                ->orWhere('makna_batik', 'ilike', '%'.$keywords.'%')->paginate(10);
+//            dd($batiks);
+            $categories = Batik::where('cluster_batik', 'ilike', '%'.$keywords.'%');
+            $cities = Batik::where('asal_daerah', 'ilike', '%'.$keywords.'%');
+            $tags = TagBatik::where('tag_batik', 'ilike', '%'.$keywords.'%');
+            $batiks_sum = $batiks->count();
+            $categories_sum = $categories->count();
+            $cities_sum = $cities->count();
+            $tags_sum = $tags->count();
+        }
+        $tag_batiks = TagBatik::all();
+        return view('search_batik',[
+            'title' => 'Pencarian Batik',
+            'batiks' => $batiks,
+            'categories' => $categories,
+            'cities' => $cities,
+            'tags' => $tags,
+            'tag_batiks' => $tag_batiks,
+            'batiks_sum' => $batiks_sum,
+            'categories_sum' => $categories_sum,
+            'cities_sum' => $cities_sum,
+            'tags_sum' => $tags_sum,
+            'keywords' => $keywords,
+            'header' => 'Hasil Pencarian '.$keywords
+        ]);
+    }
 }
