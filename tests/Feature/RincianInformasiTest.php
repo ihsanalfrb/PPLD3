@@ -2,19 +2,20 @@
 
 namespace Tests\Feature;
 
+use App\TagBatik;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use App\TagBatik;
+use App\Batik;
 
 class RincianInformasiTest extends TestCase
 {
 
     use DatabaseMigrations;
 
-     /**
+    /**
      * A basic test example.
      *
      * @return void
@@ -34,13 +35,13 @@ class RincianInformasiTest extends TestCase
         $response-> assertStatus(200);
 
         while(true){
-          $randomID = rand();
+            $randomID = rand();
 
-          if($randomID != $this->batiks[0]->id && $randomID != $this->batiks[1]->id && $randomID != $this->batiks[2]->id){
-            $response = $this->get('/show_tag/'.$randomID);
-            $response-> assertStatus(404);
-            break;
-          }
+            if($randomID != $this->batiks[0]->id && $randomID != $this->batiks[1]->id && $randomID != $this->batiks[2]->id){
+                $response = $this->get('/rincian_info/'.$randomID);
+                $response-> assertStatus(404);
+                break;
+            }
 
         }
     }

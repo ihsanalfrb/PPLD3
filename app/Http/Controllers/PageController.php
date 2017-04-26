@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Batik;
 use App\TagBatik;
+use App\Thread;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -64,6 +65,8 @@ class PageController extends Controller
           'clusters' => $clusters
       ]);
     }
+
+
     public function rincian_informasi($id){
         $batik = Batik::where('id','=',$id)->first();
         if(is_null($batik)){
@@ -76,6 +79,15 @@ class PageController extends Controller
             'tag_batiks' => $tag_batiks
         ]);
     }
+
+    public function daftar_thread() {
+        $threads = Thread::all();
+        return view('daftar_thread',[
+            'title' => 'Forums',
+            'threads' => $threads
+        ]);
+    }
+
 
     public function daftar_batik_filter($cluster, $asal_daerah, $tag) {
         $batik = Batik::all();

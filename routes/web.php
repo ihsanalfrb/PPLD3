@@ -20,12 +20,14 @@
 Route::get('/', 'PageController@index');
 Route::get('/categories', 'PageController@categories');
 Route::get('/show_tag/{id}', 'PageController@show_tag');
-Route::resource('batik','BatikController');
 Route::get('/rincian_info/{id}', 'PageController@rincian_informasi');
 Route::get('/daftar_thread/', 'PageController@daftar_thread');
-//Route::resource('batiks','BatikController');
-Route::resource('tag_batiks','TagBatikController');
-Route::resource('pola_batiks','PolaBatikController');
+Route::get('/daftar_thread/', 'PageController@daftar_thread');
+
+Route::resource('forum_threads','ThreadController');
+Route::resource('comments','CommentController');
+
+
 //Route::resource('forum_threads','ThreadController');
 //Route::resource('useraccounts','UserAccountController');
 //Route::resource('comments','CommentController');

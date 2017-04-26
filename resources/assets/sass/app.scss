@@ -6,8 +6,10 @@
 @import "modules/footer";
 @import "pages/index";
 @import "pages/rincian_info";
+@import "pages/show_thread";
 
 body {
+	position: relative;
 	font-size: 16px;
 	background-color: white;
 	.container {

@@ -15,9 +15,9 @@ class Batik extends Model
     protected $dates = ['delete_at'];
 
 
-    public function pola_batik(){
-    	return $this->hasOne('App\PolaBatik');
-    }
+//    public function pola_batik(){
+//    	return $this->hasOne('App\PolaBatik');
+//    }
 
     public function tag_batik(){
     	return $this->belongsToMany('App\TagBatik','batik_tag_batik','batik_id','tag_batik_id');
