@@ -92,7 +92,7 @@
     				</div>
     				<div class="column is-4">
               <div class="category-list">
-                  <h2 class="text-center">Batik Categories</h2>
+                  <h2 class="text-center">Tags</h2>
                   @foreach($tag_batiks as $tag)
                       <a href="{{ action('PageController@show_category',$tag->id)}}">{{ $tag->tag_batik }}</a>
                   @endforeach
