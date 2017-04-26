@@ -29,4 +29,4 @@ Route::get('/daftar_batik/{cluster}', 'PageController@daftar_batik_cluster');
 Route::get('/daftar_batik/{asal_daerah}', 'PageController@daftar_batik_daerah');
 Route::get('/daftar_batik/{tag}', 'PageController@daftar_batik_tag');
 Route::get('/daftar_batik/', 'PageController@daftar_batik_all');
-Route::get('/search_batik/{keywords}', 'PageCoantroller@search_batik');
+Route::get('/search_batik/}', 'PageCoantroller@search_batik');
