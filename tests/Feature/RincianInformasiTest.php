@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 use App\TagBatik;
 
-class DaftarKategoriTest extends TestCase
+class RincianInformasiTest extends TestCase
 {
 
     use DatabaseMigrations;

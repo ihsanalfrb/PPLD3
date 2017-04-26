@@ -1,8 +1,10 @@
 footer {
-	background: url('../images/bg_footer.png') no-repeat top;
+	background: url('../../images/bg_footer.png') no-repeat top;
 	text-transform: uppercase;
 	text-align: center;
 	width: 100%;
 	padding: 1rem;
+	position: absolute;
+	bottom: 0;
 	color: #ccc;
 }

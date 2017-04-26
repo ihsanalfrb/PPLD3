@@ -76,4 +76,80 @@ class PageController extends Controller
             'tag_batiks' => $tag_batiks
         ]);
     }
+
+    public function daftar_batik_filter($cluster, $asal_daerah, $tag) {
+        $batik = Batik::all();
+
+        $batik = $batik->where('asal_daerah','=',$asal_daerah);
+        $batik = $batik->where('cluster_batik','=',$cluster);
+
+        $tags_id = TagBatik::all()->where('tag_batik','=',$tag)->pluck('id');
+        $batiks_id = DB::table('batik_tag_batik')->where('tag_batik_id',$tags_id)->value('batik_id');
+        $batik = $batik->whereIn('id',$batiks_id,true)->all();
+
+        $sum = $batik->count();
+        return view('daftar_batik',[
+            'title' => 'Batiks',
+            'data' => $batik,
+            'sum' => $sum
+        ]);
+    }
+
+    public function daftar_batik_cluster($cluster) {
+        $batik = Batik::where('cluster_batik','=',$cluster)->paginate(16);
+        $sum = $batik->count();
+        return view('daftar_batik',[
+            'title' => 'Batiks',
+            'data' => $batik,
+            'sum' => $sum,
+            'header' => 'Batik dengan pola ' . $cluster
+        ]);
+    }
+
+    public function daftar_batik_uncategorized(){
+      $batik = Batik::where('cluster_batik','=',"")->paginate(16);
+      $sum = $batik->count();
+      return view('daftar_batik',[
+          'title' => 'Batiks',
+          'data' => $batik,
+          'sum' => $sum,
+          'header' => 'Batik dengan pola yang belum dikategorikan'
+      ]);
+    }
+
+    public function daftar_batik_daerah($asal_daerah) {
+        $batik = Batik::where('asal_daerah','=',$asal_daerah)->paginate(15);
+        $sum = $batik->count();
+        return view('daftar_batik',[
+            'title' => 'Batiks',
+            'data' => $batik,
+            'sum' => $sum,
+            'header' => 'Batik yang berasal dari ' . $asal_daerah
+        ]);
+    }
+
+    public function daftar_batik_tag($tag) {
+        $batik = Batik::all();
+        $tags_id = TagBatik::all()->where('tag_batik','=',$tag)->pluck('id');
+        $batiks_id = DB::table('batik_tag_batik')->where('tag_batik_id',$tags_id)->value('batik_id');
+        $batik = $batik->whereIn('id',$batiks_id,true)->all();
+        $sum = $batik->count();
+        return view('daftar_batik',[
+            'title' => 'Batiks',
+            'data' => $batik,
+            'sum' => $sum
+        ]);
+    }
+
+    public function daftar_batik_all() {
+        $batik = Batik::paginate(16);
+        $sum = count($batik);
+        return view('daftar_batik',[
+            'title' => 'Batiks',
+            'data' => $batik,
+            'sum' => $sum,
+            'header' => 'Semua Batik'
+        ]);
+    }
+
 }

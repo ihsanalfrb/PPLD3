@@ -7,23 +7,15 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use App\Batik;
-
-class RincianInformasiTest extends TestCase
+class RegisterTest extends TestCase
 {
-
-    use DatabaseMigrations;
-
-     /**
+    /**
      * A basic test example.
      *
      * @return void
      */
-    public function test_rincian_informasi_page_response()
+    public function testExample()
     {
-
-        $response = $this->get('/categories');
-        $response-> assertStatus(200);
+        $this->assertTrue(true);
     }
-
 }
