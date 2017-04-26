@@ -18,7 +18,9 @@
 */
 
 Route::get('/', 'PageController@index');
-Route::get('/daftar_kategori', 'PageController@list_kategori');
+Route::get('/categories', 'PageController@categories');
+Route::get('/show_tag/{id}', 'PageController@show_tag');
+Route::resource('batik','BatikController');
 Route::get('/rincian_info/{id}', 'PageController@rincian_informasi');
 Route::get('/daftar_thread/', 'PageController@daftar_thread');
 //Route::resource('batiks','BatikController');

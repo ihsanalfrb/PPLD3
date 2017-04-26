@@ -12,23 +12,23 @@
                 <img class="img-responsive" src="http://kawung.mhs.cs.ui.ac.id/~rahadyan.awinda/batik_pictures/{{ $data->gambar_pola_batik }}" alt="">
                 <hr>
                 <div class="makna-batik">
-                    <h3>Makna Batik</h3>
-                    <p>{{ $data->makna_batik }}</p>
+                    <h3>Deskripsi Batik</h3>
+                    <p>Batik {{ $data->nama_batik }} adalah sebuah batik yang memiliki pola {{ $data->cluster_batik }}.</p>
                 </div>
                 <br>
                 <div class="sejarah-batik">
                     <h3>Sejarah Batik</h3>
-                    <p>{{ $data->sejarah_batik }}</p>
+                    <p>Batik {{ $data->nama_batik }} pertama kali dibuat dan digunakan di wilayah {{ $data->asal_daerah}}.</p>
                 </div>
             </div>
             <div class="column is-4">
 
                 <!-- Blog Categories Well -->
                 <div class="well">
-                    <h3>Batik Categories</h3>
+                    <h3>Tags</h3>
                     <div class="category-list">
                         @foreach($tag_batiks as $tag)
-                            <a href="{{ action('PageController@daftar_batik_tag',$tag->tag_batik)}}">{{ $tag->tag_batik }}</a>
+                            <a href="{{ action('PageController@show_tag',$tag->id)}}">{{ $tag->tag_batik }}</a>
                         @endforeach
                     </div>
                 </div>
