@@ -27,16 +27,16 @@ class SearchBatikTest extends TestCase
         $content_sample = $array_of_words[0].' '.$array_of_words[1].' '.$array_of_words[2];
         $nama_sample = $this->batiks[$random_id]->nama_batik;
 
-        $response = $this->get('/search_batik/'.$cluster_sample);
+        $response = $this->get('/search_batik/');
         $response-> assertStatus(200);
 
-        $response = $this->get('/search_batik/'.$asal_daerah_sample);
+        $response = $this->get('/search_batik/');
         $response-> assertStatus(200);
 
-        $response = $this->get('/search_batik/'.$content_sample);
+        $response = $this->get('/search_batik/');
         $response-> assertStatus(200);
 
-        $response = $this->get('/search_batik/'.$nama_sample);
+        $response = $this->get('/search_batik/');
         $response-> assertStatus(200);
     }
 }
