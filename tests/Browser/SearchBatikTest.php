@@ -16,5 +16,20 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SearchBatikTest extends DuskTestCase
 {
+    use DatabaseTransactions;
+    use DatabaseMigrations;
 
+    public function test_search_batik() {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/')
+                ->assertPathIs('/')
+                ->type('keywords', 'parang')
+                ->press('Search')
+                ->assertPathIs('/search_batik/parang')
+                ->assertTitle('Pencarian Batik')
+                ->assertSee('Hasil Pencarian parang')
+                ->assertSee('parang');
+            $this->assertTrue(true);
+        });
+    }
 }

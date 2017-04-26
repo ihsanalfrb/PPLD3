@@ -3,6 +3,7 @@
 @section('content')
     <!-- Page Content -->
     <div class="container">
+
         <!-- Page Header -->
         <div class="columns">
             <div class="column is-8">
@@ -13,13 +14,16 @@
         </div>
         <!-- /.row -->
 
+
         <div class="columns">
             <div class="column is-8">
-                @if($sum <> 0)
-                    @for($x = 0; $x < ($sum/2); $x++)
+                <!-- Hasil Batik -->
+                @if($batiks_sum <> 0)
+                    @for($x = 0; $x < ($batiks_sum/2); $x++)
                         {{--@foreach($batiks as $batik)--}}
+
                         <div class="columns">
-                            @for($y = 0; $y < 2 and (2*$x)+$y <$sum; $y++)
+                            @for($y = 0; $y < 2 and (2*$x)+$y <$batiks_sum; $y++)
                             <div class="column is-2">
                                 <a href="{{ action('PageController@rincian_informasi',$batiks[(2*$x)+$y]->id)}}">
                                     <img class="img-responsive" src="http://kawung.mhs.cs.ui.ac.id/~rahadyan.awinda/batik_pictures/{{ $batiks[(2*$x)+$y]->gambar_pola_batik }}" alt="">
@@ -42,13 +46,49 @@
                     <div class="columns">
                     </div>
                 @endif
+                <!-- /.row -->
 
+                <!-- Hasil Cluster -->
+                {{--@if($categories_sum <> 0)--}}
+                    {{--@for($x = 0; $x < ($categories_sum/3); $x++)--}}
+                        {{--<div class="columns">--}}
+                            {{--@for($y = 0; $y < 3 and (3*$x)+$y <$categories_sum; $y++)--}}
+                                {{--<div class="column is-4">--}}
+                                    {{--<a href="{{ action('PageController@daftar_batik_cluster', $categories[(3*$x)+$y]->cluster_batik)}}">--}}
+                                        {{--<h3>{{$categories[(3*$x)+$y]->cluster_batik}}</h3>--}}
+                                    {{--</a>--}}
+                                {{--</div>--}}
+                            {{--@endfor--}}
+                        {{--</div>--}}
+                    {{--@endfor--}}
+                {{--@endif--}}
+                <!-- /.row -->
+
+                <!-- Hasil Daerah -->
+                {{--@if($categories_sum <> 0)--}}
+                    {{--@for($x = 0; $x < ($categories_sum/3); $x++)--}}
+                        {{--<div class="columns">--}}
+                            {{--@for($y = 0; $y < 3 and (3*$x)+$y <$categories_sum; $y++)--}}
+                                {{--<div class="column is-4">--}}
+                                    {{--<a href="{{ action('PageController@daftar_batik_cluster', $categories[(3*$x)+$y])}}">--}}
+                                        {{--<h3>{{$categories[(3*$x)+$y]}}</h3>--}}
+                                    {{--</a>--}}
+                                {{--</div>--}}
+                            {{--@endfor--}}
+                        {{--</div>--}}
+                    {{--@endfor--}}
+                {{--@endif--}}
+                <!-- /.row -->
+
+                <!-- Hasil Tag -->
+                <!-- /.row -->
                 <hr>
                 <!-- Pagination -->
-                @if($sum <> 0)
+                @if($batiks_sum <> 0)
                     {{ $batiks->render() }}
                 @endif
             </div>
+            <
 
 
             <div class="column is-4">
