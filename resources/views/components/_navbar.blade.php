@@ -29,14 +29,15 @@
       <div id="nav-menu" class="nav-right nav-menu">
         <span class="nav-item">
           <div class="field is-grouped">
+            <form action="{{ action('PageController@search_batik')}}" method="get">
             <p class="control is-expanded">
-              <input class="input" type="text" placeholder="Find a batik">
+              <input class="input" type="text" placeholder="Find a batik" name="keywords">
             </p>
             <p class="control">
-              <a class="button is-primary">
-                Search
-              </a>
+              <input class="button is-primary" type="submit" value="Search">
             </p>
+              <input type="submit" value="Submit">
+            </form>
           </div>
         </span>
       </div>
