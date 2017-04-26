@@ -92,9 +92,9 @@
     				</div>
     				<div class="column is-4">
               <div class="category-list">
-                  <h2 class="text-center">Tags</h2>
+                  <h3>Tags</h3>
                   @foreach($tag_batiks as $tag)
-                      <a href="{{ action('PageController@show_category',$tag->id)}}">{{ $tag->tag_batik }}</a>
+                      <a href="{{ action('PageController@show_tag',$tag->id)}}">{{ $tag->tag_batik }}</a>
                   @endforeach
               </div>
     				</div>
@@ -102,4 +102,10 @@
     		</div>
     	</div>
     </section>
+    <script>
+      $(document).ready(function() {
+        $('#nav_knowledge').addClass("is-active");
+      });
+    </script>
+
 @endsection
