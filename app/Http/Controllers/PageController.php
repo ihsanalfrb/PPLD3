@@ -104,4 +104,25 @@ class PageController extends Controller
             'sum' => $sum
         ]);
     }
+
+    public function search_batik(Request $request) {
+        $keywords = $request->keywords;
+        $batiks = Batik::where('upper(nama_batik)', 'like', '%upper('.$keywords.')%')
+            ->orWhere('upper(sejarah_batik)', 'like', '%upper('.$keywords.')%')
+            ->orWhere('upper(makna_batik)', 'like', '%upper('.$keywords.')%')->paginate(10);
+
+        $categories = Batik::where('upper(cluster_batik)', 'like', '%upper('.$keywords.')%')->all();
+        $cities = Batik::where('upper(asal_daerah)', 'like', '%upper('.$keywords.')%')->all();
+        $tags = TagBatik::where('upper(tag_batik)', 'like', '%upper('.$keywords.')%')->all();
+
+        $sum = $batik->count();
+        return view('daftar_batik',[
+            'title' => 'Hasil Pencarian "'.$keywords.'"' ,
+            'batiks' => $batiks,
+            'categories' => $categories,
+            'cities' => $cities,
+            'tags' => $tags,
+            'sum' => $sum
+        ]);
+    }
 }
