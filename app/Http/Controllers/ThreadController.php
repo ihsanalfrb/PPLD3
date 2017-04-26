@@ -14,7 +14,6 @@ class ThreadController extends Controller
         $this->middleware('auth-admin', ['only' => ['store']]);
     }
 
-    //
     /**
      * Display a listing of the resource.
      *

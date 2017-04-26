@@ -34,37 +34,39 @@
                 @endforeach
             </div>
             <div class="column is-6">
-              <button id="tambah_thread" class="button is-primary">Tambah Thread</button>
-              <div class="form-create-comment" hidden>
-                  <form action="{{ action('ThreadController@store') }}" method="post">
-                      {{ csrf_field() }}
-                      <div class="field">
-                          <p class="control">
-                              <label for="nama_thread">Judul Thread</label>
-                              <input value="{{ old('nama_thread') }}" type="text" class="input {{ $errors->has('nama_thread') ? 'has-error' : '' }}" name="nama_thread" id="nama_thread">
-                              @if($errors->has('nama_thread'))
-                                  <p class="help is-danger">
-                                      {{ $errors->first('nama_thread') }}
-                                  </p>
-                              @endif
-                          </p>
-                      </div>
-                      <div class="field">
-                          <p class="control">
-                              <label for="content">Konten Thread</label>
-                              <textarea style="height: 200px;" type="text" class="input {{ $errors->has('content') ? 'has-error' : ''}}"
-                                        name="content" id="content" rows="5" cols="5">{{ old('content') }}</textarea>
-                              @if($errors->has('content'))
-                                  <p class="help is-danger">{{ $errors->first('content') }}</p>
-                              @endif
-                          </p>
-                      </div>
-                      <div class="field">
-                          <input type="submit" value="Tambah Thread" class="button is-primary">
-                          <input type="button" id="batal_tambah" value="Batal Tambah" class="button is-danger">
-                      </div>
-                  </form>
-              </div>
+              @if(!is_null($current_user) and $current_user->is_admin)
+                <button id="tambah_thread" class="button is-primary">Tambah Thread</button>
+                <div class="form-create-comment" hidden>
+                    <form action="{{ action('ThreadController@store') }}" method="post">
+                        {{ csrf_field() }}
+                        <div class="field">
+                            <p class="control">
+                                <label for="nama_thread">Judul Thread</label>
+                                <input value="{{ old('nama_thread') }}" type="text" class="input {{ $errors->has('nama_thread') ? 'has-error' : '' }}" name="nama_thread" id="nama_thread">
+                                @if($errors->has('nama_thread'))
+                                    <p class="help is-danger">
+                                        {{ $errors->first('nama_thread') }}
+                                    </p>
+                                @endif
+                            </p>
+                        </div>
+                        <div class="field">
+                            <p class="control">
+                                <label for="content">Konten Thread</label>
+                                <textarea style="height: 200px;" type="text" class="input {{ $errors->has('content') ? 'has-error' : ''}}"
+                                          name="content" id="content" rows="5" cols="5">{{ old('content') }}</textarea>
+                                @if($errors->has('content'))
+                                    <p class="help is-danger">{{ $errors->first('content') }}</p>
+                                @endif
+                            </p>
+                        </div>
+                        <div class="field">
+                            <input type="submit" value="Tambah Thread" class="button is-primary">
+                            <input type="button" id="batal_tambah" value="Batal Tambah" class="button is-danger">
+                        </div>
+                    </form>
+                </div>
+              @endif
             </div>
 
         </div>

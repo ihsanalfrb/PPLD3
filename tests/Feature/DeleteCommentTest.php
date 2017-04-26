@@ -15,6 +15,7 @@ class DeleteCommentTest extends TestCase
 
   use DatabaseMigrations;
   use WithoutMiddleware;
+
      /**
      * A basic test example.
      *

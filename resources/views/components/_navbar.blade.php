@@ -22,15 +22,22 @@
         <span class="nav-item">
           <div class="field is-grouped">
             <p class="control is-expanded">
-              <input class="input" type="text" placeholder="Find a batik">
+              <input id="search_input" class="input" type="text" placeholder="Find a batik" name="keywords">
             </p>
             <p class="control">
-              <a class="button is-primary">
-                Search
-              </a>
+              <a id="search_button" href="{{ action('PageController@search_batik', '')}}"><input class="button is-primary" type="submit" value="Search"></a>
             </p>
+
           </div>
         </span>
       </div>
+      <script>
+          $('#search_input').on('input',function(e){
+              var url = "{{ action('PageController@search_batik', ':keywords')}}"
+              $('#search_button').attr("href", url.replace(':keywords', $('#search_input').val()));
+          });
+
+
+      </script>
   </div>
 </nav>

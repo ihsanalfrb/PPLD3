@@ -7,11 +7,8 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use App\TagBatik;
-
-class DaftarKategoriTest extends TestCase
+class SearchBatikTest extends TestCase
 {
-
     use DatabaseMigrations;
 
     /**
@@ -19,12 +16,9 @@ class DaftarKategoriTest extends TestCase
      *
      * @return void
      */
-    public function test_daftar_kategori_page_response()
+    public function test_search_batik_page_response()
     {
-
-        $response = $this->get('/categories');
+        $response = $this->get('/search_batik/');
         $response-> assertStatus(200);
-
     }
-
 }
