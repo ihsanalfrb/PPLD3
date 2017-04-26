@@ -153,7 +153,7 @@ class PageController extends Controller
     }
 
     public function search_batik(Request $request) {
-        $keywords = $request->keywords;
+        $keywords = $request->input('keywords');
         $batiks = Batik::where('upper(nama_batik)', 'like', '%upper('.$keywords.')%')
             ->orWhere('upper(sejarah_batik)', 'like', '%upper('.$keywords.')%')
             ->orWhere('upper(makna_batik)', 'like', '%upper('.$keywords.')%')->paginate(10);
@@ -162,7 +162,7 @@ class PageController extends Controller
         $cities = Batik::where('upper(asal_daerah)', 'like', '%upper('.$keywords.')%')->all();
         $tags = TagBatik::where('upper(tag_batik)', 'like', '%upper('.$keywords.')%')->all();
 
-        $sum = $batik->count();
+        $sum = $batiks->count();
         return view('daftar_batik',[
             'title' => 'Hasil Pencarian "'.$keywords.'"' ,
             'batiks' => $batiks,
