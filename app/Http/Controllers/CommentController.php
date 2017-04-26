@@ -35,7 +35,6 @@ class CommentController extends Controller
     }
 
 
-
     /**
      * Remove the specified resource from storage.
      *
@@ -45,11 +44,11 @@ class CommentController extends Controller
     public function destroy($id)
 
     {
-        
+
         $destroyTarget=Comment::where('id', $id)->first();
         //Soft Delete
         if(is_null(Auth::user())){
-            abort(401, 'Unauthorized');
+            abort(401);
         }
         if($destroyTarget->comment_author->id==Auth::user()->id){
 

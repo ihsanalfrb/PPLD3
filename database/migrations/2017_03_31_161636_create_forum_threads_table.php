@@ -22,8 +22,8 @@ class CreateForumThreadsTable extends Migration
                 ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->integer('views');
-            $table->integer('replies');
+            $table->integer('views')->default(0);
+            $table->integer('replies')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

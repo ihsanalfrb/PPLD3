@@ -22,12 +22,9 @@ class DaftarKategoriTest extends TestCase
     public function test_daftar_kategori_page_response()
     {
 
-
         $response = $this->get('/categories');
         $response-> assertStatus(200);
-
 
     }
 
 }
-

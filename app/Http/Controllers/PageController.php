@@ -6,6 +6,8 @@ use App\Batik;
 use App\TagBatik;
 use App\Thread;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
@@ -18,8 +20,7 @@ class PageController extends Controller
       ]);
     }
 
-    public function show_tag($id)
-    {
+    public function show_tag($id)    {
       $tag_batik = TagBatik::where('id','=',$id)->first();
       if(is_null($tag_batik)){
         abort(404);
@@ -65,8 +66,6 @@ class PageController extends Controller
           'clusters' => $clusters
       ]);
     }
-
-
     public function rincian_informasi($id){
         $batik = Batik::where('id','=',$id)->first();
         if(is_null($batik)){
@@ -81,14 +80,14 @@ class PageController extends Controller
     }
 
     public function daftar_thread() {
-        $threads = Thread::all();
+        $threads = Thread::orderBy('id', 'ASC')->paginate(4);
+
         return view('daftar_thread',[
             'title' => 'Forums',
-            'threads' => $threads
+            'threads' => $threads,
+            'current_user' => Auth::user()
         ]);
     }
-
-
     public function daftar_batik_filter($cluster, $asal_daerah, $tag) {
         $batik = Batik::all();
 
@@ -130,7 +129,7 @@ class PageController extends Controller
     }
 
     public function daftar_batik_daerah($asal_daerah) {
-        $batik = Batik::where('asal_daerah','=',$asal_daerah)->paginate(15);
+        $batik = Batik::where('asal_daerah','=',$asal_daerah)->paginate(16);
         $sum = $batik->count();
         return view('daftar_batik',[
             'title' => 'Batiks',
