@@ -15,9 +15,9 @@ docker-php-ext-enable xdebug
 # Compile PHP, include these extensions.
 docker-php-ext-install mbstring mcrypt pdo_mysql pdo_sqlite curl json intl gd xml zip bz2 opcache
 
-echo "zend_extension=\"/usr/lib/php5/20100525/xdebug.so\"" >> /etc/php5/apache2/php.ini 
-echo "xdebug.remote_enable=1" >> /etc/php5/apache2/php.ini 
-echo "xdebug.remote_handler=dbgp xdebug.remote_mode=req" >> /etc/php5/apache2/php.ini 
+echo "zend_extension=\"/usr/lib/php5/20100525/xdebug.so\"" >> /etc/php5/apache2/php.ini
+echo "xdebug.remote_enable=1" >> /etc/php5/apache2/php.ini
+echo "xdebug.remote_handler=dbgp xdebug.remote_mode=req" >> /etc/php5/apache2/php.ini
 echo "xdebug.remote_host=127.0.0.1 xdebug.remote_port=9000" >> /etc/php5/apache2/php.ini
 
 # Install Composer and project dependencies.
@@ -31,10 +31,10 @@ cp .env.testing .env
 php artisan key:generate
 php artisan config:cache
 
-# Run database migrations.
-touch database/testing.sqlite
+
 #Run dump-autoload for migrations
 php composer.phar dump-autoload
+# Run database migrations.
+touch database/testing.sqlite
 php composer.phar install
 php artisan migrate --env=testing
-php composer.phar install
