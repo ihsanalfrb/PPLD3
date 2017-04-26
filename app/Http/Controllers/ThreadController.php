@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostThreadRequest;
 use Illuminate\Http\Request;
 use App\Thread;
 use Illuminate\Support\Facades\Auth;
 
 class ThreadController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth-admin', ['only' => ['store']]);
+    }
+
     //
     /**
      * Display a listing of the resource.
@@ -36,8 +42,15 @@ class ThreadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostThreadRequest $request)
     {
+        $thread = new Thread($request->all());
+        $saved = Auth::user()->create_thread()->save($thread);
+        if(!is_null($saved)){
+            return redirect()->back();
+        } else {
+            abort(500);
+        }
 
     }
 
@@ -54,6 +67,7 @@ class ThreadController extends Controller
             abort(404);
         }
         $thread->views = $thread->views + 1;
+        $thread->save();
         return view('show_thread', [
             'title' => $thread->nama_thread,
             'thread' => $thread,
@@ -92,6 +106,13 @@ class ThreadController extends Controller
      */
     public function destroy($id)
     {
+      $destroyTarget=Thread::where('id', $id)->first();
+      //Soft Delete
+      if(is_null(Auth::user()) or !Auth::user()->is_admin){
+          abort(401);
+      }
+      $destroyTarget->delete();
+      return redirect()->back();
 
     }
 }

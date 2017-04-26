@@ -30,10 +30,13 @@ class CommentsSeeder extends Seeder
         $comment = new Comment();
         $comment->judul_komentar = $judulkomentar;
         $comment->isi_komentar = $isikomentar;
-        $comment->comment_by = \App\User::where('id', '=', $commentby)->first()->id;
+        $comment->comment_by = \App\User::where('id', '=', $commentby)->first()->first()->id;
         $comment->thread_id = $threadid;
         $comment->save();
 
+        $thread = \App\Thread::where('id', '=', $threadid)->first();
+        $thread->replies = $thread->replies + 1;
+        $thread->save();
 //        $idbatik = App\Batik::where('nama_batik','=',$namabatik)->first()->id;
 //        $idtagbatik = App\TagBatik::where('tag_batik','=',$tag)->first()->id;
 //

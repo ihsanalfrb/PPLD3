@@ -6,6 +6,8 @@ use App\Batik;
 use App\TagBatik;
 use App\Thread;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
@@ -78,10 +80,12 @@ class PageController extends Controller
     }
 
     public function daftar_thread() {
-        $threads = Thread::all();
+        $threads = Thread::orderBy('id', 'ASC')->paginate(4);
+
         return view('daftar_thread',[
             'title' => 'Forums',
-            'threads' => $threads
+            'threads' => $threads,
+            'current_user' => Auth::user()
         ]);
     }
     public function daftar_batik_filter($cluster, $asal_daerah, $tag) {

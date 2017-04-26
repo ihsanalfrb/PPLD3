@@ -18,7 +18,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
-    protected $dates = ['delete_at'];  
+    protected $dates = ['delete_at'];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -27,12 +27,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token'
     ];
-         
+
 
     public function comments(){
         return $this->hasMany('App\Comment', 'comment_by');
     }
      public function create_thread() {
-        return $this->belongsToMany('App\Thread', 'created_by');
+        return $this->hasMany('App\Thread', 'created_by');
     }
 }
