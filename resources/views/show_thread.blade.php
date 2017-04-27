@@ -49,36 +49,38 @@
     </div>
     <div class="columns">
         <div class="column is-4">
-            <div class="form-create-comment">
-                <form action="{{ action('CommentController@store') }}" method="post">
-                    {{ csrf_field() }}
-                    <input type="hidden" value="{{ $thread->id }}" name="thread_id">
-                    <div class="field">
-                        <p class="control">
-                            <label for="judul_komentar">Judul Komentar</label>
-                            <input value="{{ old('judul_komentar') }}" type="text" class="input {{ $errors->has('judul_komentar') ? 'has-error' : '' }}" name="judul_komentar" id="judul_komentar">
-                            @if($errors->has('judul_komentar'))
-                                <p class="help is-danger">
-                                    {{ $errors->first('judul_komentar') }}
-                                </p>
-                            @endif
-                        </p>
-                    </div>
-                    <div class="field">
-                        <p class="control">
-                            <label for="isi_komentar">Isi Komentar</label>
-                            <textarea style="height: 200px;" type="text" class="input {{ $errors->has('isi_komentar') ? 'has-error' : ''}}"
-                                      name="isi_komentar" id="isi_komentar" rows="5" cols="5">{{ old('isi_komentar') }}</textarea>
-                            @if($errors->has('isi_komentar'))
-                                <p class="help is-danger">{{ $errors->first('isi_komentar') }}</p>
-                            @endif
-                        </p>
-                    </div>
-                    <div class="field">
-                        <input type="submit" value="Post Komentar" class="button is-primary">
-                    </div>
-                </form>
-            </div>
+            @if(!is_null($current_user))
+              <div class="form-create-comment">
+                  <form action="{{ action('CommentController@store') }}" method="post">
+                      {{ csrf_field() }}
+                      <input type="hidden" value="{{ $thread->id }}" name="thread_id">
+                      <div class="field">
+                          <p class="control">
+                              <label for="judul_komentar">Judul Komentar</label>
+                              <input value="{{ old('judul_komentar') }}" type="text" class="input {{ $errors->has('judul_komentar') ? 'has-error' : '' }}" name="judul_komentar" id="judul_komentar">
+                              @if($errors->has('judul_komentar'))
+                                  <p class="help is-danger">
+                                      {{ $errors->first('judul_komentar') }}
+                                  </p>
+                              @endif
+                          </p>
+                      </div>
+                      <div class="field">
+                          <p class="control">
+                              <label for="isi_komentar">Isi Komentar</label>
+                              <textarea style="height: 200px;" type="text" class="input {{ $errors->has('isi_komentar') ? 'has-error' : ''}}"
+                                        name="isi_komentar" id="isi_komentar" rows="5" cols="5">{{ old('isi_komentar') }}</textarea>
+                              @if($errors->has('isi_komentar'))
+                                  <p class="help is-danger">{{ $errors->first('isi_komentar') }}</p>
+                              @endif
+                          </p>
+                      </div>
+                      <div class="field">
+                          <input type="submit" value="Post Komentar" class="button is-primary">
+                      </div>
+                  </form>
+              </div>
+            @endif
         </div>
     </div>
 @endsection
