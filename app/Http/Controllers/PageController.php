@@ -80,7 +80,7 @@ class PageController extends Controller
     }
 
     public function daftar_thread() {
-        $threads = Thread::orderBy('id', 'ASC')->paginate(4);
+        $threads = Thread::orderBy('id', 'DESC')->paginate(4);
 
         return view('daftar_thread',[
             'title' => 'Forums',
