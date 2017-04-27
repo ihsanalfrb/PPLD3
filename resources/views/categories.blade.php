@@ -6,7 +6,7 @@
       <hr>
       <div class="columns" style="height:62vh">
         <div class="column is-3 part1">
-          <h4>Pilih kategori batik berdasarkan:</h4>
+          <h4>Pilih kategori batik:</h4>
           <br/>
           <p id="asal" > <a onclick="show_daerah()" href="#asal">asal daerah </a> </p>
           <p id="pola" >  <a onclick="show_clusters()" href="#pola"> pola </a></p>
