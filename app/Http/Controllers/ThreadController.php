@@ -50,7 +50,6 @@ class ThreadController extends Controller
         } else {
             abort(500);
         }
- 
     }
 
     /**
