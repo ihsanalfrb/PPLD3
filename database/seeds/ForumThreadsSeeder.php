@@ -26,13 +26,13 @@ class ForumThreadsSeeder extends Seeder
 
 
     public function create_thread_model($namathread, $views, $replies) {
-        $faker = Faker\Factory::create();
+
         $thread = new Thread();
         $thread->nama_thread = $namathread;
         $thread->created_by = \App\User::where('is_admin', '=', true)->first()->id;
         $thread->views = $views;
         $thread->replies = $replies;
-        $thread->content = $faker->paragraph;
+        $thread->content = 'Mari berdiskusi mengenai ' . $namathread;
         $thread->save();
 
 //        $idbatik = App\Batik::where('nama_batik','=',$namabatik)->first()->id;
