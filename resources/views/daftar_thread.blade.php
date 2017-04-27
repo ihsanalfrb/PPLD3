@@ -10,7 +10,7 @@
                         <a href="{{action('ThreadController@show',$thread->id)}}"><h4>{{ $thread->nama_thread}}</h4></a>
                         <p>Created by: {{ $thread->creator->name }} &nbsp; | &nbsp; created at : {{ \Carbon\Carbon::parse($thread->created_at)->diffForHumans() }}</p>
                         <hr>
-                        <p>Views : {{$thread->views}}   &nbsp; | &nbsp; Replies : {{$thread->replies}}</p>
+                        <p>Views : {{$thread->views}}  </p>
 
                         @if(!is_null($current_user) and $current_user->is_admin)
                             <form action="{{ action('ThreadController@destroy', $thread->id) }}" method="POST">
