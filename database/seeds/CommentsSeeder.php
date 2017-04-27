@@ -29,7 +29,7 @@ class CommentsSeeder extends Seeder
 
         $comment = new Comment();
         $comment->judul_komentar = $judulkomentar;
-        $comment->isi_komentar = $isikomentar;
+        $comment->isi_kome ntar = $isikomentar;
         $comment->comment_by = \App\User::where('id', '=', $commentby)->first()->first()->id;
         $comment->thread_id = $threadid;
         $comment->save();
