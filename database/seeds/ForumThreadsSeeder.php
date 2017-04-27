@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 
 class ForumThreadsSeeder extends Seeder
 {
+
+
     /**
      * Run the database seeds.
      *
@@ -15,20 +17,22 @@ class ForumThreadsSeeder extends Seeder
     {
         //
         DB::table('forum_threads')->delete();
-        $this->create_thread_model('Parang vs Kawung', '', 'admin', '10', '2');
-        $this->create_thread_model('Asal mula Batik', '', 'admin', '11', '2');
-        $this->create_thread_model('Batik Modern atau Keraton?', '', 'admin', '3', '2');
-        $this->create_thread_model('Cara merawat kain batik', '', 'default1', '2', '2');
-        $this->create_thread_model('Cara membuat batik tulis', '', 'default1', '8', '2');
+        $this->create_thread_model('Parang vs Kawung', '10', '0');
+        $this->create_thread_model('Asal mula Batik', '11', '0');
+        $this->create_thread_model('Batik Modern atau Keraton?', '3', '0');
+        $this->create_thread_model('Cara merawat kain batik', '2', '0');
+        $this->create_thread_model('Cara membuat batik tulis', '8', '0');
     }
 
-    public function create_thread_model($namathread, $description, $createdby, $views, $replies) {
+
+    public function create_thread_model($namathread, $views, $replies) {
+
         $thread = new Thread();
         $thread->nama_thread = $namathread;
-        $thread->description = $description;
-        $thread->created_by = UserAccount::where('username', '=', $createdby)->first()->id;
+        $thread->created_by = \App\User::where('is_admin', '=', true)->first()->id;
         $thread->views = $views;
         $thread->replies = $replies;
+        $thread->content = 'Mari berdiskusi mengenai ' . $namathread;
         $thread->save();
 
 //        $idbatik = App\Batik::where('nama_batik','=',$namabatik)->first()->id;

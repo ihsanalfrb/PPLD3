@@ -2,9 +2,11 @@
 /public/storage
 /public/hot
 /storage/*.key
+/storage/logs
 /storage
 /vendor
 /.idea
 Homestead.json
 Homestead.yaml
 .env
+.composer.lock

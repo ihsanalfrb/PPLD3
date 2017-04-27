@@ -6,20 +6,19 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\Thread;
 
-class DaftarThreadTest extends TestCase
+class SearchBatikTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function test_daftar_thread_page_response()
+    public function test_search_batik_page_response()
     {
-
-        $this->thread = factory(Thread::class)->make();
-        $response = $this->get('/daftar_thread/');
+        $response = $this->get('/search_batik/');
         $response-> assertStatus(200);
     }
 }

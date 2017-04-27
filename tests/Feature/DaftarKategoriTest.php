@@ -7,14 +7,14 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use App\Batik;
+use App\TagBatik;
 
 class DaftarKategoriTest extends TestCase
 {
 
     use DatabaseMigrations;
 
-     /**
+    /**
      * A basic test example.
      *
      * @return void
@@ -24,6 +24,7 @@ class DaftarKategoriTest extends TestCase
 
         $response = $this->get('/categories');
         $response-> assertStatus(200);
+
     }
 
 }

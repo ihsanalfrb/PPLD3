@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddIsadminFieldOnUserAcsountsTable extends Migration
+class AddDeletedAtOnUsersTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddIsadminFieldOnUserAcsountsTable extends Migration
      */
     public function up()
     {
-        Schema::table('user_accounts', function (Blueprint $table) {
-            $table->boolean('isadmin');
+        Schema::table('users', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
     /**
@@ -24,6 +24,8 @@ class AddIsadminFieldOnUserAcsountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_accounts');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 }

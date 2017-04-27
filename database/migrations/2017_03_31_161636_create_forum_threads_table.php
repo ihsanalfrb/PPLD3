@@ -16,9 +16,14 @@ class CreateForumThreadsTable extends Migration
         Schema::create('forum_threads', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_thread');
-            $table->string('created_by');
-            $table->integer('views');
-            $table->integer('replies');
+            $table->integer('created_by')->unsigned();
+            $table->foreign('created_by')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->integer('views')->default(0);
+            $table->integer('replies')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

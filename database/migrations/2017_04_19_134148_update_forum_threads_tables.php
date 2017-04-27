@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDescriptionColumnOnForumThreadsTable extends Migration
+class UpdateForumThreadsTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class AddDescriptionColumnOnForumThreadsTable extends Migration
      */
     public function up()
     {
-        //
         Schema::table('forum_threads', function (Blueprint $table) {
-        $table->text('description');
-    });
+            $table->text('content')->nullable();
+        });
     }
 
     /**
@@ -26,7 +25,8 @@ class AddDescriptionColumnOnForumThreadsTable extends Migration
      */
     public function down()
     {
-        //
-        Schema::dropIfExists('forum_threads');
+        Schema::table('forum_threads', function (Blueprint $table) {
+            $table->dropColumn('content');
+        });
     }
 }
