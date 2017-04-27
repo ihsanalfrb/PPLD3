@@ -73,6 +73,9 @@
         {{$threads->render()}}
     </div>
     <script>
+      $(document).ready(function(){
+        $('#nav_forums').addClass("is-active");
+      });
 
       $('#tambah_thread').click(function(){
         $('#tambah_thread').hide(500);
