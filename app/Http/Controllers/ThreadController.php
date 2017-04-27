@@ -50,7 +50,6 @@ class ThreadController extends Controller
         } else {
             abort(500);
         }
-
     }
 
     /**
@@ -109,6 +108,9 @@ class ThreadController extends Controller
       //Soft Delete
       if(is_null(Auth::user()) or !Auth::user()->is_admin){
           abort(401);
+      }
+      if(is_null($destroyTarget)){
+          abort(404);
       }
       $destroyTarget->delete();
       return redirect()->back();
