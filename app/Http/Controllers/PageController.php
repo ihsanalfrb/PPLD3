@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Batik;
+use App\Comment;
 use App\TagBatik;
 use App\Thread;
 use Illuminate\Http\Request;
@@ -202,6 +203,37 @@ class PageController extends Controller
             'tags_sum' => $tags_sum,
             'keywords' => $keywords,
             'header' => 'Hasil Pencarian '.$keywords
+        ]);
+    }
+
+    public function search_thread($keywords = null) {
+//        $keywords = $request->input('keywords');
+
+        if(is_null($keywords)){
+            $threads = null;
+            $threads_sum = 0;
+        } else {
+            $comments_thread_id = Comment::where('judul_komentar', 'ilike', '%'.$keywords.'%')
+                ->orWhere('isi_komentar', 'ilike', '%'.$keywords.'%')
+                ->groupBy('thread_id')
+                ->pluck('thread_id')
+                ->all();
+//            dd($comments_thread_id);
+            $threads = Thread::where('nama_thread', 'ilike', '%'.$keywords.'%')
+                ->orWhere('content', 'ilike', '%'.$keywords.'%')
+                ->orWhereIn('id', $comments_thread_id)
+                ->paginate(10);
+//            dd($threads);
+            $threads_sum = $threads->count();
+        }
+
+        return view('search_thread',[
+            'title' => 'Pencarian Thread',
+            'threads' => $threads,
+            'threads_sum' => $threads_sum,
+            'keywords' => $keywords,
+            'header' => 'Hasil Pencarian '.$keywords,
+            'current_user' => Auth::user()
         ]);
     }
 }
