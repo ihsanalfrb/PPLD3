@@ -1,8 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Daftar Thread</h1>
+    <div class="container">
+    <!-- Page Header -->
+    <div class="columns">
+        <div class="column is-8">
+            <h1 class="page-header">{{$title}}</h1>
+        </div>
+    </div>
+    <!-- /.row -->
     <div class="thread-comments">
+        <div class="columns">
+            <div id="nav-menu" class="nav-left nav-menu" style="">
+                <span class="nav-item">
+                  <div class="field is-grouped">
+                    <p class="control is-expanded">
+                      <input id="search_thread_input" class="input" type="text" placeholder="Find a thread" name="keywords">
+                    </p>
+                    <p class="control">
+                      <a id="search_thread_button" href="{{ action('PageController@search_thread', '')}}"><input class="button is-primary" type="submit" value="Search"></a>
+                    </p>
+
+                  </div>
+                </span>
+            </div>
+            <script>
+                $('#search_thread_input').on('input',function(e){
+                    var url = "{{ action('PageController@search_thread', ':keywords')}}"
+                    $('#search_thread_button').attr("href", url.replace(':keywords', $('#search_thread_input').val()));
+                });
+            </script>
+        </div>
         <div class="columns">
             <div class="column is-6">
                 @foreach($threads as $thread)
@@ -71,6 +99,7 @@
 
         </div>
         {{$threads->render()}}
+    </div>
     </div>
     <script>
       $(document).ready(function(){
