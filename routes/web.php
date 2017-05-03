@@ -38,3 +38,4 @@ Route::get('/home', 'HomeController@index');
 Route::get('/dashboard', 'DashboardController@home');
 
 Route::get('/search_batik/{keywords?}', 'PageController@search_batik');
+Route::get('/search_thread/{keywords?}', 'PageController@search_thread');
