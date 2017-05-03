@@ -35,6 +35,7 @@
             </div>
             <div class="columns">
                 <div class="column is-6">
+                    @if(!is_null($threads))
                     @foreach($threads as $thread)
                         <div style="padding: 1em; border: 1px solid black; margin: 1em 0;">
                             <a href="{{action('ThreadController@show',$thread->id)}}"><h4>{{ $thread->nama_thread}}</h4></a>
@@ -62,6 +63,7 @@
                             @endif
                         </div>
                     @endforeach
+                    @endif
                 </div>
                 <div class="column is-6">
                     @if(!is_null($current_user) and $current_user->is_admin)
@@ -98,7 +100,9 @@
                 </div>
 
             </div>
+            @if(!is_null($threads))
             {{$threads->render()}}
+            @endif
         </div>
     </div>
     <script>
