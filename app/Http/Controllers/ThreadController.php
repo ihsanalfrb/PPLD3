@@ -31,8 +31,6 @@ class ThreadController extends Controller
     public function create()
     {
         //
-
-
     }
 
     /**
