@@ -16,6 +16,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'PageController@index');
 Route::get('/categories', 'PageController@categories');
@@ -38,3 +40,5 @@ Route::get('/home', 'HomeController@index');
 Route::get('/dashboard', 'DashboardController@home');
 
 Route::get('/search_batik/{keywords?}', 'PageController@search_batik');
+Route::get('/show_profile/(id?)', 'PageController@show_profile');
+Route::get('/edit_profile/(id?)', 'PageController@edit_profile');
