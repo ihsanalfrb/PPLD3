@@ -20,7 +20,7 @@
                           <input id="search_thread_input" class="input" type="text" placeholder="Find a thread" name="keywords">
                         </p>
                         <p class="control">
-                          <a id="search_thread_button" href="{{ action('PageController@search_thread', '')}}"><input class="button is-primary" type="submit" value="Search"></a>
+                          <a id="search_thread_button" href="{{ action('PageController@search_thread', '')}}"><input class="button is-primary" type="submit" value="Search Thread"></a>
                         </p>
 
                       </div>

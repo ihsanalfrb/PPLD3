@@ -24,7 +24,7 @@ class SearchBatikTest extends DuskTestCase
             $browser->visit('/')
                 ->assertPathIs('/')
                 ->type('keywords', 'parang')
-                ->press('Search')
+                ->press('Search Thread')
                 ->assertPathIs('/search_thread/parang')
                 ->assertTitle('Pencarian Thread')
                 ->assertSee('Hasil Pencarian parang')
