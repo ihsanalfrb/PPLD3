@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Batik;
 use App\TagBatik;
 use App\Thread;
+use App\User;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -66,6 +67,7 @@ class PageController extends Controller
           'clusters' => $clusters
       ]);
     }
+
     public function rincian_informasi($id){
         $batik = Batik::where('id','=',$id)->first();
         if(is_null($batik)){
@@ -202,6 +204,28 @@ class PageController extends Controller
             'tags_sum' => $tags_sum,
             'keywords' => $keywords,
             'header' => 'Hasil Pencarian '.$keywords
+        ]);
+    }
+
+    public function show_profile($id = null){
+        $user = User::where('id','=',$id)->first();
+        if(is_null($user)){
+            abort(404);
+        }
+        return view('rincian_info',[
+            'title' => 'User Profile',
+            'data' => $user
+        ]);
+    }
+
+    public function edit_profile($id = null){
+        $user = User::where('id','=',$id)->first();
+        if(is_null($user)){
+            abort(404);
+        }
+        return view('rincian_info',[
+            'title' => 'Edit Information',
+            'data' => $user
         ]);
     }
 }
