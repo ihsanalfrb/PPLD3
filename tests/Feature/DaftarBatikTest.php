@@ -6,7 +6,6 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-
 use App\Batik;
 
 class DaftarBatikTest extends TestCase
@@ -22,7 +21,7 @@ class DaftarBatikTest extends TestCase
     {
         $this->batiks = factory(Batik::class, 3)->create();
         $random_number = rand(0, 2);
-        $tag = $this->batiks[$random_number]->tag;
+        //$tag = $this->batiks[$random_number]->tag;
         $cluster = $this->batiks[$random_number]->cluster_batik;
         $asal_daerah = $this->batiks[$random_number]->asal_daerah;
 
