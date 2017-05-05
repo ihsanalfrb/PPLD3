@@ -13,6 +13,8 @@
          'email' => $faker->unique()->safeEmail,
          'password' => bcrypt('secret'),
          'remember_token' => str_random(10),
-         'is_admin' => false
+         'is_admin' => false,
+         'birthday' => $faker->date(),
+         'gender' => $faker->randomElement(['male', 'female', 'other'])
      ];
  });
