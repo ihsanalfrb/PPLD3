@@ -17,7 +17,7 @@ class User extends Authenticatable
      */
     //apakah column name menyatakan username?, jika ya apakah bisa diganti ke username saja?
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'birthday', 'gender', 'bio', 'user_photo', 'telephone', 'address'
     ];
 
     protected $dates = ['delete_at'];
