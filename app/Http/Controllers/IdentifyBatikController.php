@@ -25,12 +25,12 @@ class IdentifyBatikController extends Controller
      */
     public function store(Request $request)
     {
-       if($request->$type="url"){
+       if($request->$type=="url"){
             $path = $request->$resource;
             $filename = basename($path);
             $image=Image::make($path);
-        }else{
-            //param
+        }else if($request->$type="file"){
+            //file
         }
         // http://stackoverflow.com/questions/31893439/image-validation-in-laravel-5-intervention
         // max 10000kb
@@ -45,7 +45,7 @@ class IdentifyBatikController extends Controller
         else
         {
             //Lempar ke API
-            $result = postToMachine($image);
+            $result = post_to_machine($image);
             json_encode($result);
         }
 

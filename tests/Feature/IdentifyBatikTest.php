@@ -30,7 +30,7 @@ class TulisBalasComment extends TestCase
     }
     public function test_image_caching_by_url_fake()
     {
-        $response = $this->call('post', '/identify', $this->UNealImageUrl);
+        $response = $this->call('post', '/identify', $this->UnrealImageUrl);
         $response->assertStatus(404);
     }
 
