@@ -11,10 +11,10 @@ class TulisBalasComment extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->RealImageUrl = [
-            'url'=>'https://s.imgur.com/images/imgur-logo.svg'];
-        $this->UnrealImageUrl = [
-        'url'=>'https://example.com'];
+        $this->RealImageUrl = ['type'=>'url',
+            'resource'=>'https://s.imgur.com/images/imgur-logo.svg'];
+        $this->UnrealImageUrl = ['type'=>'url',
+        'resource'=>'https://example.com'];
 
     }
 
@@ -30,7 +30,7 @@ class TulisBalasComment extends TestCase
     }
     public function test_image_caching_by_url_fake()
     {
-        $response = $this->call('post', '/identify', $this->RealImageUrl);
+        $response = $this->call('post', '/identify', $this->UNealImageUrl);
         $response->assertStatus(404);
     }
 
