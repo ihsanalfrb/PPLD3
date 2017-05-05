@@ -14,14 +14,12 @@ class AddDetailFieldUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('first_name');
-            $table->string('last_name');
             $table->date('birthday');
             $table->string('gender');
-            $table->text('bio')->nullable();
-            $table->string('user_photo')->nullable();
-            $table->string('telephone')->nullable();
-            $table->text('address')->nullable();
+            $table->text('bio')->nullable()->default(null);
+            $table->string('user_photo')->nullable()->default(null);
+            $table->string('telephone')->nullable()->default(null);
+            $table->text('address')->nullable()->default(null);
         });
     }
 
@@ -33,8 +31,6 @@ class AddDetailFieldUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('first_name');
-            $table->string('last_name');
             $table->date('birthday');
             $table->string('gender');
             $table->text('bio');
