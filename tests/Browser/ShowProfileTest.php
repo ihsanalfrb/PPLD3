@@ -8,7 +8,7 @@ use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class RegisterTest extends DuskTestCase
+class ShowProfileTest extends DuskTestCase
 {
     use DatabaseTransactions;
     use DatabaseMigrations;
@@ -17,29 +17,22 @@ class RegisterTest extends DuskTestCase
      *
      * @return void
      */
-    public function test_successfully_register()
+    public function test_show_profile()
     {
-
         $this->browse(function (Browser $browser) {
-            $browser->visit('/register')
-                    ->assertPathIs('/register')
-                    ->assertTitle('Register')
+            $user = User::all()->first();
+            $browser->visit('/show_profile/'.$user->id)
+                    ->assertPathIs('/show_profile/'.$user->id)
+                    ->assertTitle('User Profile')
                     ->assertSee('Name')
                     ->assertSee('E-Mail Address')
-                    ->assertSee('Password')
-                    ->assertSee('Confirm Password')
-                    ->type('name', 'Rizqy Faishal')
-                    ->type('email', 'rizqyfaishal27@gmail.com')
-                    ->type('password', 'password')
-                    ->type('password_confirmation', 'password')
-                    ->press('Button')
-                    ->assertPathIs('/home');
-            $user = User::where('email','=','rizqyfaishal27@gmail.com')->first();
-            if(is_null($user)){
-                $this->assertTrue(false);
-            } else {
-                $this->assertTrue(true);
-            }
+                    ->assertSee('Date of Birth')
+                    ->assertSee('Gender')
+                    ->assertSee('Bio')
+                    ->assertSee('Telephone')
+                    ->assertSee('Address')
+                    ->assertSee('Edit Profile');
+            $this->assertTrue(true);
         });
     }
 }
