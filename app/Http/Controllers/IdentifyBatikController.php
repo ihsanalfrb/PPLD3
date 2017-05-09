@@ -31,23 +31,50 @@ class IdentifyBatikController extends Controller
             $image=Image::make($path);
         }else if($request->$type="file"){
             //file
+        }else{
+            //catch exception
         }
         // http://stackoverflow.com/questions/31893439/image-validation-in-laravel-5-intervention
         // max 10000kb
+        if(!is_null($request)){
+
         $rules = array('image' => 'mimes:jpeg,jpg,png,gif|required|max:10000' 
             );
         $fileArray = array('image' => $image);
         $validator = Validator::make($fileArray, $rules);
-        if ($validator->fails()){
-        // todo : tambah notification
-             return redirect()->back();
-        }
-        else
-        {
-            //Lempar ke API
-            $result = post_to_machine($image);
-            json_encode($result);
-        }
+            if ($validator->fails()){
+            // todo : tambah notification
+                 return redirect()->back();
+            }
+            else{
+                //Lempar ke API
+                $result = post_to_machine($image);
+                json_encode($result);
+
+            }
+         }
 
     }
+    function post_to_machine($image){
+        //http://php.net/manual/en/function.stream-context-create.php#111032
+        $data = array ('image' => '$image');
+        $data = http_build_query($datao);
+
+        $context_options = array (
+                'http' => array (
+                    'method' => 'POST',
+                    'header'=> "Content-type: application/x-www-form-urlencoded\r\n"
+                        . "Content-Length: " . strlen($data) . "\r\n",
+                    'content' => $data
+                    )
+                );
+
+        $context = context_create_stream($context_options)
+        $fp = fopen('https://api.batique/identify.php', 'r', false, $context);
+        if ($fp === FALSE) { /* Handle error */ }
+
+        return augment_batik_info($fp);
+    }
+  
+
 }

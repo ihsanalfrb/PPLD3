@@ -4,7 +4,8 @@
     <section>
         <h1 class="text-center">Want to know about your batik more?</h1>
         <h1 class="text-center primary">Batique</h1>
-        <form>
+        <form action="{{ url('identify') }}" method="POST">
+        	{{ csrf_field() }}
         	<div class="columns">
 	        	<div class="column is-mobile is-half is-offset-one-quarter">
 		        	<div class="field-is-horizontal">
