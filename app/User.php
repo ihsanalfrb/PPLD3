@@ -15,7 +15,6 @@ class User extends Authenticatable
      *
      * @var array
      */
-    //apakah column name menyatakan username?, jika ya apakah bisa diganti ke username saja?
     protected $fillable = [
         'name', 'email', 'password', 'birthday', 'gender', 'bio', 'user_photo', 'telephone', 'address'
     ];
