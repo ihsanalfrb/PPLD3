@@ -207,8 +207,8 @@ class PageController extends Controller
         ]);
     }
 
-    public function show_profile($id = null){
-        $user = User::where('id','=',$id)->first();
+    public function show_profile(){
+        $user = Auth::user();
         if(is_null($user)){
             abort(404);
         }
@@ -218,8 +218,8 @@ class PageController extends Controller
         ]);
     }
 
-    public function edit_profile($id = null){
-        $user = User::where('id','=',$id)->first();
+    public function edit_profile(){
+        $user = Auth::user();
         if(is_null($user)){
             abort(404);
         }
