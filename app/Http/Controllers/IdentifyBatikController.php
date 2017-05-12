@@ -30,7 +30,7 @@ class IdentifyBatikController extends Controller
             $filename = basename($path);
             $image=Image::make($path);
         }else if($request->$type="file"){
-            //file
+            //file(filename)
         }else{
             //catch exception
         }
@@ -52,32 +52,53 @@ class IdentifyBatikController extends Controller
                 json_encode($result);
 
             }
+         }else{
+
+            return 0;
          }
 
     }
-    function post_to_machine($image){
-        //http://php.net/manual/en/function.stream-context-create.php#111032
+
+ function post_to_machine($image){
+        // //http://php.net/manual/en/function.stream-context-create.php#111032
+        // $data = array ('image' => '$image');
+        // $data = http_build_query($data);
+
+        // $context_options = array (
+        //         'http' => array (
+        //             'method' => 'POST',
+        //             'header'=> "Content-type: application/x-www-form-urlencoded\r\n"
+        //                 . "Content-Length: " . strlen($data) . "\r\n",
+        //             'content' => $data
+        //             )
+        //         );
+
+        // $context = context_create_stream($context_options)
+        // $fp = fopen('https://api.batique/identify.php', 'r', false, urlencode($context));
+        // if (!$fopen) { /* Handle error */ } fclose($fp);
         $data = array ('image' => '$image');
         $data = http_build_query($data);
-
-        $context_options = array (
-                'http' => array (
-                    'method' => 'POST',
-                    'header'=> "Content-type: application/x-www-form-urlencoded\r\n"
-                        . "Content-Length: " . strlen($data) . "\r\n",
-                    'content' => $data
-                    )
-                );
-
-        $context = context_create_stream($context_options)
-        $fp = fopen('https://api.batique/identify.php', 'r', false, $context);
-        if ($fp === FALSE) { /* Handle error */ }
-
-        return $fp;
-    }
-    function augment_batik_info($batiks){
-
-        return $batiks;
+        $client = new \GuzzleHttp\Client();
+        $APIurl="";
+        $res = $client->request('POST', $APIurl, [
+                    'multipart' => [
+                    [
+                        'image'=>$image
+                    ]
+                ]
+            ]);
+        asjson_decode($res);
     }
 
-}
+    
+    function augment_batik_info($batikDump){
+        $batikObject=
+        foreach ($batikIDs as $id) {
+           $batikInfoRAW = DB::table('batik')->where('id', $id)->first();
+           //deprecated
+           // $result = $result->merge($batikInfoRAW);
+           $result->push($batikInfoRAW);
+       }
+
+        
+    }

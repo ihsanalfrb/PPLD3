@@ -21,6 +21,7 @@ Route::get('/', 'PageController@index');
 Route::get('/categories', 'PageController@categories');
 Route::get('/show_tag/{id}', 'PageController@show_tag');
 Route::get('/rincian_info/{id}', 'PageController@rincian_informasi');
+Route::get('/rincian_info/', 'PageController@rincian_informasi');
 Route::get('/daftar_thread/', 'PageController@daftar_thread');
 Route::get('/daftar_thread/', 'PageController@daftar_thread');
 
