@@ -14,7 +14,7 @@
 			       				<div class="column is-5">
 			       					<div class="field is-grouped">
 										    <p class="control is-expanded">
-										      <input class="input" type="file" placeholder="Your photo here">
+										      <input class="input" type="file" placeholder="Your photo here" name="file">
 										    </p>
 									    </div>
 		        				</div>
@@ -24,7 +24,7 @@
 			        				<div class="column is-5">
 			        					<div class="field is-grouped">
 											    <p class="control is-expanded">
-											      <input class="input" type="text" placeholder="link">
+											      <input class="input" type="text" placeholder="link" name="url">
 											    </p>
 										    </div>
 			        				</div>
