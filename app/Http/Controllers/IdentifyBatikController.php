@@ -23,37 +23,40 @@ class IdentifyBatikController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+public function store(PostCommentRequest $request)
     {
-       if($request->$type=="url"){
-            $path = $request->$resource;
-            $filename = basename($path);
-            $image=Image::make($path);
-        }else if($request->$type="file"){
-            //file
+       if(!is_null($request->$url)){
+            // $path = $request->$resource;
+            // $filename = basename($path);
+            // $image=Image::make($path);
+            $client = new \GuzzleHttp\Client();
+            $res = $client->request('GET', $request->$url);
+            if($res->getStatusCode()!="200"){
+                // url not valid
+            }else{
+                $image=$res->$image;
+                //dd
+            }
+            $type=$res->getHeaderLine('content-type');
+            // throws unsuported image
+            if($type!="image/jpeg"||$type!="image/gif"||$type!="image/png"||$type!="image/jpg"||$type!="image/tiff"){
+            //throws unsuporrted file type
+            }
+            //file size more than 100MiB
+            if($res->getHeaderLine('content-type')>=100000000){
+            //throw file size exceed allowed size
+            }
+            // validate url upload
+        }else if(!is_null($request->$file)){
+            //file(filename)
         }else{
             //catch exception
         }
         // http://stackoverflow.com/questions/31893439/image-validation-in-laravel-5-intervention
         // max 10000kb
-        if(!is_null($request)){
-
-        $rules = array('image' => 'mimes:jpeg,jpg,png,gif|required|max:10000' 
-            );
-        $fileArray = array('image' => $image);
-        $validator = Validator::make($fileArray, $rules);
-            if ($validator->fails()){
-            // todo : tambah notification
-                 return redirect()->back();
-            }
-            else{
-                //Lempar ke API
-                $result = post_to_machine($image);
-                json_encode($result);
-
-            }
-         }
-
+            //Lempar ke API
+            $result = post_to_machine($image);
+            json_encode($result);
     }
     function post_to_machine($image){
         //http://php.net/manual/en/function.stream-context-create.php#111032
