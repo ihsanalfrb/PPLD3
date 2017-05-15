@@ -16,7 +16,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'PageController@index');
@@ -27,7 +26,7 @@ Route::get('/daftar_thread/', 'PageController@daftar_thread');
 Route::get('/daftar_thread/', 'PageController@daftar_thread');
 Route::resource('forum_threads','ThreadController');
 Route::resource('comments','CommentController');
-
+Route::resource('user','UserController');
 Route::get('/daftar_batik/{cluster}/{asal_daerah}/{tag}', 'PageController@daftar_batik_filter');
 Route::get('/daftar_batik/cluster/{cluster}', 'PageController@daftar_batik_cluster');
 Route::get('/daftar_batik/cluster', 'PageController@daftar_batik_uncategorized');
