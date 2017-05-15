@@ -25,7 +25,7 @@ class ShowProfileTest extends DuskTestCase
             if(is_null($user)) {
                 $browser->visit('/show_profile/')
                         ->assertSee('404');
-                $this->assertTrue('false');
+                $this->assertTrue(false);
             } else {
                 $browser->visit('/show_profile/')
                     ->assertPathIs('/show_profile/')
@@ -48,5 +48,10 @@ class ShowProfileTest extends DuskTestCase
                 $this->assertTrue(true);
             }
         });
+    }
+
+    public function createApplication()
+    {
+        // TODO: Implement createApplication() method.
     }
 }
