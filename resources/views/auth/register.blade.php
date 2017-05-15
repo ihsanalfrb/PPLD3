@@ -33,24 +33,6 @@ d@extends('layouts.app')
                     </p>
                 </div>
                 <div class="field">
-                    <label for="password" class="label">Password</label>
-                    <p class="control">
-                        <input id="password" type="password"
-                               class="input {{ $errors->has('password') ? 'is-danger' : '' }}" name="password" required>
-                        @if ($errors->has('password'))
-                            <p class="help is-danger">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </p>
-                        @endif
-                    </p>
-                </div>
-                <div class="field">
-                    <label for="password-confirm" class="label">Confirm Password</label>
-                    <p class="control">
-                        <input id="password-confirm" type="password" class="input" name="password_confirmation" required>
-                    </p>
-                </div>
-                <div class="field">
                     <label for="birthday" class="label">Date of Birth</label>d
                     <p class="control">
                         <input id="birthday" type="date" class="input" name="birthday" required>
@@ -59,9 +41,27 @@ d@extends('layouts.app')
                 <div class="field">
                     <label for="gender" class="label">Gender</label>
                     <p class="control">
-                        <input id="gender_male" type="radio" class="input" name="gender" value="male" required>
-                        <input id="gender_female" type="radio" class="input" name="gender" value="female" required>
-                        <input id="gender_other" type="radio" class="input" name="gender" value="other" required>
+                        <input id="gender_male" type="radio" class="input" name="gender" value="male">
+                        <input id="gender_female" type="radio" class="input" name="gender" value="female">
+                        <input id="gender_other" type="radio" class="input" name="gender" value="other">
+                    </p>
+                </div>
+                <div class="field">
+                    <label for="password" class="label">Password</label>
+                    <p class="control">
+                        <input id="password" type="password"
+                               class="input {{ $errors->has('password') ? 'is-danger' : '' }}" name="password" required>
+                    @if ($errors->has('password'))
+                        <p class="help is-danger">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </p>
+                        @endif
+                        </p>
+                </div>
+                <div class="field">
+                    <label for="password-confirm" class="label">Confirm Password</label>
+                    <p class="control">
+                        <input id="password-confirm" type="password" class="input" name="password_confirmation" required>
                     </p>
                 </div>
                 <div class="form-group">
