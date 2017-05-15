@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostThreadRequest;
+use App\Thread;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -91,7 +92,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        var_dump($request->input(''));
+        dd($request);
+
+        $curruser = Auth::user();
+        if ($id == $curruser->id) {
+            if(true) {
+                $curruser->update($request);
+            }
+        } else {
+            return view('', []);
+        }
     }
 
     /**
