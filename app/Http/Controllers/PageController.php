@@ -15,7 +15,7 @@ class PageController extends Controller
 {
     public function index(){
         $user = Auth::user();
-      $tag_batiks = TagBatik::all();
+        $tag_batiks = TagBatik::all();
     	return view('index',[
     	    'user' => $user,
     		'title' => 'Welcome Batique',
