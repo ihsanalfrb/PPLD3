@@ -1,4 +1,4 @@
-d@extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -33,7 +33,7 @@ d@extends('layouts.app')
                     </p>
                 </div>
                 <div class="field">
-                    <label for="birthday" class="label">Date of Birth</label>d
+                    <label for="birthday" class="label">Date of Birth</label>
                     <p class="control">
                         <input id="birthday" type="date" class="input" name="birthday" required>
                     </p>
@@ -41,9 +41,12 @@ d@extends('layouts.app')
                 <div class="field">
                     <label for="gender" class="label">Gender</label>
                     <p class="control">
-                        <input id="gender_male" type="radio" class="input" name="gender" value="male">
-                        <input id="gender_female" type="radio" class="input" name="gender" value="female">
-                        <input id="gender_other" type="radio" class="input" name="gender" value="other">
+                        <input id="gender_male" type="radio" name="gender" value="male">
+                        <label for="gender_male">Male</label>
+                        <input id="gender_female" type="radio" name="gender" value="female">
+                        <label for="gender_female">Female</label>
+                        <input id="gender_other" type="radio" name="gender" value="other">
+                        <label for="gender_other">Other</label>
                     </p>
                 </div>
                 <div class="field">

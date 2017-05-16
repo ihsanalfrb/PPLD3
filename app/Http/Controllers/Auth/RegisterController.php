@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -51,6 +52,8 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'gender' => 'required',
+            'birthday' => 'required|date'
         ]);
     }
 
@@ -66,6 +69,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'birthday' => Carbon::parse($data['birthday']),
+            'gender' => $data['gender']
         ]);
     }
 
@@ -77,7 +82,8 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         return view('auth.register',[
-            'title' => 'Register'
+            'title' => 'Register',
+            'user' => null
         ]);
     }
 }
