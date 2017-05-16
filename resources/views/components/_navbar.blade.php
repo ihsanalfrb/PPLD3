@@ -18,7 +18,10 @@
     @if(is_null($user))
         <a id="nav_forums"class="nav-item is-tab is-hidden-mobile" href="{{ action('Auth\LoginController@showLoginForm')}}">Login</a>
     @else
-        <a id="nav_forums"class="nav-item is-tab is-hidden-mobile" href="#">Logout</a>
+            <form action={{ action('Auth\LoginController@logout') }} method="POST" class="nav-item is-tab is-hidden-mobile">
+                {{ csrf_field() }}
+                <input id="nav_forums" class="button is-primary" type="submit" value="Logout"/>
+            </form>
     @endif
     <span class="nav-item">
       <div class="field is-grouped">
