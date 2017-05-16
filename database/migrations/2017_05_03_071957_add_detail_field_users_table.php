@@ -31,12 +31,12 @@ class AddDetailFieldUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->date('birthday');
-            $table->string('gender');
-            $table->text('bio');
-            $table->string('user_photo');
-            $table->string('telephone');
-            $table->text('address');
+            $table->dropColumn('birthday');
+            $table->dropColumn('gender');
+            $table->dropColumn('bio');
+            $table->dropColumn('user_photo');
+            $table->dropColumn('telephone');
+            $table->dropColumn('address');
         });
     }
 }
