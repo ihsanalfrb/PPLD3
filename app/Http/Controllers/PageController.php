@@ -96,8 +96,7 @@ class PageController extends Controller
         return view('daftar_thread',[
             'user' => $user,
             'title' => 'Forums',
-            'threads' => $threads,
-            'current_user' => Auth::user()
+            'threads' => $threads
         ]);
     }
 //    public function daftar_batik_filter($cluster, $asal_daerah, $tag) {
@@ -232,22 +231,24 @@ class PageController extends Controller
         $user = Auth::user();
         if(is_null($user)){
             abort(404);
+        } else {
+            return view('show_profile', [
+                'title' => 'User Profile',
+                'user' => $user
+            ]);
         }
-        return view('show_profile',[
-            'title' => 'User Profile',
-            'user' => $user
-        ]);
     }
 
     public function edit_profile(){
         $user = Auth::user();
         if(is_null($user)){
             abort(404);
+        } else {
+            return view('edit_profile', [
+                'title' => 'Edit Information',
+                'user' => $user
+            ]);
         }
-        return view('edit_profile',[
-            'title' => 'Edit Information',
-            'user' => $user
-        ]);
     }
 
 }
