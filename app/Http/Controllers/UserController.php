@@ -73,7 +73,7 @@ class UserController extends Controller
         return view('show_thread', [
             'title' => $thread->nama_thread,
             'thread' => $thread,
-            'current_user' => Auth::user()
+            'user' => Auth::user()
         ]);
     }
 
