@@ -28,15 +28,16 @@ class PageController extends Controller
         $tag_batik = TagBatik::where('id','=',$id)->first();
       if(is_null($tag_batik)){
         abort(404);
-      }
-      $batiks = $tag_batik->batiks()->get();
+      } else {
+          $batiks = $tag_batik->batiks()->get();
 
-      return view('show_tag', [
-          'user' => $user,
-        'judulKategori' => $tag_batik->tag_batik,
-        'batiks' => $batiks,
-        'tag_batiks' => TagBatik::all()
-      ]);
+          return view('show_tag', [
+              'user' => $user,
+              'judulKategori' => $tag_batik->tag_batik,
+              'batiks' => $batiks,
+              'tag_batiks' => TagBatik::all()
+          ]);
+      }
     }
 
     public function categories()
@@ -79,14 +80,15 @@ class PageController extends Controller
         $batik = Batik::where('id','=',$id)->first();
         if(is_null($batik)){
           abort(404);
+        } else {
+            $tag_batiks = TagBatik::all();
+            return view('rincian_info', [
+                'user' => $user,
+                'title' => $batik->nama_batik,
+                'data' => $batik,
+                'tag_batiks' => $tag_batiks
+            ]);
         }
-        $tag_batiks = TagBatik::all();
-        return view('rincian_info',[
-            'user' => $user,
-            'title' => $batik->nama_batik,
-            'data' => $batik,
-            'tag_batiks' => $tag_batiks
-        ]);
     }
 
     public function daftar_thread() {
