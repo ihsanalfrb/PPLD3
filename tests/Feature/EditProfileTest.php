@@ -2,6 +2,9 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Foundation\Testing\WithoutEvents;
+use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -9,6 +12,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class EditProfileTest extends TestCase
 {
+    use DatabaseMigrations;
     /**
      * A basic test example.
      *
