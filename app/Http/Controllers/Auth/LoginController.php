@@ -43,7 +43,7 @@ class LoginController extends Controller
         $user = Auth::user();
         return view('auth.login', [
             'title' => 'Login',
-            'user' => $user
+            'user' => null
         ]);
     }
 }
