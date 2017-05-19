@@ -43,9 +43,5 @@ class DeleteThreadTest extends TestCase
         $this->assertEquals(302, $response->status());
         $randomCommentDeleted=Comment::where('id','=',$randomID)->first();
         $this->assertNull($randomCommentDeleted);
-
-
-
     }
-
 }
