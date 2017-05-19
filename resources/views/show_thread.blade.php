@@ -45,6 +45,18 @@
                     </div>
                 @endforeach
             </div>
+
+            <div class="column is-4">
+                <!-- Blog Categories Well -->
+                <div class="well">
+                    <h3>Tags</h3>
+                    <div class="category-list">
+                        @foreach($tag_batiks as $tag)
+                            <a href="{{ action('PageController@daftar_batik_tag',$tag->tag_batik)}}">{{ $tag->tag_batik }}</a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="columns">
