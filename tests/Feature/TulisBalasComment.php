@@ -46,6 +46,4 @@ class TulisBalasComment extends TestCase
         $response = $this->call('post', '/comments', $this->params);
         $response->assertStatus(302);
     }
-
-
 }
