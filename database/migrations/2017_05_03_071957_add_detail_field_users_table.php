@@ -14,8 +14,8 @@ class AddDetailFieldUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->date('birthday');
-            $table->string('gender');
+            $table->date('birthday')->default('1946-01-01');
+            $table->string('gender')->default('other');
             $table->text('bio')->nullable()->default(null);
             $table->string('user_photo')->nullable()->default(null);
             $table->string('telephone')->nullable()->default(null);
