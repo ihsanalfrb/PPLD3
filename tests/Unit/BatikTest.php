@@ -87,11 +87,6 @@ class BatikTest extends TestCase
         $this->assertArrayHasKey('sejarah_batik',$this->batik->getAttributes());
     }
 
-    public function test_batik_has_cluster_batik_attribute()
-    {
-        $this->assertArrayHasKey('cluster_batik',$this->batik->getAttributes());
-    }
-
     public function test_batik_has_asal_daerah_attribute()
     {
         $this->assertArrayHasKey('asal_daerah',$this->batik->getAttributes());

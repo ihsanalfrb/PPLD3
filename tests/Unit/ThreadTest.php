@@ -56,22 +56,22 @@ class ThreadTest extends TestCase
     }
 
     public function test_thread_has_nama_thread_attribute(){
-        $this->assertArrayHasKey('nama_thread', $this->user->getAttributes());
+        $this->assertArrayHasKey('nama_thread', $this->thread->getAttributes());
     }
 
     public function test_thread_has_created_by_attribute(){
-        $this->assertArrayHasKey('created_by', $this->user->getAttributes());
+        $this->assertArrayHasKey('created_by', $this->thread->getAttributes());
     }
 
     public function test_thread_has_views_attribute(){
-        $this->assertArrayHasKey('views', $this->user->getAttributes());
+        $this->assertArrayHasKey('views', $this->thread->getAttributes());
     }
 
     public function test_thread_has_replies_attribute(){
-        $this->assertArrayHasKey('replies', $this->user->getAttributes());
+        $this->assertArrayHasKey('replies', $this->thread->getAttributes());
     }
 
     public function test_thread_has_content_attribute(){
-        $this->assertArrayHasKey('content', $this->user->getAttributes());
+        $this->assertArrayHasKey('content', $this->thread->getAttributes());
     }
 }

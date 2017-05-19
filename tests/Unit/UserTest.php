@@ -116,16 +116,4 @@ class UserTest extends TestCase
     public function test_user_has_gender_attribute(){
         $this->assertArrayHasKey('gender', $this->user->getAttributes());
     }
-
-    public function test_user_has_bio_attribute(){
-        $this->assertArrayHasKey('bio', $this->user->getAttributes());
-    }
-
-    public function test_user_has_telephone_attribute(){
-        $this->assertArrayHasKey('telephone', $this->user->getAttributes());
-    }
-
-    public function test_user_has_address_attribute(){
-        $this->assertArrayHasKey('address', $this->user->getAttributes());
-    }
 }
