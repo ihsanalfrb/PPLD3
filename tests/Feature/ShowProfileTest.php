@@ -11,6 +11,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ShowProfileTest extends TestCase
 {
+    use DatabaseMigrations;
     /**
      * A basic test example.
      *

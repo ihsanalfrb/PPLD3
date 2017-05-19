@@ -10,6 +10,8 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class CommentTest extends TestCase
 {
+    use DatabaseMigrations;
+
     protected $limit = 4;
 
     public function setUp()
