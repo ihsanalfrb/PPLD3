@@ -24,7 +24,7 @@
 			        				<div class="column is-5">
 			        					<div class="field is-grouped">
 											    <p class="control is-expanded">
-											      <input class="input" type="text" placeholder="link" name="url">
+											      <input class="input" type="text" name="link" placeholder="link">
 											    </p>
 										    </div>
 			        				</div>

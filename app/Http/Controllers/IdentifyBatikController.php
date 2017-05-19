@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\IdentifyBatik;
+use App\Batik;
 
 class IdentifyBatikController extends Controller
 {
@@ -37,12 +37,14 @@ class IdentifyBatikController extends Controller
             }else{
                 $image=$res->getBody();
 
-                dd($image);
+               // dd($image);
             }
             $type=$res->getHeaderLine('content-type');
+
             // throws unsuported image
-            if($type!="image/jpeg"||$type!="image/gif"||$type!="image/png"||$type!="image/jpg"||$type!="image/tiff"){
+            if($type!="image/jpeg" and $type!="image/gif" and $type!="image/png" and $type!="image/jpg" and $type!="image/tiff"){
             //throws unsuporrted file type
+                
             }
             //file size more than 100MiB
             if($res->getHeaderLine('content-type')>=100000000){
@@ -57,51 +59,50 @@ class IdentifyBatikController extends Controller
         // http://stackoverflow.com/questions/31893439/image-validation-in-laravel-5-intervention
         // max 10000kb
 
-            //Lempar ke API
-            $result = $this->post_to_machine($image);
-            json_encode($result);
+        //Lempar ke API
+        return$this->post_to_machine($image, $type);
+            
     }
 
-  function post_to_machine($image){
-        // //http://php.net/manual/en/function.stream-context-create.php#111032
-        // $data = array ('image' => '$image');
-        // $data = http_build_query($data);
-
-        // $context_options = array (
-        //         'http' => array (
-        //             'method' => 'POST',
-        //             'header'=> "Content-type: application/x-www-form-urlencoded\r\n"
-        //                 . "Content-Length: " . strlen($data) . "\r\n",
-        //             'content' => $data
-        //             )
-        //         );
-        // $context = context_create_stream($context_options)
-        // $fp = fopen('https://api.batique/identify.php', 'r', false, urlencode($context));
-        // if (!$fopen) { /* Handle error */ } fclose($fp);
+  function post_to_machine($image, $type){
         $data = array ('image' => '$image');
         $data = http_build_query($data);
         $client = new \GuzzleHttp\Client();
-        $APIurl="";
+        //$client->getCurlOptions()->set(CURLOPT_SSL_VERIFYHOST, false);
+        //$client->getCurlOptions()->set(CURLOPT_SSL_VERIFYPEER, false);
+        /*
+        $APIurl=action('PageController@show_tag',$tag->id);
         $res = $client->request('POST', $APIurl, [
                     'multipart' => [
                     [
                         'image'=>$image
                     ]
                 ]
-            ]);
-        augment_batik_info(json_decode($res)->$images);
+            ]);*/
+        //$this->augment_batik_info(json_decode($res)->$images);
+        
+        
+        $images = array();
+        array_push($images, "PRG052-Parang Sisik.png");
+        array_push($images, "PRG053-Parang Srimpi.png");
+        return $this->augment_batik_info($images, $image, $type);
+        
     }
     
-    function augment_batik_info($batikDump){
+    function augment_batik_info($batikDump, $original_image, $type){
+
+        $result = array();
+
         foreach ($batikDump as $url) {
-           $batikAug = DB::table('batik')->where('gambar_pola_batik', $url)->first();
-           $result->push($batikAug);
+           $batikAug = Batik::where('gambar_pola_batik', $url)->first();
+           array_push($result, $batikAug);
        }
-        return view('identify',[
+        return view('identify_batik',[
             'title' => 'Identify Batik',
             'batiks' => $result,
+            'original_image' => base64_encode($original_image),
+            'type' => $type
         ]);
-    }
+    }  
 
-    
-
+}
