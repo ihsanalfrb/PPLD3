@@ -4,7 +4,8 @@
     <section>
         <h1 class="text-center">Want to know about your batik more?</h1>
         <h1 class="text-center primary">Batique</h1>
-        <form>
+        <form action="{{ url('identify') }}" method="POST">
+        	{{ csrf_field() }}
         	<div class="columns">
 	        	<div class="column is-mobile is-half is-offset-one-quarter">
 		        	<div class="field-is-horizontal">
@@ -13,7 +14,7 @@
 			       				<div class="column is-5">
 			       					<div class="field is-grouped">
 										    <p class="control is-expanded">
-										      <input class="input" type="file" placeholder="Your photo here">
+										      <input class="input" type="file" placeholder="Your photo here" name="file">
 										    </p>
 									    </div>
 		        				</div>
@@ -23,7 +24,7 @@
 			        				<div class="column is-5">
 			        					<div class="field is-grouped">
 											    <p class="control is-expanded">
-											      <input class="input" type="text" placeholder="link">
+											      <input class="input" type="text" placeholder="link" name="url">
 											    </p>
 										    </div>
 			        				</div>
