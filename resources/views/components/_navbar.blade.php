@@ -12,9 +12,9 @@
     </div>
 
     <div id="nav-menu" class="nav-right">
-    @if(is_null($user))
+    @if(isset($user))
         <a id="nav_forums"class="nav-item is-tab is-hidden-mobile" href="{{ action('Auth\LoginController@showLoginForm')}}">Login</a>
-    @else
+        @else
             <a id="nav_forums"class="nav-item is-tab is-hidden-mobile" href="{{ action('PageController@show_profile')}}">Profile</a>
             <form action={{ action('Auth\LoginController@logout') }} method="POST" class="nav-item is-tab is-hidden-mobile">
                 {{ csrf_field() }}
