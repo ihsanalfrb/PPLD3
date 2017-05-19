@@ -7,8 +7,6 @@
         <a id="nav_knowledge" class="nav-item is-tab is-hidden-mobile" href="{{ action('PageController@index')}}">Knowledge</a>
         <a id="nav_categories" class="nav-item is-tab is-hidden-mobile" href="{{ action('PageController@categories')}}">Categories</a>
         <a id="nav_forums"class="nav-item is-tab is-hidden-mobile" href="{{ action('PageController@daftar_thread')}}">Forums</a>
-        <a class="nav-item is-tab is-hidden-mobile" href="#">Learn More</a>
-        <a class="nav-item is-tab is-hidden-mobile" href="#">About Us</a>
     </div>
 
     <div id="nav-menu" class="nav-right">
