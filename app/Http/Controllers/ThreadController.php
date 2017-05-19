@@ -61,14 +61,15 @@ class ThreadController extends Controller
         $thread = Thread::where('id', '=', $id)->with('comments')->first();
         if(is_null($thread)){
             abort(404);
+        } else {
+            $thread->views = $thread->views + 1;
+            $thread->save();
+            return view('show_thread', [
+                'title' => $thread->nama_thread,
+                'thread' => $thread,
+                'user' => Auth::user()
+            ]);
         }
-        $thread->views = $thread->views + 1;
-        $thread->save();
-        return view('show_thread', [
-            'title' => $thread->nama_thread,
-            'thread' => $thread,
-            'current_user' => Auth::user()
-        ]);
     }
 
     /**
@@ -106,12 +107,11 @@ class ThreadController extends Controller
       //Soft Delete
       if(is_null(Auth::user()) or !Auth::user()->is_admin){
           abort(401);
-      }
-      if(is_null($destroyTarget)){
+      } elseif(is_null($destroyTarget)){
           abort(404);
+      } else {
+          $destroyTarget->delete();
+          return redirect()->back();
       }
-      $destroyTarget->delete();
-      return redirect()->back();
-
     }
 }

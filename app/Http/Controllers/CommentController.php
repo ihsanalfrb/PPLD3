@@ -44,7 +44,6 @@ class CommentController extends Controller
     public function destroy($id)
 
     {
-
         $destroyTarget=Comment::where('id', $id)->first();
         //Soft Delete
         if(is_null(Auth::user())){

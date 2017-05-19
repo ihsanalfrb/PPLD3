@@ -23,7 +23,7 @@
                         <hr>
                         <p class="comment-content">{{ $comment->isi_komentar }}</p>
 
-                        @if(!is_null($current_user) and $comment->comment_author->id == $current_user->id)
+                        @if(!is_null($user) and $comment->comment_author->id == $user->id)
                             <form action="{{ action('CommentController@destroy', $comment->id) }}" method="POST">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
@@ -49,7 +49,7 @@
     </div>
     <div class="columns">
         <div class="column is-4">
-            @if(!is_null($current_user))
+            @if(!is_null($user))
               <div class="form-create-comment">
                   <form action="{{ action('CommentController@store') }}" method="post">
                       {{ csrf_field() }}
