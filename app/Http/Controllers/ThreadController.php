@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostThreadRequest;
+use App\TagBatik;
 use Illuminate\Http\Request;
 use App\Thread;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,7 @@ class ThreadController extends Controller
      */
     public function index()
     {
+        abort(404);
     }
 
     /**
@@ -59,6 +61,7 @@ class ThreadController extends Controller
     public function show($id)
     {
         $thread = Thread::where('id', '=', $id)->with('comments')->first();
+        $tag_batiks = TagBatik::all();
         if(is_null($thread)){
             abort(404);
         } else {
@@ -67,6 +70,7 @@ class ThreadController extends Controller
             return view('show_thread', [
                 'title' => $thread->nama_thread,
                 'thread' => $thread,
+                'tag_batiks' => $tag_batiks,
                 'user' => Auth::user()
             ]);
         }
