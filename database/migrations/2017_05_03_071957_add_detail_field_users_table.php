@@ -30,13 +30,40 @@ class AddDetailFieldUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('birthday');
-            $table->dropColumn('gender');
-            $table->dropColumn('bio');
-            $table->dropColumn('user_photo');
-            $table->dropColumn('telephone');
-            $table->dropColumn('address');
-        });
+        if (Schema::hasColumn('users', 'birthday')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->dropColumn('birthday');
+            });
+        }
+
+        if (Schema::hasColumn('users', 'gender')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->dropColumn('gender');
+            });
+        }
+
+        if (Schema::hasColumn('users', 'bio')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->dropColumn('bio');
+            });
+        }
+
+        if (Schema::hasColumn('users', 'user_photo')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->dropColumn('user_photo');
+            });
+        }
+
+        if (Schema::hasColumn('users', 'telephone')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->dropColumn('telephone');
+            });
+        }
+
+        if (Schema::hasColumn('users', 'address')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->dropColumn('address');
+            });
+        }
     }
 }
