@@ -2,8 +2,9 @@
 
 namespace Tests\Unit;
 
+use App\Comment;
+use App\Thread;
 use App\User;
-use Illuminate\Support\Facades\App;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -13,12 +14,21 @@ class UserTest extends TestCase
 
     use DatabaseMigrations;
 
-    protected $limit = 6;
 
     public function setUp()
     {
         parent::setUp();
-        $this->user = factory(User::class)->create();
+
+        $user = factory(User::class)->create();
+        $thread = factory(Thread::class)->make();
+        $user->create_thread()->save($thread);
+        $comment = factory(Comment::class)->make();
+        $comment->thread_id = $thread->id;
+        $user->comments()->save($comment);
+        $this->comment = $comment;
+        $this->user = $user;
+        $this->thread = $thread;
+
 
     }
 
@@ -68,6 +78,7 @@ class UserTest extends TestCase
     public function test_user_has_email_attribute(){
         $this->assertArrayHasKey('email', $this->user->getAttributes());
     }
+
 
 
 }

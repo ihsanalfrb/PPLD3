@@ -22,29 +22,16 @@ class DeleteThreadTest extends TestCase
      */
     public function test_delete_thread_response()
     {
-        factory(User::class,15)->create();
-        factory(Thread::class,15)->create();
 
-        $randomID = 1;
-        $randomComment=Thread::where('id','=',$randomID)->first();
-
-        $response = $this->call('delete', '/forum_threads/'.$randomComment->id, []);
-        $this->assertEquals(401, $response->status());
-
-        $user = User::first();
-        $this->be($user);
-        $response = $this->call('delete', '/forum_threads/'.$randomComment->id, []);
-        $this->assertEquals(401, $response->status());
-
+        $thread = factory(Thread::class)->make();
+        $user = factory(User::class)->make();
         $user->is_admin = true;
         $user->save();
+        $user->create_thread()->save($thread);
 
-        $response = $this->call('delete', '/forum_threads/'.$randomComment->id, []);
-        $this->assertEquals(302, $response->status());
-        $randomCommentDeleted=Comment::where('id','=',$randomID)->first();
-        $this->assertNull($randomCommentDeleted);
-
-
+        $response = $this->actingAs($user)
+            ->delete(action('ThreadController@destroy', $thread->id));
+        $response->assertStatus(302);
 
     }
 

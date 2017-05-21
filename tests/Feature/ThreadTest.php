@@ -7,10 +7,8 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class LoginLogoutTest extends TestCase
+class ThreadTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /**
      * A basic test example.
      *
