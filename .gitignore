@@ -10,4 +10,4 @@ Homestead.json
 Homestead.yaml
 /.env
 .composer.lock
-/coverage.html/*
+/coverage.html

@@ -13,6 +13,7 @@ class ThreadTest extends TestCase
 
     use DatabaseMigrations;
 
+    protected $limit = 4;
 
     public function setUp()
     {
@@ -58,6 +59,7 @@ class ThreadTest extends TestCase
         $comment->comment_by = $this->user->id;
         $this->thread->comments()->save($comment);
     }
+
 
 
     public function test_database_has_column_nama_thread(){

@@ -104,7 +104,6 @@ class PageController extends Controller
     }
 
 
-
     public function daftar_batik_cluster($cluster) {
         $user = Auth::user();
         if (is_null(Batik::where('cluster_batik','=',$cluster)->first())) {

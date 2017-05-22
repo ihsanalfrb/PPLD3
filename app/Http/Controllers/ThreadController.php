@@ -16,6 +16,7 @@ class ThreadController extends Controller
     }
 
 
+
     /**
      * Store a newly created resource in storage.
      *

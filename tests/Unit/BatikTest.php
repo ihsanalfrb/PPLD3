@@ -5,16 +5,13 @@ namespace Tests\Unit;
 use App\Batik;
 use App\PolaBatik;
 use App\TagBatik;
-use phpDocumentor\Reflection\DocBlock\Tag;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class BatikTest extends TestCase
 {
 
 	use DatabaseMigrations;
-	use DatabaseTransactions;
 
 
 	public function setUp()
@@ -52,11 +49,13 @@ class BatikTest extends TestCase
         ]);
     }
 
+
     public function test_database_has_column_asal_daerah(){
         $this->assertDatabaseHas('batik', [
             'asal_daerah' => $this->batik->asal_daerah
         ]);
     }
+
 
     public function test_database_has_column_gambar_pola_batik(){
         $this->assertDatabaseHas('batik', [
@@ -88,18 +87,6 @@ class BatikTest extends TestCase
     public function test_batik_has_asal_daerah_attribute()
     {
         $this->assertArrayHasKey('asal_daerah',$this->batik->getAttributes());
-    }
-
-
-
-    public function test_batik_has_gambar_pola_batik_attribute()
-    {
-        $this->assertArrayHasKey('gambar_pola_batik',$this->batik->getAttributes());
-    }
-
-    public function test_batik_has_matriks_pola_batik_attribute()
-    {
-        $this->assertArrayHasKey('matriks_pola_batik',$this->batik->getAttributes());
     }
 
 }

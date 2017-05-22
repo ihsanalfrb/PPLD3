@@ -119,7 +119,6 @@ class UserTest extends TestCase
         $this->assertArrayHasKey('is_admin', $this->user->getAttributes());
     }
 
-
     public function test_user_has_birthday_attribute(){
         $this->assertArrayHasKey('birthday', $this->user->getAttributes());
     }

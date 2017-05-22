@@ -8,13 +8,10 @@ use App\Thread;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class CommentTest extends TestCase
 {
     use DatabaseMigrations;
-
-    use DatabaseTransactions;
 
 
     public function setUp()
