@@ -28,15 +28,9 @@
                     <h3>Tags</h3>
                     <div class="category-list">
                         @foreach($tag_batiks as $tag)
-                            <a href="{{ action('PageController@show_tag',$tag->id)}}">{{ $tag->tag_batik }}</a>
+                            <a href="{{ action('PageController@daftar_batik_tag',$tag->tag_batik)}}">{{ $tag->tag_batik }}</a>
                         @endforeach
                     </div>
-                </div>
-
-                <div class="well">
-                    <h4>Side Widget Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci
-                        accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
                 </div>
             </div>
         </div>

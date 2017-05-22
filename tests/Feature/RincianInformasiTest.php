@@ -53,8 +53,6 @@ class RincianInformasiTest extends TestCase
                 $response-> assertStatus(404);
                 break;
             }
-
         }
     }
-
 }

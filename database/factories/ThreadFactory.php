@@ -24,7 +24,6 @@
 $factory->define(App\Thread::class, function (Faker\Generator $faker) {
     return [
         'nama_thread' => $faker->title,
-        'created_by' => factory(\App\User::class)->create()->id,
         'views' => $faker->randomDigitNotNull,
         'replies' => $faker->randomDigitNotNull,
         'content'=>$faker->paragraph

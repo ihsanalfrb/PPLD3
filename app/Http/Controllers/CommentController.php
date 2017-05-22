@@ -24,13 +24,14 @@ class CommentController extends Controller
      */
     public function store(PostCommentRequest $request)
     {
-        $comment = new Comment($request->all());
-        $saved = Auth::user()->comments()->save($comment);
-        if(!is_null($saved)){
+        $user = Auth::user();
+        if(!is_null($user)){
+            $comment = new Comment($request->all());
+            $saved = $user->comments()->save($comment);
             Session::flash('comment_success', 'Komentar berhasil ditambahkan');
             return redirect()->back();
         } else {
-            abort(500);
+            return abort(401);
         }
     }
 
@@ -45,16 +46,16 @@ class CommentController extends Controller
 
     {
         $destroyTarget=Comment::where('id', $id)->first();
-        //Soft Delete
         if(is_null(Auth::user())){
-            abort(401);
-        }
-        if($destroyTarget->comment_author->id==Auth::user()->id){
+            return abort(401);
+        } else {
+            if($destroyTarget->comment_author->id==Auth::user()->id){
 
-            $destroyTarget->delete();
-            return redirect()->back();
-        }else{
-            return response()->view('error_403', [], 403);
+                $destroyTarget->delete();
+                return redirect()->back();
+            }else{
+                return response()->view('error_403', [], 403);
+            }
         }
 
     }

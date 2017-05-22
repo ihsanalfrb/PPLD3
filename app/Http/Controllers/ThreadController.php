@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostThreadRequest;
+use App\TagBatik;
 use Illuminate\Http\Request;
 use App\Thread;
 use Illuminate\Support\Facades\Auth;
@@ -14,24 +15,7 @@ class ThreadController extends Controller
         $this->middleware('auth-admin', ['only' => ['store']]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -42,11 +26,12 @@ class ThreadController extends Controller
     public function store(PostThreadRequest $request)
     {
         $thread = new Thread($request->all());
-        $saved = Auth::user()->create_thread()->save($thread);
-        if(!is_null($saved)){
-            return redirect()->back();
+        $user = Auth::user();
+        if(is_null($user)){
+            return abort(401);
         } else {
-            abort(500);
+            $saved = $user->create_thread()->save($thread);
+            return redirect()->back();
         }
     }
 
@@ -59,40 +44,19 @@ class ThreadController extends Controller
     public function show($id)
     {
         $thread = Thread::where('id', '=', $id)->with('comments')->first();
+        $tag_batiks = TagBatik::all();
         if(is_null($thread)){
-            abort(404);
+            return abort(404);
         } else {
             $thread->views = $thread->views + 1;
             $thread->save();
             return view('show_thread', [
                 'title' => $thread->nama_thread,
                 'thread' => $thread,
+                'tag_batiks' => $tag_batiks,
                 'user' => Auth::user()
             ]);
         }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -106,9 +70,9 @@ class ThreadController extends Controller
       $destroyTarget=Thread::where('id', $id)->first();
       //Soft Delete
       if(is_null(Auth::user()) or !Auth::user()->is_admin){
-          abort(401);
+          return abort(401);
       } elseif(is_null($destroyTarget)){
-          abort(404);
+          return abort(404);
       } else {
           $destroyTarget->delete();
           return redirect()->back();

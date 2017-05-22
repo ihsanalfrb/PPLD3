@@ -15,10 +15,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-
+        $this->call(UserSeeder::class);
         $this->call(BatikTableSeeder::class);
         $this->call(TagBatikTableSeeder::class);
-        $this->call(UserSeeder::class);
         $this->call(ForumThreadsSeeder::class);
         $this->call(CommentsSeeder::class);
     }

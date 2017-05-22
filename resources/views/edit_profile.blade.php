@@ -41,26 +41,16 @@
                         <input type="hidden" name="_method" value="PUT">
                         <p class="control">
                             <input id="name" type="text"
-                                   class="input {{ $errors->has('name') ? ' is-danger' : '' }}"
+                                   class="input"
                                    name="name" value="{{$user->name}}" required autofocus>
-                            @if ($errors->has('name'))
-                                <span class="help is-danger">
-                                <strong>{{ $errors->first('name') }}</strong>
-                            </span>
-                            @endif
                         </p>
                     </div>
                     <div class="field">
                         <label for="email" class="label">E-Mail Address</label>
                         <p class="control">
                             <input id="email" type="email"
-                                   class="input {{ $errors->has('email') ? ' is-danger' : '' }}"
+                                   class="input"
                                    name="email" value="{{$user->email}}" required>
-                        @if ($errors->has('email'))
-                            <p class="help is-danger">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </p>
-                            @endif
                             </p>
                     </div>
                     <div class="field"></div>
@@ -90,12 +80,7 @@
                             <label for="new_password" class="label">New Password</label>
                             <p class="control">
                                 <input id="new_password" type="password"
-                                       class="input {{ $errors->has('password') ? 'is-danger' : '' }}" name="new_password" disabled>
-                            @if ($errors->has('password'))
-                                <p class="help is-danger">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </p>
-                                @endif
+                                       class="input " name="new_password" disabled>
                                 </p>
                         </div>
                         <div class="field">
