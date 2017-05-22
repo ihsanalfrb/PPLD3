@@ -27,7 +27,7 @@ class PageController extends Controller
         $user = Auth::user();
         $tag_batik = TagBatik::where('id','=',$id)->first();
       if(is_null($tag_batik)){
-        abort(404);
+        return abort(404);
       } else {
           $batiks = $tag_batik->batiks()->get();
 
@@ -79,7 +79,7 @@ class PageController extends Controller
         $user = Auth::user();
         $batik = Batik::where('id','=',$id)->first();
         if(is_null($batik)){
-          abort(404);
+          return abort(404);
         } else {
             $tag_batiks = TagBatik::all();
             return view('rincian_info', [
@@ -94,49 +94,40 @@ class PageController extends Controller
     public function daftar_thread() {
         $user = Auth::user();
         $threads = Thread::orderBy('id', 'DESC')->paginate(4);
-
+        $tag_batiks = TagBatik::all();
         return view('daftar_thread',[
             'user' => $user,
             'title' => 'Forums',
-            'threads' => $threads
+            'threads' => $threads,
+            'tag_batiks' => $tag_batiks
         ]);
     }
-//    public function daftar_batik_filter($cluster, $asal_daerah, $tag) {
-//        $batik = Batik::all();
-//
-//        $batik = $batik->where('asal_daerah','=',$asal_daerah);
-//        $batik = $batik->where('cluster_batik','=',$cluster);
-//
-//        $tags_id = TagBatik::all()->where('tag_batik','=',$tag)->pluck('id');
-//        $batiks_id = DB::table('batik_tag_batik')->where('tag_batik_id',$tags_id)->value('batik_id');
-//        $batik = $batik->whereIn('id',$batiks_id,true)->all();
-//
-//        $sum = $batik->count();
-//        return view('daftar_batik',[
-//            'title' => 'Batiks',
-//            'data' => $batik,
-//            'sum' => $sum
-//        ]);
-//    }
+
+
 
     public function daftar_batik_cluster($cluster) {
         $user = Auth::user();
-        $batik = Batik::where('cluster_batik','=',$cluster)->paginate(16);
-        $sum = $batik->count();
-        return view('daftar_batik',[
-            'user' => $user,
-            'title' => 'Batiks',
-            'data' => $batik,
-            'sum' => $sum,
-            'header' => 'Batik dengan pola ' . $cluster
-        ]);
+        if (is_null(Batik::where('cluster_batik','=',$cluster)->first())) {
+            return abort('404');
+        } else {
+            $batik = Batik::where('cluster_batik', '=', $cluster)->paginate(16);
+            $sum = $batik->count();
+            return view('daftar_batik', [
+                'user' => $user,
+                'title' => 'Batiks',
+                'data' => $batik,
+                'sum' => $sum,
+                'header' => 'Batik dengan pola ' . $cluster
+            ]);
+        }
     }
 
     public function daftar_batik_uncategorized(){
         $user = Auth::user();
+
         $batik = Batik::where('cluster_batik','=',"")->paginate(16);
-      $sum = $batik->count();
-      return view('daftar_batik',[
+        $sum = $batik->count();
+        return view('daftar_batik',[
           'user' => $user,
           'title' => 'Batiks',
           'data' => $batik,
@@ -147,30 +138,38 @@ class PageController extends Controller
 
     public function daftar_batik_daerah($asal_daerah) {
         $user = Auth::user();
-        $batik = Batik::where('asal_daerah','=',$asal_daerah)->paginate(16);
-        $sum = $batik->count();
-        return view('daftar_batik',[
-            'user' => $user,
-            'title' => 'Batiks',
-            'data' => $batik,
-            'sum' => $sum,
-            'header' => 'Batik yang berasal dari ' . $asal_daerah
-        ]);
+        if (is_null(Batik::where('asal_daerah','=',$asal_daerah)->first())) {
+            return abort('404');
+        } else {
+            $batik = Batik::where('asal_daerah', '=', $asal_daerah)->paginate(16);
+            $sum = $batik->count();
+            return view('daftar_batik', [
+                'user' => $user,
+                'title' => 'Batiks',
+                'data' => $batik,
+                'sum' => $sum,
+                'header' => 'Batik yang berasal dari ' . $asal_daerah
+            ]);
+        }
     }
 
     public function daftar_batik_tag($tag) {
         $user = Auth::user();
-        $batik = Batik::all();
-        $tags_id = TagBatik::all()->where('tag_batik','=',$tag)->pluck('id');
-        $batiks_id = DB::table('batik_tag_batik')->where('tag_batik_id',$tags_id)->value('batik_id');
-        $batik = $batik->whereIn('id',$batiks_id,true)->all();
-        $sum = $batik->count();
-        return view('daftar_batik',[
-            'user' => $user,
-            'title' => 'Batiks',
-            'data' => $batik,
-            'sum' => $sum
-        ]);
+        if (is_null(TagBatik::where('tag_batik','=',$tag)->first())) {
+            return abort('404');
+        } else {
+            $tags_id = TagBatik::where('tag_batik', '=', $tag)->pluck('id')->all();
+            $batiks_id = DB::table('batik_tag_batik')->where('tag_batik_id', '=', $tags_id)->pluck('batik_id')->all();
+            $batik = Batik::whereIn('id', $batiks_id)->paginate(16);
+            $sum = count($batik);
+            return view('daftar_batik', [
+                'user' => $user,
+                'title' => 'Batiks',
+                'data' => $batik,
+                'sum' => $sum,
+                'header' => 'Batik yang memiliki tag ' . $tag
+            ]);
+        }
     }
 
     public function daftar_batik_all() {
@@ -202,7 +201,6 @@ class PageController extends Controller
             $batiks = Batik::where('nama_batik', 'ilike', '%'.$keywords.'%')
                 ->orWhere('sejarah_batik', 'ilike', '%'.$keywords.'%')
                 ->orWhere('makna_batik', 'ilike', '%'.$keywords.'%')->paginate(10);
-//            dd($batiks);
             $categories = Batik::where('cluster_batik', 'ilike', '%'.$keywords.'%');
             $cities = Batik::where('asal_daerah', 'ilike', '%'.$keywords.'%');
             $tags = TagBatik::where('tag_batik', 'ilike', '%'.$keywords.'%');
@@ -232,7 +230,7 @@ class PageController extends Controller
     public function show_profile(){
         $user = Auth::user();
         if(is_null($user)){
-            abort(404);
+            return abort(404);
         } else {
             return view('show_profile', [
                 'title' => 'User Profile',
@@ -244,7 +242,7 @@ class PageController extends Controller
     public function edit_profile(){
         $user = Auth::user();
         if(is_null($user)){
-            abort(404);
+            return abort(404);
         } else {
             return view('edit_profile', [
                 'title' => 'Edit Information',
