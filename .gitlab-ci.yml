@@ -2,12 +2,12 @@ test:
   image: php:5.6
   script:
     - bash .gitlab-ci.sh
-    - vendor/bin/phpunit --colors --coverage-text |& tee report/report.md
+    - vendor/bin/phpunit --colors --coverage-text --coverage-html  ./coverage.html coverage
 
 
   artifacts:
     paths:
-      - report/
+      - ./coverage.html
 
 staging:
   type: deploy
