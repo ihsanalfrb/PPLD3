@@ -13,10 +13,13 @@ use Illuminate\Support\Facades\DB;
 class PageController extends Controller
 {
     public function index(){
+      $batiks = Batik::orderBy('views','desc')->limit(3)->get();
+
       $tag_batiks = TagBatik::all();
     	return view('index',[
     		'title' => 'Welcome Batique',
-        'tag_batiks' => $tag_batiks
+        'tag_batiks' => $tag_batiks,
+        'batiks' => $batiks
       ]);
     }
 
@@ -68,6 +71,8 @@ class PageController extends Controller
     }
     public function rincian_informasi($id){
         $batik = Batik::where('id','=',$id)->first();
+        $batik->views++;
+        $batik->save();
         if(is_null($batik)){
           abort(404);
         }
@@ -140,15 +145,18 @@ class PageController extends Controller
     }
 
     public function daftar_batik_tag($tag) {
-        $batik = Batik::all();
-        $tags_id = TagBatik::all()->where('tag_batik','=',$tag)->pluck('id');
-        $batiks_id = DB::table('batik_tag_batik')->where('tag_batik_id',$tags_id)->value('batik_id');
-        $batik = $batik->whereIn('id',$batiks_id,true)->all();
+        $tag_batik = TagBatik::where('tag_batik','=',$tag)->first();
+        if(!is_null($tag_batik)){
+          $batik = $tag_batik->batiks()->paginate(16);
+        }else{
+          $batik = TagBatik::where('tag_batik','=',$tag)->paginate(16);
+        }
         $sum = $batik->count();
         return view('daftar_batik',[
             'title' => 'Batiks',
             'data' => $batik,
-            'sum' => $sum
+            'sum' => $sum,
+            'header' => 'Batik dengan tag ' . $tag
         ]);
     }
 
