@@ -461,7 +461,8 @@ class BatikTableSeeder extends Seeder
             'cluster_batik' => $cluster,
             'asal_daerah' => $asaldaerah,
             'gambar_pola_batik' => $gambarpola,
-            'matriks_pola_batik' => $matrikspola
+            'matriks_pola_batik' => $matrikspola,
+            'views' => rand(0, 50) 
         ]);
     }
 }
