@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Auth\Authenticatable;
 use Illuminate\Foundation\Testing\WithoutEvents;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;

@@ -34,5 +34,4 @@ class DeleteThreadTest extends TestCase
         $response->assertStatus(302);
 
     }
-
 }

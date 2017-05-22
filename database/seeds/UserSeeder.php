@@ -14,11 +14,11 @@ class UserSeeder extends Seeder
     public function run()
     {
      DB::table('users')->delete();
-     $this->create_user_model("default","default@example.com",bcrypt('default'),\Carbon\Carbon::now()->toDateString(), 'male');
-     $this->create_user_model("null","null@example.com",bcrypt('null'),\Carbon\Carbon::now()->toDateString(),'female') ;
-     $this->create_user_model("foo","foo@example.com",bcrypt('foo'),\Carbon\Carbon::now()->toDateString(),'male');
-     $this->create_user_model("boo","boo@example.com",bcrypt('boo'),\Carbon\Carbon::now()->toDateString(),'female');
-     $this->create_user_model_admin("admin","admin@example.com",bcrypt('admin'),\Carbon\Carbon::createFromDate('2000','1','1')->toDateString(),'other');
+     $this->create_user_model("default","default@example.com",bcrypt('default'),'2000-01-01', 'male');
+     $this->create_user_model("null","null@example.com",bcrypt('null'),'2000-01-01','female') ;
+     $this->create_user_model("foo","foo@example.com",bcrypt('foo'),'2000-01-01','male');
+     $this->create_user_model("boo","boo@example.com",bcrypt('boo'),'2000-01-01','female');
+     $this->create_user_model_admin("admin","admin@example.com",bcrypt('admin'),'2000-01-01','other');
     }
 
 public function create_user_model($name,$email,$password, $birthday, $gender) {

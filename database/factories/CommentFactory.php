@@ -22,6 +22,6 @@ $factory->define(App\Comment::class, function (Faker\Generator $faker) {
 
     return [
         'judul_komentar' => $faker->title,
-        'isi_komentar' => $faker->paragraph,
+        'isi_komentar' => $faker->paragraph
     ];
 });

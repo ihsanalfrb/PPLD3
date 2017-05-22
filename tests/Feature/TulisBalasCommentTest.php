@@ -38,6 +38,12 @@ class TulisBalasCommentTest extends TestCase
         $response->assertStatus(302);
     }
 
+    public function test_post_comment_by_unauthenticated_user(){
+        $response = $this
+            ->post(action('CommentController@store'), $this->params);
+        $response->assertStatus(401);
+    }
+
     public function test_a_user_unsuccessfully_create_a_comment()
     {
         $response = $this
@@ -49,6 +55,4 @@ class TulisBalasCommentTest extends TestCase
                 'comment_by' => $this->user->id ]);
         $response->assertStatus(302);
     }
-
-
 }
