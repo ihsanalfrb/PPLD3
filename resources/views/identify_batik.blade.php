@@ -58,8 +58,8 @@
 					}
 
 					#slider {
-						width: 700px;
-						height: 400px;
+						width: 400px;
+						height: 300px;
 						overflow: hidden;
 						margin: auto;
 					}
@@ -81,20 +81,30 @@
                 <button id="next">Next image</button>
                 <div id="slider">
                     <ul class="slides">
-        @foreach($batiks as $batik)
             <div class="columns">
               <div class="column is-2">
               <div class="column is-6">
-
+					@foreach($batiks as $batik)
                         <li class="slide"><img class="photo-slide"
                             src="http://kawung.mhs.cs.ui.ac.id/~rahadyan.awinda/batik_pictures/{{ $batik->gambar_pola_batik }}" alt="{{ $batik->gambar_pola_batik }}"></li>
-                
+                 @endforeach
               </div>
             </div>
             </div>
-        @endforeach
-
           </ul>
           </div>
+          <div id ="information">
+         @foreach($batiks as $batik)
+         <div id ="{{ $batik->nama_batik }}">
+          <h3><a href="{{ action('PageController@rincian_informasi',$batik->id)}}">{{ $batik->nama_batik }}</a></h3>
+                <p>Asal Batik: {{$batik->asal_daerah}}
+                <p>Jenis Pola:
+                      @if($batik->cluster_batik == null || $batik->cluster_batik == '')
+                        <i>pola belum dikenal</i>
+                      @endif
+                   {{$batik->cluster_batik}} </p>
+         @endforeach     
+          </div>
+
     </section>
 @endsection
