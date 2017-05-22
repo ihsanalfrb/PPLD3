@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\TagBatik;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Auth::user();
+        if (!is_null($user) && $user["is_admin"]) {
+            return view('home', [
+                'user' => $user
+            ]);
+        } else {
+          return \Redirect::to( action('PageController@index') );
+        }
     }
 }

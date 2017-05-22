@@ -33,7 +33,7 @@ class PostThreadRequest extends FormRequest
     {
         return [
             'nama_thread.required' => 'Judul komentar tidak boleh kosong',
-            'content.required' => 'Isi Komentar tidak boleh kosong',
+            'content.required' => 'Isi Thread tidak boleh kosong',
             'nama_thread.max' => 'Judul komentar maksimal :max karakter',
             'nama_thread.min' => 'Judul komentar minimal harus :min karakter',
             'content.max' => 'Isi komentar maksimal :max karakter',

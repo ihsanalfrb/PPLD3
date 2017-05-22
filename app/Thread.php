@@ -17,7 +17,7 @@ class Thread extends Model
     protected $with = ['creator'];
 
     public function comments() {
-        return $this->hasMany('App\Comment');
+        return $this->hasMany('App\Comment','thread_id');
     }
 
     public function creator() {
