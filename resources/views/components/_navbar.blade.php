@@ -7,19 +7,17 @@
         <a id="nav_knowledge" class="nav-item is-tab is-hidden-mobile" href="{{ action('PageController@index')}}">Knowledge</a>
         <a id="nav_categories" class="nav-item is-tab is-hidden-mobile" href="{{ action('PageController@categories')}}">Categories</a>
         <a id="nav_forums"class="nav-item is-tab is-hidden-mobile" href="{{ action('PageController@daftar_thread')}}">Forums</a>
-        <a class="nav-item is-tab is-hidden-mobile" href="#">Learn More</a>
-        <a class="nav-item is-tab is-hidden-mobile" href="#">About Us</a>
     </div>
 
     <div id="nav-menu" class="nav-right">
     @if(isset($user))
-        <a id="nav_forums"class="nav-item is-tab is-hidden-mobile" href="{{ action('Auth\LoginController@showLoginForm')}}">Login</a>
+        <a id="nav_forums"class="nav-item is-tab is-hidden-mobile" href="{{ action('PageController@show_profile')}}">Profile</a>
+        <form action={{ action('Auth\LoginController@logout') }} method="POST" class="nav-item is-tab is-hidden-mobile">
+            {{ csrf_field() }}
+            <input id="nav_forums" class="button is-primary" type="submit" value="Logout"/>
+        </form>
         @else
-            <a id="nav_forums"class="nav-item is-tab is-hidden-mobile" href="{{ action('PageController@show_profile')}}">Profile</a>
-            <form action={{ action('Auth\LoginController@logout') }} method="POST" class="nav-item is-tab is-hidden-mobile">
-                {{ csrf_field() }}
-                <input id="nav_forums" class="button is-primary" type="submit" value="Logout"/>
-            </form>
+            <a id="nav_forums"class="nav-item is-tab is-hidden-mobile" href="{{ action('Auth\LoginController@showLoginForm')}}">Login</a>
     @endif
     <span class="nav-item">
       <div class="field is-grouped">

@@ -8,5 +8,6 @@
 /.idea
 Homestead.json
 Homestead.yaml
-.env
+/.env
 .composer.lock
+/coverage.html/*
