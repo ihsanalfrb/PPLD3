@@ -19,10 +19,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Comment::class, function (Faker\Generator $faker) {
+
     return [
         'judul_komentar' => $faker->title,
-        'isi_komentar' => $faker->paragraph,
-        'comment_by' => factory(\App\User::class)->create()->id,
-        'thread_id' => \App\Thread::first()->id
+        'isi_komentar' => $faker->paragraph
     ];
 });

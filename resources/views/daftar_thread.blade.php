@@ -12,7 +12,7 @@
                         <hr>
                         <p>Views : {{$thread->views}}  </p>
 
-                        @if(!is_null($current_user) and $current_user->is_admin)
+                        @if(!is_null($user) and $user['is_admin'])
                             <form action="{{ action('ThreadController@destroy', $thread->id) }}" method="POST">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
@@ -34,7 +34,7 @@
                 @endforeach
             </div>
             <div class="column is-6">
-              @if(!is_null($current_user) and $current_user->is_admin)
+              @if(!is_null($user))
                 <button id="tambah_thread" class="button is-primary">Tambah Thread</button>
                 <div class="form-create-comment" hidden>
                     <form action="{{ action('ThreadController@store') }}" method="post">
@@ -67,6 +67,14 @@
                     </form>
                 </div>
               @endif
+              <div class="well">
+                  <h3>Tags</h3>
+                  <div class="category-list">
+                      @foreach($tag_batiks as $tag)
+                          <a href="{{ action('PageController@daftar_batik_tag',$tag->tag_batik)}}">{{ $tag->tag_batik }}</a>
+                      @endforeach
+                  </div>
+              </div>
             </div>
 
         </div>
