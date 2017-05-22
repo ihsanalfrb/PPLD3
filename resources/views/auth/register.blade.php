@@ -33,18 +33,31 @@
                     </p>
                 </div>
                 <div class="field">
-                    <label for="birthday" class="label">Date of Birth</label>d
+                    <label for="birthday" class="label">Date of Birth</label>
                     <p class="control">
-                        <input id="birthday" type="date" class="input" name="birthday" required>
+                        <input id="birthday" class="input {{ $errors->has('email') ? ' is-danger' : '' }}"
+                            value="{{ old('birthday') }}" type="date" class="input" name="birthday" required>
+                        @if ($errors->has('birthday'))
+                            <p class="help is-danger">
+                                <strong>{{ $errors->first('birthday') }}</strong>
+                            </p>
+                        @endif
                     </p>
                 </div>
                 <div class="field">
                     <label for="gender" class="label">Gender</label>
                     <p class="control">
-                        <input id="gender_male" type="radio" class="input" name="gender" value="male">
-                        <input id="gender_female" type="radio" class="input" name="gender" value="female">
-                        <input id="gender_other" type="radio" class="input" name="gender" value="other">
+                        <input id="gender_male" type="radio" name="gender" {{ old('gender') == 'male' ? 'checked' : ''}} value="male" required>
+                        <label for="gender_male" >Male</label>
                     </p>
+                    <p class="control">
+                        <input id="gender_female" type="radio" name="gender" {{ old('gender') == 'female' ? 'checked' : ''}} value="female" required>
+                        <label for="gender_female" >Female</label>
+                    </p>
+                    <p class="control">
+                        <input id="gender_other" type="radio" name="gender"{{ old('gender') == 'other' ? 'checked' : ''}} value="other" required>
+                        <label for="gender_other" >Other</label>
+                    </p
                 </div>
                 <div class="field">
                     <label for="password" class="label">Password</label>
