@@ -42,12 +42,12 @@ class PageTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_search_batik_with_keywords(){
-        factory(Batik::class,16)->create();
-        factory(TagBatik::class,4)->create();
-        $response = $this->get(action('PageController@search_batik', 'example'));
-        $response->assertStatus(200);
-    }
+//    public function test_search_batik_with_keywords(){
+//        factory(Batik::class,16)->create();
+//        factory(TagBatik::class,4)->create();
+//        $response = $this->get(action('PageController@search_batik', 'example'));
+//        $response->assertStatus(200);
+//    }
 
     public function test_categories(){
         factory(Batik::class,16)->create();

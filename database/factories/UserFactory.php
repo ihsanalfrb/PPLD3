@@ -26,9 +26,9 @@
          'name' => $faker->name,
          'email' => $faker->unique()->safeEmail,
          'password' => bcrypt('secret'),
-         'remember_token' => str_random(10),
+         'remember_token' => null,
          'is_admin' => false,
-         'birthday' => $faker->date("Y-m-d", 'now'),
+         'birthday' => '2000-01-01',
          'gender' => $faker->randomElement(['male', 'female', 'other'])
      ];
  });

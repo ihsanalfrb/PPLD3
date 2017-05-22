@@ -1,5 +1,5 @@
 cp .env .env.backup
-mv .env.testing.local .env
+mv .env.testing .env
 php artisan key:generate
 php artisan config:clear
 php artisan config:cache

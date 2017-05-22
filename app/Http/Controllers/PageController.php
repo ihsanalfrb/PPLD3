@@ -245,7 +245,8 @@ class PageController extends Controller
         } else {
             return view('edit_profile', [
                 'title' => 'Edit Information',
-                'user' => $user
+                'user' => $user,
+
             ]);
         }
     }
