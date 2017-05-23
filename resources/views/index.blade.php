@@ -1,9 +1,15 @@
 @extends("layouts.app")
 
+<?php if(!isset($errors)) {
+  $errors = array();
+}
+
+?>
+
 @section("content")
     <section>
         @if (count($errors) > 0)
-          <div class="alert alert-danger">
+          <div class="notification is-danger">
             <ul>
               @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -11,9 +17,14 @@
             </ul>
           </div>
         @endif
+        @if(\Illuminate\Support\Facades\Session::has('error'))
+          <div class="notification is-danger">
+            {{\Illuminate\Support\Facades\Session::get('error')}}
+          </div>
+        @endif
         <h1 class="text-center">Want to know about your batik more?</h1>
         <h1 class="text-center primary">Batique</h1>
-        <form action="{{ url('identify') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('identify') }}" id="form_indentify" method="POST" enctype="multipart/form-data">
     			{{ csrf_field() }}
     			<div class="columns">
     				<div class="column is-mobile is-half is-offset-one-quarter">
@@ -23,7 +34,7 @@
     								<div class="column is-5">
     									<div class="field is-grouped">
     										<p class="control is-expanded">
-    											<input class="input" type="file" placeholder="Your photo here" name="image">
+    											<input id="image_file"class="input" type="file" placeholder="Your photo here" name="image">
     										</p>
     									</div>
     								</div>
@@ -33,7 +44,7 @@
     								<div class="column is-5">
     									<div class="field is-grouped">
     										<p class="control is-expanded">
-    											<input class="input" type="text" name="link" placeholder="link">
+    											<input class="input" type="text"id="image_link" name="link" placeholder="link">
     										</p>
     									</div>
     								</div>
@@ -86,9 +97,31 @@
     		</div>
     	</div>
     </section>
+    <canvas id="mcanvas" hidden></canvas>
     <script>
       $(document).ready(function() {
         $('#nav_knowledge').addClass("is-active");
       });
+
+
+
+      function getBase64Image(img) {
+        // Create an empty canvas element
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        // Copy the image contents to the canvas
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+
+        // Get the data-URL formatted image
+        // Firefox supports PNG and JPEG. You could check img.src to
+        // guess the original format, but be aware the using "image/jpg"
+        // will re-encode the image.
+        var dataURL = canvas.toDataURL("image/png");
+        console.log(canvas);
+        return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+      }
     </script>
 @endsection
