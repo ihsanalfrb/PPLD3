@@ -4,16 +4,16 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class TulisBalasComment extends TestCase
+class IdentifyBatikTest extends TestCase
 {
     use WithoutMiddleware;
 
     public function setUp()
     {
         parent::setUp();
-        $this->RealImageUrl = ['type'=>'url',
+        $this->real_image_url = ['type'=>'url',
             'resource'=>'https://s.imgur.com/images/imgur-logo.svg'];
-        $this->UnrealImageUrl = ['type'=>'url',
+        $this->unreal_image_url = ['type'=>'url',
         'resource'=>'https://example.com'];
 
     }
@@ -25,13 +25,21 @@ class TulisBalasComment extends TestCase
      */
     public function test_image_caching_by_url_real()
     {
-        $response = $this->call('post', '/identify', $this->RealImageUrl);
-        $response->assertStatus(200);
+        $response = $this
+          ->post(action('IdentifyBatikController@store',[
+              'link' => 'https://s.imgur.com/images/imgur-logo.svg'
+          ]));
+        $response->assertStatus(302);
+        $response->assertRedirect('/identify');
     }
     public function test_image_caching_by_url_fake()
     {
-        $response = $this->call('post', '/identify', $this->UnrealImageUrl);
-        $response->assertStatus(404);
+        $response = $this
+          ->post(action('IdentifyBatikController@store',[
+            'link' => 'https://example.com'
+          ]));
+        $response->assertStatus(302);
+        $response->assertRedirect('/identify');
     }
 
 }

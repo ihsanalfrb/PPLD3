@@ -29,13 +29,11 @@ class IdentifyBatikController extends Controller
 
         if(!is_null($path) and $path !== ""){
 
-            //    $filename = basename($path);
-            //     $image=Image::make($path);
-            // $image=Image::make($path);
+
             $client = new \GuzzleHttp\Client();
             $res = $client->request('GET', $request->input('link'));
             if($res->getStatusCode()!="200"){
-                // url not valid
+
             }else{
                 $image=$res->getBody();
                 // dd($image);
