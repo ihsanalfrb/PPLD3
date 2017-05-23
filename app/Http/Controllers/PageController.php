@@ -15,7 +15,7 @@ class PageController extends Controller
 {
     public function index(){
       $user = Auth::user();
-      $batiks = Batik::orderBy('views','desc')->limit(3)->get();
+      $batiks = Batik::orderBy('views','desc')->limit(6)->get();
       $tag_batiks = TagBatik::all();
 
       return view('index',[
