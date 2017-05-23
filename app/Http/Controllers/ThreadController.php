@@ -7,12 +7,13 @@ use App\TagBatik;
 use Illuminate\Http\Request;
 use App\Thread;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ThreadController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth-admin', ['only' => ['store']]);
+        $this->middleware('auth', ['only' => ['store']]);
     }
 
 
@@ -27,10 +28,11 @@ class ThreadController extends Controller
     {
         $thread = new Thread($request->all());
         $user = Auth::user();
-        if(is_null($user) || !$user->is_admin){
+        if(is_null($user)){
             return abort(401);
         } else {
             $saved = $user->create_thread()->save($thread);
+            Session::flash('thread_success', 'Thread berhasil ditambahkan');
             return redirect('/daftar_thread');
         }
     }
@@ -75,6 +77,7 @@ class ThreadController extends Controller
           return abort(404);
       } else {
           $destroyTarget->delete();
+          Session::flash('thread_success', 'Thread berhasil dihapus');
           return redirect()->back();
       }
     }

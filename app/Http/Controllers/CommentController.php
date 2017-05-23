@@ -52,6 +52,7 @@ class CommentController extends Controller
             if($destroyTarget->comment_author->id==Auth::user()->id){
 
                 $destroyTarget->delete();
+                Session::flash('comment_success', 'Komentar berhasil dihapus');
                 return redirect()->back();
             }else{
                 return response()->view('error_403', [], 403);
