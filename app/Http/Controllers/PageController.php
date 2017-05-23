@@ -196,13 +196,7 @@ class PageController extends Controller
         $user = Auth::user();
         if(is_null($keywords)){
             $batiks = null;
-            $categories = null;
-            $cities = null;
-            $tags = null;
             $batiks_sum = 0;
-            $tags_sum = 0;
-            $cities_sum = 0;
-            $categories_sum = 0;
         } else {
             $batiks = Batik::whereRaw('lower(nama_batik) like ?', array('%'.strtolower($keywords).'%'))
                 ->orwhereRaw('lower(sejarah_batik) like ?', array('%'.strtolower($keywords).'%'))

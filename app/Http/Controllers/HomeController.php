@@ -30,10 +30,8 @@ class HomeController extends Controller
     {
 
         $user = Auth::user();
-        if (!is_null($user) && $user["is_admin"]) {
-            return view('home', [
-                'user' => $user
-            ]);
-        }
+        return view('home', [
+            'user' => $user
+        ]);
     }
 }
