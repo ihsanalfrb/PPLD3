@@ -102,13 +102,14 @@
         filter = 'asal';
         kategori = '';
         $('.part2').html(container);
+        $('.part2').focus();
         $('#asal').html('Asal daerah');
         $('#pola').html('<a onclick="show_clusters()" href="#pola"> Custer/Pola </a>');
         $('.part3').html('');
       }
 
       function show_clusters(){
-        var container = '<h4 class="title is-4">Pilih asal daerah batik:</h4><br/><div class="columns list-content"><div class="column"><table class="table"><tbody>';
+        var container = '<h4 class="title is-4">Pilih cluster/pola batik:</h4><br/><div class="columns list-content"><div class="column"><table class="table"><tbody>';
         $.each(clusters, function(key,value){
           container += '<tr class="subtitle is-5"><th id="pola_'+key+'"><a class="subtitle is-5" onclick="show_batik_cluster(\''+key+'\')" href="#pola='+key+'">'+key+'</a></th></tr>';
         });
@@ -116,6 +117,7 @@
         filter = 'pola';
         kategori = '';
         $('.part2').html(container);
+        $('.part2').focus();
         $('#asal').html('<a onclick="show_daerah()" href="#asal">Asal daerah </a>');
         $('#pola').html('Cluster/Pola');
         $('.part3').html('');
@@ -138,6 +140,7 @@
           var url = "{{action('PageController@daftar_batik_daerah', ':daerah' )}}"
           container += '<a href="'+url.replace(':daerah', asal_daerah)+'"><h5 class="title is-5">Show all Batik</h5></a></div>';
         $('.part3').html(container);
+        $('.part3').focus();
       }
 
       function display_batik(value){
@@ -185,6 +188,7 @@
         var url = "{{action('PageController@daftar_batik_cluster', ':cluster' )}}"
         container += '<a href="'+url.replace(':cluster', cluster)+'"><h5 class="title is-5">Show all Batik</h5></a></div>';
         $('.part3').html(container);
+        $('.part3').focus();
       }
     </script>
 @endsection
