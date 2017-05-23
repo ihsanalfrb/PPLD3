@@ -16,6 +16,9 @@ class RedirectIfNotAdmin
      */
     public function handle($request, Closure $next)
     {
+        if(!Auth::user()){
+          throw new \Illuminate\Auth\AuthenticationException;
+        }
         if(!Auth::user() or !Auth::user()->is_admin){
             return redirect('/');
         }

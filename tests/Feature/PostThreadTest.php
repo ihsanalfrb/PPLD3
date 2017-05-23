@@ -30,7 +30,7 @@ class PostThreadTest extends TestCase
         $response->assertStatus(401);
     }
 
-    public function test_thread_post_by_authenticated_user()
+    public function test_thread_post_by_authenticated_admin()
     {
         $faker = Factory::create();
         $user = factory(User::class)->make();
@@ -43,6 +43,22 @@ class PostThreadTest extends TestCase
                 'content' => "asasasasas"
              ]);
         $response->assertStatus(302);
-        $response->assertRedirect('/');
+        $response->assertRedirect('/daftar_thread');
+    }
+
+    public function test_thread_post_by_authenticated_user()
+    {
+        $faker = Factory::create();
+        $user = factory(User::class)->make();
+        $user->is_admin = false;
+        $user->save();
+        $response = $this
+            ->actingAs($user)
+            ->post(action('ThreadController@store'), [
+                'nama_thread' => "asasasas",
+                'content' => "asasasasas"
+             ]);
+        $response->assertStatus(302);
+        $response->assertRedirect('/daftar_thread');
     }
 }

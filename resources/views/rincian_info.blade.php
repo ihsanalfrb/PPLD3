@@ -13,12 +13,12 @@
                 <hr>
                 <div class="makna-batik">
                     <h3>Deskripsi Batik</h3>
-                    <p>Batik {{ $data->nama_batik }} adalah sebuah batik yang memiliki pola {{ $data->cluster_batik }}.</p>
+                    <p>{{ $data->makna_batik }}</p>
                 </div>
                 <br>
                 <div class="sejarah-batik">
                     <h3>Sejarah Batik</h3>
-                    <p>Batik {{ $data->nama_batik }} pertama kali dibuat dan digunakan di wilayah {{ $data->asal_daerah}}.</p>
+                    <p>{{ $data->sejarah_batik }}</p>
                 </div>
             </div>
             <div class="column is-4">

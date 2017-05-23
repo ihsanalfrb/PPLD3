@@ -1,36 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-    <!-- Page Header -->
-    <div class="columns">
-        <div class="column is-8">
-            <h1 class="page-header">{{$title}}</h1>
+    <h1>Daftar Thread</h1>
+    @if(\Illuminate\Support\Facades\Session::has('thread_success'))
+        <div class="notification is-primary">
+            {{ \Illuminate\Support\Facades\Session::get('thread_success') }}
         </div>
-    </div>
-    <!-- /.row -->
+    @endif
     <div class="thread-comments">
-        <div class="columns">
-            <div id="nav-menu" class="nav-left nav-menu" style="">
-                <span class="nav-item">
-                  <div class="field is-grouped">
-                    <p class="control is-expanded">
-                      <input id="search_thread_input" class="input" type="text" placeholder="Find a thread" name="keywords">
-                    </p>
-                    <p class="control">
-                      <a id="search_thread_button" href="{{ action('PageController@search_thread', '')}}"><input class="button is-primary" type="submit" value="Search"></a>
-                    </p>
-
-                  </div>
-                </span>
-            </div>
-            <script>
-                $('#search_thread_input').on('input',function(e){
-                    var url = "{{ action('PageController@search_thread', ':keywords')}}"
-                    $('#search_thread_button').attr("href", url.replace(':keywords', $('#search_thread_input').val()));
-                });
-            </script>
-        </div>
         <div class="columns">
             <div class="column is-6">
                 @foreach($threads as $thread)
@@ -108,7 +85,6 @@
         </div>
         {{$threads->render()}}
     </div>
-    </div>
     <script>
       $(document).ready(function(){
         $('#nav_forums').addClass("is-active");
@@ -123,5 +99,9 @@
         $('.form-create-comment').hide(500);
         $('#tambah_thread').show(500);
       });
+      @if($errors->has('nama_thread') || $errors->has('content'))
+        $('#tambah_thread').hide();
+        $('.form-create-comment').show();
+      @endif
     </script>
 @endsection

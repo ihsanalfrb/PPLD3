@@ -14,12 +14,15 @@ use Illuminate\Support\Facades\DB;
 class PageController extends Controller
 {
     public function index(){
-        $user = Auth::user();
-        $tag_batiks = TagBatik::all();
-    	return view('index',[
-    	    'user' => $user,
+      $user = Auth::user();
+      $batiks = Batik::orderBy('views','desc')->limit(3)->get();
+      $tag_batiks = TagBatik::all();
+
+      return view('index',[
     		'title' => 'Welcome Batique',
-            'tag_batiks' => $tag_batiks
+        'tag_batiks' => $tag_batiks,
+        'batiks' => $batiks,
+        'user' => $user
       ]);
     }
 
@@ -78,6 +81,10 @@ class PageController extends Controller
     public function rincian_informasi($id){
         $user = Auth::user();
         $batik = Batik::where('id','=',$id)->first();
+        if(!is_null($batik)){
+          $batik->views++;
+          $batik->save();
+        }
         if(is_null($batik)){
           return abort(404);
         } else {
@@ -188,38 +195,22 @@ class PageController extends Controller
         $user = Auth::user();
         if(is_null($keywords)){
             $batiks = null;
-            $categories = null;
-            $cities = null;
-            $tags = null;
             $batiks_sum = 0;
-            $tags_sum = 0;
-            $cities_sum = 0;
-            $categories_sum = 0;
         } else {
-            $batiks = Batik::where('nama_batik', 'ilike', '%'.$keywords.'%')
-                ->orWhere('sejarah_batik', 'ilike', '%'.$keywords.'%')
-                ->orWhere('makna_batik', 'ilike', '%'.$keywords.'%')->paginate(10);
-            $categories = Batik::where('cluster_batik', 'ilike', '%'.$keywords.'%');
-            $cities = Batik::where('asal_daerah', 'ilike', '%'.$keywords.'%');
-            $tags = TagBatik::where('tag_batik', 'ilike', '%'.$keywords.'%');
+            $batiks = Batik::whereRaw('lower(nama_batik) like ?', array('%'.strtolower($keywords).'%'))
+                ->orwhereRaw('lower(sejarah_batik) like ?', array('%'.strtolower($keywords).'%'))
+                ->orWhereRaw('lower(makna_batik) like ?', array('%'.strtolower($keywords).'%'))
+                ->orWhereRaw('lower(cluster_batik) like ?', array('%'.strtolower($keywords).'%'))
+                ->orWhereRaw('lower(asal_daerah) like ?', array('%'.strtolower($keywords).'%'))->paginate(10);
             $batiks_sum = $batiks->count();
-            $categories_sum = $categories->count();
-            $cities_sum = $cities->count();
-            $tags_sum = $tags->count();
         }
         $tag_batiks = TagBatik::all();
         return view('search_batik',[
             'user' => $user,
             'title' => 'Pencarian Batik',
             'batiks' => $batiks,
-            'categories' => $categories,
-            'cities' => $cities,
-            'tags' => $tags,
             'tag_batiks' => $tag_batiks,
             'batiks_sum' => $batiks_sum,
-            'categories_sum' => $categories_sum,
-            'cities_sum' => $cities_sum,
-            'tags_sum' => $tags_sum,
             'keywords' => $keywords,
             'header' => 'Hasil Pencarian '.$keywords
         ]);

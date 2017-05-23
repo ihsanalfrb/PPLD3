@@ -54,8 +54,23 @@
                             </a>
                         </div>
                     </div>
+                    <div class="col-md-8 col-md-offset-4">
+                      <br/>
+                      <p>Don't have an account?
+                      <a class="btn btn-link" href="{{ route('register') }}">
+                          Register
+                      </a>
+                      </p>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+    $(document).ready(function(){
+        $('#nav_login').addClass("is-active");
+    });
+
+    </script>
+
 @endsection
