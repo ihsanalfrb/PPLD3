@@ -27,10 +27,6 @@ class ShowThreadTest extends TestCase
         $this->user = $user;
         $this->threads = $threads;
 
-
-        $response = $this->get('/forum_threads/'.$this->threads[0]->id + 1);
-        $response-> assertStatus(404);
-
         $response = $this->get('/forum_threads/'.$this->threads[0]->id);
         $response-> assertStatus(200);
 
