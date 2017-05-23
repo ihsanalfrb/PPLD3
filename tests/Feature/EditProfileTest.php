@@ -13,7 +13,7 @@ class EditProfileTest extends TestCase
 {
 
     use DatabaseMigrations;
-    use WithoutMiddleware;
+
     /**
      * A basic test example.
      *
@@ -24,5 +24,10 @@ class EditProfileTest extends TestCase
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->get('/edit_profile/');
         $response->assertStatus(200);
+    }
+
+    public function test_edit_profile_unathenticated_user(){
+        $response = $this->get(action('PageController@edit_profile'));
+        $response->assertStatus(404);
     }
 }
