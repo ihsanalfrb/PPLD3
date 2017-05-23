@@ -2,6 +2,11 @@
 
 @section('content')
     <h1>Daftar Thread</h1>
+    @if(\Illuminate\Support\Facades\Session::has('thread_success'))
+        <div class="notification is-primary">
+            {{ \Illuminate\Support\Facades\Session::get('thread_success') }}
+        </div>
+    @endif
     <div class="thread-comments">
         <div class="columns">
             <div class="column is-6">
@@ -94,5 +99,9 @@
         $('.form-create-comment').hide(500);
         $('#tambah_thread').show(500);
       });
+      @if($errors->has('nama_thread') || $errors->has('content'))
+        $('#tambah_thread').hide();
+        $('.form-create-comment').show();
+      @endif
     </script>
 @endsection
