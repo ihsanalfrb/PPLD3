@@ -32,7 +32,7 @@ class RincianInformasiTest extends TestCase
         $response-> assertStatus(200);
 
         $response = $this->get('/rincian_info/'.$this->batiks[2]->id);
-
+        $response-> assertStatus(200);
 
         $this->batik = factory(TagBatik::class)->make();
         $this->batiks = factory(TagBatik::class, 3)->create();
@@ -53,8 +53,6 @@ class RincianInformasiTest extends TestCase
                 $response-> assertStatus(404);
                 break;
             }
-
         }
     }
-
 }

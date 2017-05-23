@@ -28,10 +28,14 @@ class RegisterTest extends DuskTestCase
                     ->assertSee('E-Mail Address')
                     ->assertSee('Password')
                     ->assertSee('Confirm Password')
+                    ->assertSee('Date of Birth')
+                    ->assertSee('Gender')
                     ->type('name', 'Rizqy Faishal')
                     ->type('email', 'rizqyfaishal27@gmail.com')
                     ->type('password', 'password')
                     ->type('password_confirmation', 'password')
+                    ->type('birthday','2015-01-01')
+                    ->type('gender', 'male')
                     ->press('Button')
                     ->assertPathIs('/home');
             $user = User::where('email','=','rizqyfaishal27@gmail.com')->first();
