@@ -10,8 +10,5 @@ Homestead.json
 Homestead.yaml
 /.env
 .composer.lock
-<<<<<<< HEAD
 cacert.pem
-=======
 /coverage.html
->>>>>>> 13058f2269c47e2f42000ef36fb094acc86fd70d

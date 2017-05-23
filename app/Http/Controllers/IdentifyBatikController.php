@@ -34,6 +34,7 @@ class IdentifyBatikController extends Controller
             $res = $client->request('GET', $request->input('link'));
             if($res->getStatusCode()!="200"){
                 // url not valid
+                Session::flash('url_down', 'Server tidak dapat mengakses image tersebut');
             }else{
                 $image=$res->getBody();
 
@@ -44,11 +45,12 @@ class IdentifyBatikController extends Controller
             // throws unsuported image
             if($type!="image/jpeg" and $type!="image/gif" and $type!="image/png" and $type!="image/jpg" and $type!="image/tiff" and $type!="image/svg"){
             //throws unsuporrted file type
-                
+            Session::flash('invalid_mime', 'Tipe image tidak di support');               
             }
             //file size more than 100MiB
-            if($res->getHeaderLine('content-type')>=100000000){
+            if($res->getHeaderLine('content-type')>=104857600){
             //throw file size exceed allowed size
+            Session::flash('size_too_big', 'Ukuran image lebih besar dari 100MB');      
             }
             // validate url upload
         }else if(!is_null($request->$file)){
