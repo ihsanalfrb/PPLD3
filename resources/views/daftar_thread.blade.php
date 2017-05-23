@@ -1,18 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Daftar Thread</h1>
-    @if(\Illuminate\Support\Facades\Session::has('thread_success'))
-        <div class="notification is-primary">
-            {{ \Illuminate\Support\Facades\Session::get('thread_success') }}
-        </div>
-    @endif
+
     <div class="thread-comments">
+        <hr>
+
         <div class="columns">
-            <div class="column is-6">
+            <div class="column is-7">
+                <p class="title is-2">Daftar Thread</p>
+                @if(\Illuminate\Support\Facades\Session::has('thread_success'))
+                    <div class="notification is-primary">
+                        {{ \Illuminate\Support\Facades\Session::get('thread_success') }}
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="columns">
+          <div class="column is-3">
+            <form id="search_thread_form" action="">
+                <div class="field is-grouped">
+                    <p class="control is-expanded">
+                      <input id="search_thread_input" class="input" type="text" placeholder="Find a thread" name="keywords">
+                    </p>
+                    <p class="control">
+                      <a id="search_thread_button" href="{{ action('PageController@search_thread', '')}}"><input class="button is-primary" type="submit" value="Search Thread"></a>
+                    </p>
+                </div>
+              </form>
+          </div>
+          <script>
+              $('#search_thread_input').on('input',function(e){
+                  var url = "{{ action('PageController@search_thread', ':keywords')}}"
+                  $('#search_thread_button').attr("href", url.replace(':keywords', $('#search_thread_input').val()));
+              });
+          </script>
+        </div>
+        <div class="columns">
+            <div class="column is-7">
+
                 @foreach($threads as $thread)
-                    <div style="padding: 1em; border: 1px solid black; margin: 1em 0;">
-                        <a href="{{action('ThreadController@show',$thread->id)}}"><h4>{{ $thread->nama_thread}}</h4></a>
+                    <div class="hero is-light" style="padding: 1em; border: 1px solid black; margin: 1em 0;">
+                        <p class="title is-4"><a class="subtitle is-4" href="{{action('ThreadController@show',$thread->id)}}">{{ $thread->nama_thread}}</a></p>
                         <p>Created by: {{ $thread->creator->name }} &nbsp; | &nbsp; created at : {{ \Carbon\Carbon::parse($thread->created_at)->diffForHumans() }}</p>
                         <hr>
                         <p>Views : {{$thread->views}}  </p>
@@ -38,7 +66,7 @@
                     </div>
                 @endforeach
             </div>
-            <div class="column is-6">
+            <div class="column is-3">
               @if(!is_null($user))
                 <button id="tambah_thread" class="button is-primary">Tambah Thread</button>
                 <div class="form-create-comment" hidden>
@@ -72,17 +100,20 @@
                     </form>
                 </div>
               @endif
-              <div class="well">
-                  <h3>Tags</h3>
-                  <div class="category-list">
-                      @foreach($tag_batiks as $tag)
-                          <a href="{{ action('PageController@daftar_batik_tag',$tag->tag_batik)}}">{{ $tag->tag_batik }}</a>
-                      @endforeach
-                  </div>
-              </div>
+                <div class="well">
+                    <h3 class="subtitle is-3">Tags</h3>
+                    <div class="category-list">
+                        @foreach($tag_batiks as $tag)
+                            <a class="tag is-dark is-small" href="{{ action('PageController@daftar_batik_tag',$tag->tag_batik)}}">{{ $tag->tag_batik }}</a>
+                        @endforeach
+                    </div>
+                </div>
             </div>
+            <div class="column is-1">
 
+            </div>
         </div>
+        <hr>
         {{$threads->render()}}
     </div>
     <script>

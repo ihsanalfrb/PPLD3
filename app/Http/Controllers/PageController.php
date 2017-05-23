@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Batik;
+use App\Comment;
 use App\TagBatik;
 use App\Thread;
 use App\User;
@@ -17,7 +18,7 @@ class PageController extends Controller
     public function index(){
 
       $user = Auth::user();
-      $batiks = Batik::orderBy('views','desc')->limit(3)->get();
+      $batiks = Batik::orderBy('views','desc')->limit(6)->get();
       $tag_batiks = TagBatik::all();
 
       return view('index',[
@@ -113,7 +114,6 @@ class PageController extends Controller
         ]);
     }
 
-
     public function daftar_batik_cluster($cluster) {
         $user = Auth::user();
         if (is_null(Batik::where('cluster_batik','=',$cluster)->first())) {
@@ -205,7 +205,7 @@ class PageController extends Controller
                 ->orwhereRaw('lower(sejarah_batik) like ?', array('%'.strtolower($keywords).'%'))
                 ->orWhereRaw('lower(makna_batik) like ?', array('%'.strtolower($keywords).'%'))
                 ->orWhereRaw('lower(cluster_batik) like ?', array('%'.strtolower($keywords).'%'))
-                ->orWhereRaw('lower(asal_daerah) like ?', array('%'.strtolower($keywords).'%'))->paginate(10);
+                ->orWhereRaw('lower(asal_daerah) like ?', array('%'.strtolower($keywords).'%'))->paginate(12);
             $batiks_sum = $batiks->count();
         }
         $tag_batiks = TagBatik::all();
@@ -240,10 +240,40 @@ class PageController extends Controller
             return view('edit_profile', [
                 'title' => 'Edit Information',
                 'user' => $user,
-
             ]);
         }
     }
 
 
+    public function search_thread($keywords = null) {
+//        $keywords = $request->input('keywords');
+
+        if(is_null($keywords)){
+            $threads = null;
+            $threads_sum = 0;
+        } else {
+            $comments_thread_id = Comment::where('judul_komentar', 'ilike', '%'.$keywords.'%')
+                ->orWhere('isi_komentar', 'ilike', '%'.$keywords.'%')
+                ->groupBy('thread_id')
+                ->pluck('thread_id')
+                ->all();
+//            dd($comments_thread_id);
+            $threads = Thread::where('nama_thread', 'ilike', '%'.$keywords.'%')
+                ->orWhere('content', 'ilike', '%'.$keywords.'%')
+                ->orWhereIn('id', $comments_thread_id)
+                ->paginate(4);
+//            dd($threads);
+            $threads_sum = $threads->count();
+        }
+        $tag_batiks = TagBatik::all();
+        return view('search_thread',[
+            'title' => 'Pencarian Thread',
+            'threads' => $threads,
+            'threads_sum' => $threads_sum,
+            'keywords' => $keywords,
+            'tag_batiks' => $tag_batiks,
+            'header' => 'Hasil Pencarian '.$keywords,
+            'user' => Auth::user()
+        ]);
+    }
 }

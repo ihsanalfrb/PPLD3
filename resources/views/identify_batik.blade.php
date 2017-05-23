@@ -4,9 +4,10 @@
     <!-- Page Content -->
     <div class="container">
         <!-- Page Header -->
+        <br/>
         <div class="columns">
             <div class="column is-8">
-                <h1 class="page-header">Hasil Identifikasi Batik
+                <h1 class="title is-2">Hasil Identifikasi Batik
                     <small> -- Pola Batik : {{$cluster}}</small>
                 </h1>
             </div>
@@ -14,16 +15,15 @@
         <hr/>
         <div class="columns">
             <div class="column is-8">
-                <h4>Batik yang ingin diidentifikasi</h4>
-                <br/>
+                <h4 class="title is-4">Batik yang ingin diidentifikasi</h4>
+
                 <img src="data:{{$type}};base64,{{$original_image}}">
             </div>
         </div>
 
         <hr/>
-        <h4>Batik - batik dengan pola sejenis:</h4>
-        <br/>
-        <!-- Projects Row -->
+        <h4 class="title is-4">Batik - batik dengan pola sejenis:</h4>
+            <!-- Projects Row -->
         <div class="columns">
 
             @foreach($batiks as $batik)
