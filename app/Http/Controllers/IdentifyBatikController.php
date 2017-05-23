@@ -42,7 +42,7 @@ class IdentifyBatikController extends Controller
             $type=$res->getHeaderLine('content-type');
 
             // throws unsuported image
-            if($type!="image/jpeg" and $type!="image/gif" and $type!="image/png" and $type!="image/jpg" and $type!="image/tiff"){
+            if($type!="image/jpeg" and $type!="image/gif" and $type!="image/png" and $type!="image/jpg" and $type!="image/tiff" and $type!="image/svg"){
             //throws unsuporrted file type
                 
             }
