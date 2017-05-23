@@ -126,4 +126,12 @@ class IdentifyBatikTest extends TestCase
       $response->assertRedirect('/');
 
     }
+
+    public function test_index_page()
+    {
+        $response = $this
+          ->get(action('IdentifyBatikController@index'));
+        $response->assertStatus(302);
+        $response->assertRedirect('/');
+    }
 }
