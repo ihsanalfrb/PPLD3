@@ -206,28 +206,18 @@ class PageController extends Controller
         } else {
             $batiks = Batik::whereRaw('lower(nama_batik) like ?', array('%'.strtolower($keywords).'%'))
                 ->orwhereRaw('lower(sejarah_batik) like ?', array('%'.strtolower($keywords).'%'))
-                ->orWhereRaw('lower(makna_batik) like ?', array('%'.strtolower($keywords).'%'))->paginate(10);
-            $categories = Batik::where('cluster_batik', 'ilike', '%'.$keywords.'%');
-            $cities = Batik::where('asal_daerah', 'ilike', '%'.$keywords.'%');
-            $tags = TagBatik::where('tag_batik', 'ilike', '%'.$keywords.'%');
+                ->orWhereRaw('lower(makna_batik) like ?', array('%'.strtolower($keywords).'%'))
+                ->orWhereRaw('lower(cluster_batik) like ?', array('%'.strtolower($keywords).'%'))
+                ->orWhereRaw('lower(asal_daerah) like ?', array('%'.strtolower($keywords).'%'))->paginate(10);
             $batiks_sum = $batiks->count();
-            $categories_sum = $categories->count();
-            $cities_sum = $cities->count();
-            $tags_sum = $tags->count();
         }
         $tag_batiks = TagBatik::all();
         return view('search_batik',[
             'user' => $user,
             'title' => 'Pencarian Batik',
             'batiks' => $batiks,
-            'categories' => $categories,
-            'cities' => $cities,
-            'tags' => $tags,
             'tag_batiks' => $tag_batiks,
             'batiks_sum' => $batiks_sum,
-            'categories_sum' => $categories_sum,
-            'cities_sum' => $cities_sum,
-            'tags_sum' => $tags_sum,
             'keywords' => $keywords,
             'header' => 'Hasil Pencarian '.$keywords
         ]);
