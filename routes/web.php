@@ -22,10 +22,14 @@ Route::get('/', 'PageController@index');
 Route::get('/categories', 'PageController@categories');
 Route::get('/show_tag/{id}', 'PageController@show_tag');
 Route::get('/rincian_info/{id}', 'PageController@rincian_informasi');
+Route::get('/rincian_info/', 'PageController@rincian_informasi');
 Route::get('/daftar_thread/', 'PageController@daftar_thread');
+
 Route::resource('forum_threads','ThreadController');
 Route::resource('comments','CommentController');
 Route::resource('user','UserController');
+Route::resource('identify','IdentifyBatikController');
+
 Route::get('/daftar_batik/cluster/{cluster}', 'PageController@daftar_batik_cluster');
 Route::get('/daftar_batik/cluster', 'PageController@daftar_batik_uncategorized');
 Route::get('/daftar_batik/asal/{asal_daerah}', 'PageController@daftar_batik_daerah');
@@ -34,7 +38,6 @@ Route::get('/daftar_batik/', 'PageController@daftar_batik_all');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-
 Route::get('/search_batik/{keywords?}', 'PageController@search_batik');
 Route::get('/show_profile/', 'PageController@show_profile');
 Route::get('/edit_profile/', 'PageController@edit_profile');
