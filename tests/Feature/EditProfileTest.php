@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -12,6 +13,7 @@ class EditProfileTest extends TestCase
 {
 
     use DatabaseMigrations;
+    use WithoutMiddleware;
     /**
      * A basic test example.
      *
@@ -19,12 +21,8 @@ class EditProfileTest extends TestCase
      */
     public function test_edit_profile_page_response()
     {
-        $response = $this->get('/edit_profile/');
-
-        if(is_null(Auth::user())){
-            $response->assertStatus(404);
-        } else {
-            $response->assertStatus(200);
-        }
+        $user = factory(User::class)->create();
+        $response = $this->actingAs($user)->get('/edit_profile/');
+        $response->assertStatus(200);
     }
 }
