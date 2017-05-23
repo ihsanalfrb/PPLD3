@@ -32,36 +32,36 @@
 				</div>
         <form action="{{ url('identify') }}" id="form_indentify" method="POST" enctype="multipart/form-data">
     			{{ csrf_field() }}
-    			<div class="columns">
-    				<div class="column is-mobile is-half is-offset-one-quarter">
-    					<div class="field-is-horizontal">
-    						<div class="field-body">
-    							<div class="columns">
-    								<div class="column is-5">
-    									<div class="field is-grouped">
-    										<p class="control is-expanded">
-    											<input id="image_file"class="input" type="file" placeholder="Your photo here" name="image">
-    										</p>
-    									</div>
-    								</div>
-    								<div class="column is-2">
-    									<h5 class="text-center">or</h5>
-    								</div>
-    								<div class="column is-5">
-    									<div class="field is-grouped">
-    										<p class="control is-expanded">
-    											<input class="input" type="text"id="image_link" name="link" placeholder="link">
-    										</p>
-    									</div>
-    								</div>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="columns">
-    				<div class="column is-2 is-offset-5">
-    					<input type="submit" name="submit" value="Search Batik" class="button is-primary block">
+          <div class="container has-text-centered">
+      			<div class="columns">
+  						<div class="column is-mobile is-half is-offset-one-quarter">
+      					<div class="field-is-horizontal">
+      						<div class="field-body">
+      							<div class="columns container has-text-centered">
+      								<div class="column is-5">
+      									<div class="field is-grouped">
+      										<p class="control is-expanded">
+      											<input id="image_file"class="input" type="file" placeholder="Your photo here" name="image">
+      										</p>
+      									</div>
+      								</div>
+      								<div class="column is-2">
+      									<h3 class="title is-4 has-text-centered">or</h3>
+      								</div>
+      								<div class="column is-5">
+      									<div class="field is-grouped">
+      										<p class="control is-expanded">
+      											<input class="input" type="text"id="image_link" name="link" placeholder="link">
+      										</p>
+      									</div>
+      								</div>
+      							</div>
+      						</div>
+      					</div>
+      				</div>
+      			</div>
+    				<div class="has-text-centered">
+    					<input type="submit" name="submit" value="Search Batik" class="button is-medium is-outlined is-inverted is-primary">
     				</div>
     			</div>
     		</form>
