@@ -5,8 +5,11 @@
     <section class="hero is-warning column is-12">
 		<div class="hero-body">
 			<div class="container has-text-centered">
-				<h1 class="is-1 title">Want to know about your batik more?</h1>
-				<h1 class="title is-1">Batique</h1>
+				<div class="container has-text-centered">
+					<h1 class="is-1 title">Want to know about your batik more?</h1>
+					<img class="is-medium is-1" src="{{ URL::asset('images/batiquewords.png')}}">
+					{{--<h1 class="title is-1">Batique</h1>--}}
+				</div>
 				<form>
 					<div class="container has-text-centered">
 						<div class="columns">
