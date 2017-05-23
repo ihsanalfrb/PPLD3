@@ -202,7 +202,7 @@ class PageController extends Controller
                 ->orwhereRaw('lower(sejarah_batik) like ?', array('%'.strtolower($keywords).'%'))
                 ->orWhereRaw('lower(makna_batik) like ?', array('%'.strtolower($keywords).'%'))
                 ->orWhereRaw('lower(cluster_batik) like ?', array('%'.strtolower($keywords).'%'))
-                ->orWhereRaw('lower(asal_daerah) like ?', array('%'.strtolower($keywords).'%'))->paginate(10);
+                ->orWhereRaw('lower(asal_daerah) like ?', array('%'.strtolower($keywords).'%'))->paginate(12);
             $batiks_sum = $batiks->count();
         }
         $tag_batiks = TagBatik::all();
