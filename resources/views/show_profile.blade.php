@@ -76,12 +76,12 @@
 
                 <div class="form-group">
                     <a href="{{ action('PageController@edit_profile')}}">
-                    <button class="button is-primary">
+                    <button class="button is-outlined is-primary">
                         Edit Profile
                     </button>
                     </a>
                     <a href="{{ action('PageController@index')}}" class="button-green">
-                    <button class="button is-primary">
+                    <button class="button is-outlined is-primary">
                         Back
                     </button>
                     </a>
