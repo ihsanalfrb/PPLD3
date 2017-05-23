@@ -66,4 +66,11 @@
             </div>
         </div>
     </div>
+    <script>
+    $(document).ready(function(){
+        $('#nav_login').addClass("is-active");
+    });
+
+    </script>
+
 @endsection
