@@ -29,23 +29,30 @@
 
     </div>
 
+    <label class="nav-toggle" for="nav-toggle-state">
+      <span></span>           <!-- ^^^^^^^^^^^^^^^^ -->
+      <span></span>
+      <span></span>
+    </label>
+
+
     <!-- This checkbox is hidden -->
     <input type="checkbox" id="nav-toggle-state" />
 
     <div class="nav-right nav-menu">
-        <a id="nav_categories" class="nav-item is-tab" href="{{ action('PageController@categories')}}">Categories</a>
-        <a id="nav_forums" class="nav-item is-tab" href="{{ action('PageController@daftar_thread')}}">Forums</a>
+        <a id="nav_categories" class="nav-item is-tab hero is-primary" href="{{ action('PageController@categories')}}">Categories</a>
+        <a id="nav_forums" class="nav-item is-tab hero is-primary" href="{{ action('PageController@daftar_thread')}}">Forums</a>
 
         @if(isset($user))
-            <a id="nav_forums" class="nav-item is-tab" href="{{ action('PageController@show_profile')}}">Profile</a>
-            <form action={{ action('Auth\LoginController@logout') }} method="POST" class="nav-item is-tab">
+            <a id="nav_forums" class="nav-item is-tab hero is-primary" href="{{ action('PageController@show_profile')}}">Profile</a>
+            <form action={{ action('Auth\LoginController@logout') }} method="POST" class="hero is-primary nav-item is-tab ">
                 {{ csrf_field() }}
                 <input id="nav_forums" class="nav-item button is-primary" type="submit" value="Logout"/>
             </form>
         @else
-            <a id="nav_login" class="nav-item is-tab" href="{{ action('Auth\LoginController@showLoginForm')}}">Login</a>
+            <a id="nav_login" class="nav-item is-tab hero is-primary" href="{{ action('Auth\LoginController@showLoginForm')}}">Login</a>
         @endif
-        <span class="nav-item">
+        <span class="nav-item hero is-primary ">
         <form id="search_batik" action="">
           <div class="field is-grouped">
             <p class="control is-expanded">
