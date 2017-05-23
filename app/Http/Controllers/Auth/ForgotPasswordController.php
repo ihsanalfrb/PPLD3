@@ -38,7 +38,8 @@ class ForgotPasswordController extends Controller
     public function showLinkRequestForm()
     {
         return view('auth.passwords.email', [
-            'title' => 'Lupa password'
+            'title' => 'Lupa password',
+            'user' => null
         ]);
     }
 }

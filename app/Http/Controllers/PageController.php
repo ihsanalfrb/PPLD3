@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Batik;
-use App\Comment;
 use App\TagBatik;
 use App\Thread;
+use App\User;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -14,29 +14,35 @@ use Illuminate\Support\Facades\DB;
 class PageController extends Controller
 {
     public function index(){
-      $tag_batiks = TagBatik::all();
+        $user = Auth::user();
+        $tag_batiks = TagBatik::all();
     	return view('index',[
+    	    'user' => $user,
     		'title' => 'Welcome Batique',
-        'tag_batiks' => $tag_batiks
+            'tag_batiks' => $tag_batiks
       ]);
     }
 
     public function show_tag($id)    {
-      $tag_batik = TagBatik::where('id','=',$id)->first();
+        $user = Auth::user();
+        $tag_batik = TagBatik::where('id','=',$id)->first();
       if(is_null($tag_batik)){
-        abort(404);
-      }
-      $batiks = $tag_batik->batiks()->get();
+        return abort(404);
+      } else {
+          $batiks = $tag_batik->batiks()->get();
 
-      return view('show_tag', [
-        'judulKategori' => $tag_batik->tag_batik,
-        'batiks' => $batiks,
-        'tag_batiks' => TagBatik::all()
-      ]);
+          return view('show_tag', [
+              'user' => $user,
+              'judulKategori' => $tag_batik->tag_batik,
+              'batiks' => $batiks,
+              'tag_batiks' => TagBatik::all()
+          ]);
+      }
     }
 
     public function categories()
     {
+        $user = Auth::user();
       $batiks = Batik::all();
       $asal_daerahs = [];
       $clusters = [];
@@ -63,65 +69,64 @@ class PageController extends Controller
         }
       }
       return view('categories',[
+          'user' => $user,
           'asal_daerahs' => $asal_daerahs,
           'clusters' => $clusters
       ]);
     }
+
     public function rincian_informasi($id){
+        $user = Auth::user();
         $batik = Batik::where('id','=',$id)->first();
         if(is_null($batik)){
-          abort(404);
+          return abort(404);
+        } else {
+            $tag_batiks = TagBatik::all();
+            return view('rincian_info', [
+                'user' => $user,
+                'title' => $batik->nama_batik,
+                'data' => $batik,
+                'tag_batiks' => $tag_batiks
+            ]);
         }
+    }
+
+    public function daftar_thread() {
+        $user = Auth::user();
+        $threads = Thread::orderBy('id', 'DESC')->paginate(4);
         $tag_batiks = TagBatik::all();
-        return view('rincian_info',[
-            'title' => $batik->nama_batik,
-            'data' => $batik,
+        return view('daftar_thread',[
+            'user' => $user,
+            'title' => 'Forums',
+            'threads' => $threads,
             'tag_batiks' => $tag_batiks
         ]);
     }
 
-    public function daftar_thread() {
-        $threads = Thread::orderBy('id', 'DESC')->paginate(4);
-
-        return view('daftar_thread',[
-            'title' => 'Forums',
-            'threads' => $threads,
-            'current_user' => Auth::user()
-        ]);
-    }
-    public function daftar_batik_filter($cluster, $asal_daerah, $tag) {
-        $batik = Batik::all();
-
-        $batik = $batik->where('asal_daerah','=',$asal_daerah);
-        $batik = $batik->where('cluster_batik','=',$cluster);
-
-        $tags_id = TagBatik::all()->where('tag_batik','=',$tag)->pluck('id');
-        $batiks_id = DB::table('batik_tag_batik')->where('tag_batik_id',$tags_id)->value('batik_id');
-        $batik = $batik->whereIn('id',$batiks_id,true)->all();
-
-        $sum = $batik->count();
-        return view('daftar_batik',[
-            'title' => 'Batiks',
-            'data' => $batik,
-            'sum' => $sum
-        ]);
-    }
-
     public function daftar_batik_cluster($cluster) {
-        $batik = Batik::where('cluster_batik','=',$cluster)->paginate(16);
-        $sum = $batik->count();
-        return view('daftar_batik',[
-            'title' => 'Batiks',
-            'data' => $batik,
-            'sum' => $sum,
-            'header' => 'Batik dengan pola ' . $cluster
-        ]);
+        $user = Auth::user();
+        if (is_null(Batik::where('cluster_batik','=',$cluster)->first())) {
+            return abort('404');
+        } else {
+            $batik = Batik::where('cluster_batik', '=', $cluster)->paginate(16);
+            $sum = $batik->count();
+            return view('daftar_batik', [
+                'user' => $user,
+                'title' => 'Batiks',
+                'data' => $batik,
+                'sum' => $sum,
+                'header' => 'Batik dengan pola ' . $cluster
+            ]);
+        }
     }
 
     public function daftar_batik_uncategorized(){
-      $batik = Batik::where('cluster_batik','=',"")->paginate(16);
-      $sum = $batik->count();
-      return view('daftar_batik',[
+        $user = Auth::user();
+
+        $batik = Batik::where('cluster_batik','=',"")->paginate(16);
+        $sum = $batik->count();
+        return view('daftar_batik',[
+          'user' => $user,
           'title' => 'Batiks',
           'data' => $batik,
           'sum' => $sum,
@@ -130,33 +135,47 @@ class PageController extends Controller
     }
 
     public function daftar_batik_daerah($asal_daerah) {
-        $batik = Batik::where('asal_daerah','=',$asal_daerah)->paginate(16);
-        $sum = $batik->count();
-        return view('daftar_batik',[
-            'title' => 'Batiks',
-            'data' => $batik,
-            'sum' => $sum,
-            'header' => 'Batik yang berasal dari ' . $asal_daerah
-        ]);
+        $user = Auth::user();
+        if (is_null(Batik::where('asal_daerah','=',$asal_daerah)->first())) {
+            return abort('404');
+        } else {
+            $batik = Batik::where('asal_daerah', '=', $asal_daerah)->paginate(16);
+            $sum = $batik->count();
+            return view('daftar_batik', [
+                'user' => $user,
+                'title' => 'Batiks',
+                'data' => $batik,
+                'sum' => $sum,
+                'header' => 'Batik yang berasal dari ' . $asal_daerah
+            ]);
+        }
     }
 
     public function daftar_batik_tag($tag) {
-        $batik = Batik::all();
-        $tags_id = TagBatik::all()->where('tag_batik','=',$tag)->pluck('id');
-        $batiks_id = DB::table('batik_tag_batik')->where('tag_batik_id',$tags_id)->value('batik_id');
-        $batik = $batik->whereIn('id',$batiks_id,true)->all();
-        $sum = $batik->count();
-        return view('daftar_batik',[
-            'title' => 'Batiks',
-            'data' => $batik,
-            'sum' => $sum
-        ]);
+        $user = Auth::user();
+        if (is_null(TagBatik::where('tag_batik','=',$tag)->first())) {
+            return abort('404');
+        } else {
+            $tags_id = TagBatik::where('tag_batik', '=', $tag)->pluck('id')->all();
+            $batiks_id = DB::table('batik_tag_batik')->where('tag_batik_id', '=', $tags_id)->pluck('batik_id')->all();
+            $batik = Batik::whereIn('id', $batiks_id)->paginate(16);
+            $sum = count($batik);
+            return view('daftar_batik', [
+                'user' => $user,
+                'title' => 'Batiks',
+                'data' => $batik,
+                'sum' => $sum,
+                'header' => 'Batik yang memiliki tag ' . $tag
+            ]);
+        }
     }
 
     public function daftar_batik_all() {
+        $user = Auth::user();
         $batik = Batik::paginate(16);
         $sum = count($batik);
         return view('daftar_batik',[
+            'user' => $user,
             'title' => 'Batiks',
             'data' => $batik,
             'sum' => $sum,
@@ -166,7 +185,7 @@ class PageController extends Controller
 
     public function search_batik($keywords = null) {
 //        $keywords = $request->input('keywords');
-
+        $user = Auth::user();
         if(is_null($keywords)){
             $batiks = null;
             $categories = null;
@@ -180,7 +199,6 @@ class PageController extends Controller
             $batiks = Batik::where('nama_batik', 'ilike', '%'.$keywords.'%')
                 ->orWhere('sejarah_batik', 'ilike', '%'.$keywords.'%')
                 ->orWhere('makna_batik', 'ilike', '%'.$keywords.'%')->paginate(10);
-//            dd($batiks);
             $categories = Batik::where('cluster_batik', 'ilike', '%'.$keywords.'%');
             $cities = Batik::where('asal_daerah', 'ilike', '%'.$keywords.'%');
             $tags = TagBatik::where('tag_batik', 'ilike', '%'.$keywords.'%');
@@ -191,6 +209,7 @@ class PageController extends Controller
         }
         $tag_batiks = TagBatik::all();
         return view('search_batik',[
+            'user' => $user,
             'title' => 'Pencarian Batik',
             'batiks' => $batiks,
             'categories' => $categories,
@@ -205,6 +224,32 @@ class PageController extends Controller
             'header' => 'Hasil Pencarian '.$keywords
         ]);
     }
+
+    public function show_profile(){
+        $user = Auth::user();
+        if(is_null($user)){
+            return abort(404);
+        } else {
+            return view('show_profile', [
+                'title' => 'User Profile',
+                'user' => $user
+            ]);
+        }
+    }
+
+    public function edit_profile(){
+        $user = Auth::user();
+        if(is_null($user)){
+            return abort(404);
+        } else {
+            return view('edit_profile', [
+                'title' => 'Edit Information',
+                'user' => $user,
+
+            ]);
+        }
+    }
+
 
     public function search_thread($keywords = null) {
 //        $keywords = $request->input('keywords');

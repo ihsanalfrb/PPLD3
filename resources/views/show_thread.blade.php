@@ -23,7 +23,7 @@
                         <hr>
                         <p class="comment-content">{{ $comment->isi_komentar }}</p>
 
-                        @if(!is_null($current_user) and $comment->comment_author->id == $current_user->id)
+                        @if(!is_null($user) and $comment->comment_author->id == $user->id)
                             <form action="{{ action('CommentController@destroy', $comment->id) }}" method="POST">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE">
@@ -45,11 +45,23 @@
                     </div>
                 @endforeach
             </div>
+
+            <div class="column is-4">
+                <!-- Blog Categories Well -->
+                <div class="well">
+                    <h3>Tags</h3>
+                    <div class="category-list">
+                        @foreach($tag_batiks as $tag)
+                            <a href="{{ action('PageController@daftar_batik_tag',$tag->tag_batik)}}">{{ $tag->tag_batik }}</a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="columns">
         <div class="column is-4">
-            @if(!is_null($current_user))
+            @if(!is_null($user))
               <div class="form-create-comment">
                   <form action="{{ action('CommentController@store') }}" method="post">
                       {{ csrf_field() }}

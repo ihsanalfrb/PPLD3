@@ -21,33 +21,53 @@ class DeleteCommentTest extends TestCase
      *
      * @return void
      */
-    public function test_delete_comment_response()
+    public function test_delete_comment_by_authenticated_user()
     {
-        factory(User::class,15)->create();
-        factory(Thread::class,15)->create();
 
-
-        factory(Comment::class)->make();
-        $this->comments = factory(Comment::class,50)->create();
-        $randomID = 1;
-        $randomComment=Comment::where('id','=',$randomID)->first();
-
-        $response = $this->call('delete', '/comments/'.$randomComment->id, []);
-        $this->assertEquals(401, $response->status());
-
-        $user = User::where('id', '=', $randomComment->comment_by)->first();
-        $this->be($user);
-        $response = $this->call('delete', '/comments/'.$randomComment->id, []);
-        $this->assertEquals(302, $response->status());
-        $randomCommentDeleted=Comment::where('id','=',$randomID)->first();
-        $this->assertNull($randomCommentDeleted);
-
-        $randomComment=Comment::where('comment_by', '<>', $user->id)->first();
-
-        $response = $this->call('delete', '/comments/'.$randomComment->id, []);
-        $this->assertEquals(403, $response->status());
+        $user = factory(User::class)->create();
+        $user->create_thread()->save(factory(Thread::class)->make());
+        $thread = $user->create_thread()->first();
+        $comment = factory(Comment::class)->make();
+        $comment->thread_id = $thread->id;
+        $user->comments()->save($comment);
+        $response = $this->actingAs($user)
+                ->delete(action('CommentController@destroy', $comment->id));
+        $response->assertStatus(302);
 
 
     }
+
+    public function test_delete_comment_by_authenticated_user_but_not_creator_of_comment()
+    {
+
+
+        $user = factory(User::class,2)->create();
+        $user[0]->create_thread()->save(factory(Thread::class)->make());
+        $thread = $user[0]->create_thread()->first();
+        $comment = factory(Comment::class)->make();
+        $comment->thread_id = $thread->id;
+        $user[0]->comments()->save($comment);
+        $response = $this->actingAs($user[1])
+            ->delete(action('CommentController@destroy', $comment->id));
+        $response->assertStatus(403);
+
+    }
+
+    public function test_delete_comment_by_unauthenticated_user()
+    {
+
+
+        $user = factory(User::class,2)->create();
+        $user[0]->create_thread()->save(factory(Thread::class)->make());
+        $thread = $user[0]->create_thread()->first();
+        $comment = factory(Comment::class)->make();
+        $comment->thread_id = $thread->id;
+        $user[0]->comments()->save($comment);
+        $response = $this
+            ->delete(action('CommentController@destroy', $comment->id));
+        $response->assertStatus(401);
+
+    }
+
 
 }
