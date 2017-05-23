@@ -7,13 +7,15 @@ use App\TagBatik;
 use App\Thread;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class PageController extends Controller
 {
     public function index(){
+
       $user = Auth::user();
       $batiks = Batik::orderBy('views','desc')->limit(3)->get();
       $tag_batiks = TagBatik::all();
@@ -22,15 +24,13 @@ class PageController extends Controller
     		'title' => 'Welcome Batique',
         'tag_batiks' => $tag_batiks,
         'batiks' => $batiks,
-        'user' => $user,
-        'errors' => array()
+        'user' => $user
       ]);
     }
 
     public function show_tag($id)    {
-        $user = Auth::user();
-        $tag_batik = TagBatik::where('id','=',$id)->first();
-
+      $user = Auth::user();
+      $tag_batik = TagBatik::where('id','=',$id)->first();
       if(is_null($tag_batik)){
         return abort(404);
       } else {
@@ -146,7 +146,6 @@ class PageController extends Controller
     }
 
     public function daftar_batik_daerah($asal_daerah) {
-
         $user = Auth::user();
         if (is_null(Batik::where('asal_daerah','=',$asal_daerah)->first())) {
             return abort('404');
@@ -220,6 +219,7 @@ class PageController extends Controller
             'header' => 'Hasil Pencarian '.$keywords
         ]);
     }
+
     public function show_profile(){
         $user = Auth::user();
         if(is_null($user)){
@@ -245,15 +245,5 @@ class PageController extends Controller
         }
     }
 
-    public function identify_batik(){
-      $user = Auth::user();
 
-      $tag_batiks = TagBatik::all();
-        return view('index',[
-            'title' => 'Welcome Batique',
-            'tag_batiks' => $tag_batiks,
-            'user' => $user,
-            'errors' => array()
-      ]);
-    }
 }
