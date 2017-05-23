@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <?php
+      if (session()->has('edituser')){
+        $user = session('edituser');
+      }
+    ?>
     <div class="container">
         <!-- Page Header -->
         <div class="columns">
@@ -36,16 +41,24 @@
                 </div>
                 <form class="form-horizontal" role="form" method="POST" action="{{action('UserController@update', $user->id)}}">
                     {{ csrf_field() }}
+                    @if(\Illuminate\Support\Facades\Session::has('success_change_password'))
+                        <div class="notification is-primary" id="success_change_password">
+                            {{ \Illuminate\Support\Facades\Session::get('success_change_password') }}
+                        </div>
+                    @endif
                     <div class="field">
                         <label for="name" class="label">Name</label>
                         <input type="hidden" name="_method" value="PUT">
                         <p class="control">
                             <input id="name" type="text"
                                    class="input"
-                                   name="name" value="{{$user->name}}" required autofocus>
+                                   name="name" value="{{$user->name}}" required>
                         </p>
                     </div>
                     <div class="field">
+                        <script>
+                            wrong_email = false;
+                        </script>
                         <label for="email" class="label">E-Mail Address</label>
                         <p class="control">
                             <input id="email" type="email"
@@ -55,11 +68,11 @@
                     </div>
                     <div class="field"></div>
                     @if(\Illuminate\Support\Facades\Session::has('email_already_used'))
-                        <div class="notification is-primary" id="email_already_used">
+                        <div class="notification is-danger" id="email_already_used">
                             {{ \Illuminate\Support\Facades\Session::get('email_already_used') }}
                         </div>
                         <script>
-                            pass_match = false;
+                            wrong_email = true;
                         </script>
                     @endif
                     <div class="field" id="group_btn_change_pass">
@@ -70,6 +83,9 @@
                     </div>
 
                     <div class="form-group" id="change_password">
+                        <script>
+                          var wrong_new_password = false;
+                        </script>
                         <div class="field">
                             <label for="old_password" class="label">Old Password</label>
                             <p class="control">
@@ -89,6 +105,14 @@
                                 <input id="confirm_password" type="password" class="input" name="confirm_password" disabled>
                             </p>
                         </div>
+                        @if(\Illuminate\Support\Facades\Session::has('wrong_new_password'))
+                            <div class="notification is-danger" id="wrong_new_password">
+                                {{ \Illuminate\Support\Facades\Session::get('wrong_new_password') }}
+                            </div>
+                            <script>
+                                wrong_new_password = true;
+                            </script>
+                        @endif
                         <div class="form-group">
                             <button type="submit" class="button is-primary">
                                 Save Password
@@ -157,7 +181,7 @@
                         var pass_match = true;
                     </script>
                     @if(\Illuminate\Support\Facades\Session::has('password_not_match'))
-                        <div class="notification is-primary" id="password_not_match">
+                        <div class="notification is-danger" id="password_not_match">
                             {{ \Illuminate\Support\Facades\Session::get('password_not_match') }}
                         </div>
                         <script>
@@ -188,9 +212,11 @@
 
     </div>
     <script>
+
         $(document).ready(function () {
             $("input[name=gender][value='{{$user->gender}}']").prop("checked",true);
             $('#change_password').hide();
+
 
             if(pass_match) {
                 $('#change_profile').hide();
@@ -198,6 +224,10 @@
                 $('#group_btn_edit_profile').hide();
                 $('#confirm_changes').prop('disabled', false);
                 $('#confirm_changes').prop('required', true);
+                $('#confirm_changes').focus();
+            }
+            if(wrong_email){
+              $('#email').focus();
             }
 
             $('#button_change_password').click(function () {
@@ -209,6 +239,7 @@
                 $('#old_password').prop('required', true);
                 $('#new_password').prop('required', true);
                 $('#confirm_password').prop('required', true);
+                $('#old_password').focus();
                 $('#group_btn_change_pass').hide();
             });
             $('#button_change_profile').click(function () {
@@ -225,6 +256,9 @@
                 $('#old_password').prop('disabled', true);
                 $('#new_password').prop('disabled', true);
                 $('#confirm_password').prop('disabled', true);
+                if(wrong_new_password){
+                  $('#wrong_new_password').hide();
+                }
                 $('#group_btn_change_pass').show();
             });
             $('#cancel_change_profile').click(function () {
@@ -233,6 +267,10 @@
                 $('#confirm_changes').prop('disabled', false);
                 $('#group_btn_edit_profile').show();
             });
+            if(wrong_new_password){
+              $('#button_change_password').trigger("click");
+              $('#cancel_change_password').focus();
+            }
         });
     </script>
 @endsection

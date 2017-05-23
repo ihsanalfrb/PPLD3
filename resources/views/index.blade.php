@@ -46,48 +46,22 @@
     				<div class="column is-8 bordered-right">
     					<h2 class="text-center">Most Viewed Batik</h2>
     					<div class="columns list-content">
-    						<div class="column is-4">
-    							<div class="card">
-									  <div class="card-image">
-									    <figure class="image is-4by3">
-									      <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
-									    </figure>
-									  </div>
-									  <div class="card-content">
-									    <div class="content">
-									      <h3 class="text-center">Batik 1</h3>
-									    </div>
-									  </div>
-									</div>
-    						</div>
-    						<div class="column is-4">
-    							<div class="card">
-									  <div class="card-image">
-									    <figure class="image is-4by3">
-									      <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
-									    </figure>
-									  </div>
-									  <div class="card-content">
-									    <div class="content">
-									      <h3 class="text-center">Batik 2</h3>
-									    </div>
-									  </div>
-									</div>
-    						</div>
-    						<div class="column is-4">
-    							<div class="card">
-									  <div class="card-image">
-									    <figure class="image is-4by3">
-									      <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
-									    </figure>
-									  </div>
-									  <div class="card-content">
-									    <div class="content">
-									      <h3 class="text-center">Batik 1</h3>
-									    </div>
-									  </div>
-									</div>
-    						</div>
+                @foreach($batiks as $batik)
+                  <div class="column is-4">
+      							<div class="card">
+  									  <div class="card-image">
+  									    <figure class="image is-4by3">
+  									      <img src="http://kawung.mhs.cs.ui.ac.id/~rahadyan.awinda/batik_pictures/{{$batik->gambar_pola_batik}}" alt="Image">
+  									    </figure>
+  									  </div>
+  									  <div class="card-content">
+  									    <div class="content">
+  									      <h4 class="text-center"><a href="{{ action('PageController@rincian_informasi',$batik->id)}}">{{$batik->nama_batik}}</h4></a>
+  									    </div>
+  									  </div>
+  									</div>
+      						</div>
+                @endforeach
     					</div>
     				</div>
     				<div class="column is-4">

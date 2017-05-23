@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\TagBatik;
+use App\Http\Middleware\RedirectIfNotAdmin;
+
 
 class HomeController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -15,7 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth-admin');
     }
 
     /**
@@ -25,18 +28,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         $user = Auth::user();
-        if (!is_null($user) && $user["is_admin"]) {
-            return view('home', [
-                'user' => $user
-            ]);
-        } else {
-            $tag_batiks = TagBatik::all();
-            return view('index',[
-                'user' => $user,
-                'title' => 'Welcome Batique',
-                'tag_batiks' => $tag_batiks
-            ]);
-        }
+        return view('home', [
+            'user' => $user
+        ]);
     }
 }

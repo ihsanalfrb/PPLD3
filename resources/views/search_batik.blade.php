@@ -47,49 +47,12 @@
                     </div>
                 @endif
                 <!-- /.row -->
-
-                <!-- Hasil Cluster -->
-                {{--@if($categories_sum <> 0)--}}
-                    {{--@for($x = 0; $x < ($categories_sum/3); $x++)--}}
-                        {{--<div class="columns">--}}
-                            {{--@for($y = 0; $y < 3 and (3*$x)+$y <$categories_sum; $y++)--}}
-                                {{--<div class="column is-4">--}}
-                                    {{--<a href="{{ action('PageController@daftar_batik_cluster', $categories[(3*$x)+$y]->cluster_batik)}}">--}}
-                                        {{--<h3>{{$categories[(3*$x)+$y]->cluster_batik}}</h3>--}}
-                                    {{--</a>--}}
-                                {{--</div>--}}
-                            {{--@endfor--}}
-                        {{--</div>--}}
-                    {{--@endfor--}}
-                {{--@endif--}}
-                <!-- /.row -->
-
-                <!-- Hasil Daerah -->
-                {{--@if($categories_sum <> 0)--}}
-                    {{--@for($x = 0; $x < ($categories_sum/3); $x++)--}}
-                        {{--<div class="columns">--}}
-                            {{--@for($y = 0; $y < 3 and (3*$x)+$y <$categories_sum; $y++)--}}
-                                {{--<div class="column is-4">--}}
-                                    {{--<a href="{{ action('PageController@daftar_batik_cluster', $categories[(3*$x)+$y])}}">--}}
-                                        {{--<h3>{{$categories[(3*$x)+$y]}}</h3>--}}
-                                    {{--</a>--}}
-                                {{--</div>--}}
-                            {{--@endfor--}}
-                        {{--</div>--}}
-                    {{--@endfor--}}
-                {{--@endif--}}
-                <!-- /.row -->
-
-                <!-- Hasil Tag -->
-                <!-- /.row -->
                 <hr>
                 <!-- Pagination -->
                 @if($batiks_sum <> 0)
                     {{ $batiks->render() }}
                 @endif
             </div>
-            <
-
 
             <div class="column is-4">
 

@@ -61,8 +61,24 @@ class UserTest extends TestCase
                 'bio' => 'Gemar membaca',
                 'telephone' => '089672987967',
                 'address' => 'Jalan Pala',
-                'old_password' => 'secret',
-                'new_password' => 'password'
+                'confirm_changes' => 'secret'
+            ]);
+        $response->assertStatus(302);
+    }
+
+    public function test_update_user_authenticated_user_wrong_password(){
+        $user = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->put(action('UserController@update', $user->id), [
+                'name' => 'Rizqy',
+                'email' => 'rizqyfaishal@hotmail.com',
+                'birthday' => Carbon::now(),
+                'gender' => 'Male',
+                'bio' => 'Gemar membaca',
+                'telephone' => '089672987967',
+                'address' => 'Jalan Pala',
+                'confirm_changes' => 'passwordngaco'
             ]);
         $response->assertStatus(302);
     }
@@ -79,10 +95,45 @@ class UserTest extends TestCase
                 'bio' => 'Gemar membaca',
                 'telephone' => '089672987967',
                 'address' => 'Jalan Pala',
-                'old_password' => 'secret',
-                'new_password' => 'password'
+                'confirm_changes' => 'secret'
             ]);
         $response->assertStatus(200);
+    }
+
+    public function test_update_password_authenticated_user_succesfully(){
+        $user = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->put(action('UserController@update', $user->id), [
+                'old_password' => 'secret',
+                'new_password' => 'mantap',
+                'confirm_password' => 'mantap',
+            ]);
+        $response->assertStatus(302);
+    }
+
+    public function test_update_password_authenticated_user_wrong_old_password(){
+        $user = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->put(action('UserController@update', $user->id), [
+                'old_password' => 'secret1',
+                'new_password' => 'mantap',
+                'confirm_password' => 'mantap',
+            ]);
+        $response->assertStatus(302);
+    }
+
+    public function test_update_password_authenticated_user_not_match_confirmation_password(){
+        $user = factory(User::class)->create();
+        $response = $this
+            ->actingAs($user)
+            ->put(action('UserController@update', $user->id), [
+                'old_password' => 'secret',
+                'new_password' => 'mantap1',
+                'confirm_password' => 'mantap',
+            ]);
+        $response->assertStatus(302);
     }
 
 
