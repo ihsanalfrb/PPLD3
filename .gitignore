@@ -11,3 +11,4 @@ Homestead.yaml
 /.env
 .composer.lock
 /coverage.html
+cacert.pem]

@@ -1,49 +1,70 @@
 @extends("layouts.app")
 
+<?php if(!isset($errors)) {
+  $errors = array();
+}
+
+?>
+
 @section("content")
 	<div class="columns">
     <section class="hero is-warning column is-12">
 		<div class="hero-body">
+      @if (count($errors) > 0)
+        <div class="notification is-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+      @if(\Illuminate\Support\Facades\Session::has('error'))
+        <div class="notification is-danger">
+          {{\Illuminate\Support\Facades\Session::get('error')}}
+        </div>
+      @endif
 			<div class="container has-text-centered">
 				<div class="container has-text-centered">
 					<h1 class="is-1 title">Want to know about your batik more?</h1>
 					<img class="is-medium is-1" src="{{ URL::asset('images/batiquewords.png')}}">
 					{{--<h1 class="title is-1">Batique</h1>--}}
 				</div>
-				<form>
-					<div class="container has-text-centered">
-						<div class="columns">
-							<div class="column is-mobile is-half is-offset-one-quarter">
-								<div class="field-is-horizontal">
-									<div class="field-body">
-										<div class="columns container has-text-centered">
-											<div class="column is-5">
-												<div class="field is-grouped">
-													<p class="control is-expanded">
-													  <input class="input" type="file" placeholder="Your photo here">
-													</p>
-												</div>
-											</div>
-											<div class="column is-2">
-												<h3 class="title is-4 has-text-centered">or</h3>
-											</div>
-											<div class="column is-5">
-												<div class="field is-grouped">
-													<p class="control is-expanded">
-													  <input class="input" type="text" placeholder="link">
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="has-text-centered">
-							<input type="submit" name="submit" value="Search Batik" class="button is-medium is-outlined is-primary">
-						</div>
-					</div>
-				</form>
+        <form action="{{ url('identify') }}" id="form_indentify" method="POST" enctype="multipart/form-data">
+    			{{ csrf_field() }}
+    			<div class="columns">
+    				<div class="column is-mobile is-half is-offset-one-quarter">
+    					<div class="field-is-horizontal">
+    						<div class="field-body">
+    							<div class="columns">
+    								<div class="column is-5">
+    									<div class="field is-grouped">
+    										<p class="control is-expanded">
+    											<input id="image_file"class="input" type="file" placeholder="Your photo here" name="image">
+    										</p>
+    									</div>
+    								</div>
+    								<div class="column is-2">
+    									<h5 class="text-center">or</h5>
+    								</div>
+    								<div class="column is-5">
+    									<div class="field is-grouped">
+    										<p class="control is-expanded">
+    											<input class="input" type="text"id="image_link" name="link" placeholder="link">
+    										</p>
+    									</div>
+    								</div>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="columns">
+    				<div class="column is-2 is-offset-5">
+    					<input type="submit" name="submit" value="Search Batik" class="button is-primary block">
+    				</div>
+    			</div>
+    		</form>
 			</div>
 		</div>
     </section>
@@ -89,5 +110,4 @@
         $('#nav_knowledge').addClass("is-active");
       });
     </script>
-
 @endsection

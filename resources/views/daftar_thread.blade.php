@@ -4,10 +4,8 @@
 
     <div class="thread-comments">
         <hr>
-        <div class="columns">
-            <div class="column is-1">
 
-            </div>
+        <div class="columns">
             <div class="column is-7">
                 <p class="title is-2">Daftar Thread</p>
                 @if(\Illuminate\Support\Facades\Session::has('thread_success'))
@@ -15,6 +13,31 @@
                         {{ \Illuminate\Support\Facades\Session::get('thread_success') }}
                     </div>
                 @endif
+            </div>
+        </div>
+        <div class="columns">
+          <div class="column is-3">
+            <form id="search_thread_form" action="">
+                <div class="field is-grouped">
+                    <p class="control is-expanded">
+                      <input id="search_thread_input" class="input" type="text" placeholder="Find a thread" name="keywords">
+                    </p>
+                    <p class="control">
+                      <a id="search_thread_button" href="{{ action('PageController@search_thread', '')}}"><input class="button is-primary" type="submit" value="Search Thread"></a>
+                    </p>
+                </div>
+              </form>
+          </div>
+          <script>
+              $('#search_thread_input').on('input',function(e){
+                  var url = "{{ action('PageController@search_thread', ':keywords')}}"
+                  $('#search_thread_button').attr("href", url.replace(':keywords', $('#search_thread_input').val()));
+              });
+          </script>
+        </div>
+        <div class="columns">
+            <div class="column is-7">
+
                 @foreach($threads as $thread)
                     <div class="hero is-light" style="padding: 1em; border: 1px solid black; margin: 1em 0;">
                         <p class="title is-4"><a class="subtitle is-4" href="{{action('ThreadController@show',$thread->id)}}">{{ $thread->nama_thread}}</a></p>

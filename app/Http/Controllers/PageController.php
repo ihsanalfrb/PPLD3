@@ -12,9 +12,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+
 class PageController extends Controller
 {
     public function index(){
+
       $user = Auth::user();
       $batiks = Batik::orderBy('views','desc')->limit(6)->get();
       $tag_batiks = TagBatik::all();
@@ -28,8 +30,8 @@ class PageController extends Controller
     }
 
     public function show_tag($id)    {
-        $user = Auth::user();
-        $tag_batik = TagBatik::where('id','=',$id)->first();
+      $user = Auth::user();
+      $tag_batik = TagBatik::where('id','=',$id)->first();
       if(is_null($tag_batik)){
         return abort(404);
       } else {
@@ -103,6 +105,7 @@ class PageController extends Controller
         $user = Auth::user();
         $threads = Thread::orderBy('id', 'DESC')->paginate(4);
         $tag_batiks = TagBatik::all();
+
         return view('daftar_thread',[
             'user' => $user,
             'title' => 'Forums',
@@ -258,7 +261,7 @@ class PageController extends Controller
             $threads = Thread::where('nama_thread', 'ilike', '%'.$keywords.'%')
                 ->orWhere('content', 'ilike', '%'.$keywords.'%')
                 ->orWhereIn('id', $comments_thread_id)
-                ->paginate(10);
+                ->paginate(4);
 //            dd($threads);
             $threads_sum = $threads->count();
         }

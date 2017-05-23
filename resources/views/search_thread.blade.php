@@ -13,14 +13,16 @@
         <div class="thread-comments">
             <div class="columns">
                 <div class="column is-3">
+                  <form id="search_thread_form" action="">
                       <div class="field is-grouped">
-                        <p class="control is-expanded">
-                          <input id="search_thread_input" class="input" type="text" placeholder="Find a thread" name="keywords">
-                        </p>
-                        <p class="control">
-                          <a id="search_thread_button" href="{{ action('PageController@search_thread', '')}}"><input class="button is-primary" type="submit" value="Search Thread"></a>
-                        </p>
+                          <p class="control is-expanded">
+                            <input id="search_thread_input" class="input" type="text" placeholder="Find a thread" name="keywords">
+                          </p>
+                          <p class="control">
+                            <a id="search_thread_button" href="{{ action('PageController@search_thread', '')}}"><input class="button is-primary" type="submit" value="Search Thread"></a>
+                          </p>
                       </div>
+                    </form>
                 </div>
                 <script>
                     $('#search_thread_input').on('input',function(e){
@@ -92,6 +94,10 @@
         $('#batal_tambah').click(function(){
             $('.form-create-comment').hide(500);
             $('#tambah_thread').show(500);
+        });
+        $('#search_thread_form').on('submit',function(e){
+            e.preventDefault();
+            location.href =  $('#search_thread_button').attr("href");
         });
     </script>
 @endsection
