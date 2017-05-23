@@ -59,7 +59,6 @@
                         <label for="gender_other" class="radio"><input id="gender_other" type="radio" name="gender"{{ old('gender') == 'other' ? 'checked' : ''}} value="other" required>Other</label>
                     </div>
                 </div>
-
                 <div class="field">
                     <label for="password" class="label is-large">Password</label>
                     <p class="control">
