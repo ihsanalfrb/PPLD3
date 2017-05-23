@@ -14,7 +14,7 @@
         <hr/>
         <div class="columns">
             <div class="column is-8">
-                <h4>Batik yang ingin kamu identifikasi</h4>
+                <h4>Batik yang ingin diidentifikasi</h4>
                 <br/>
                 <img src="data:{{$type}};base64,{{$original_image}}">
             </div>
@@ -37,10 +37,7 @@
                     <a href="{{ action('PageController@rincian_informasi',$batik->id)}}">{{$batik->nama_batik}}</a>
                 </h3>
                 <p>
-                  {{$batik->cluster_batik}}
-                </p>
-                <p>
-                    {{$batik->asal_daerah}}</a>
+                  Asal Daerah:    {{$batik->asal_daerah}}</a>
                 </p>
             </div>
             <hr>
@@ -50,4 +47,9 @@
         <hr>
         <!-- /.row -->
     </div>
+    <script>
+      $(document).ready(function() {
+        $('#nav_knowledge').addClass("is-active");
+      });
+    </script>
 @endsection
