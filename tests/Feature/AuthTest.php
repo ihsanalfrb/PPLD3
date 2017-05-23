@@ -92,7 +92,7 @@ class AuthTest extends TestCase
             ->actingAs($user)
             ->get(action('Auth\RegisterController@showRegistrationForm'));
         $response->assertStatus(302);
-        $response->assertRedirect(action('DashboardController@home'));
+        $response->assertRedirect(action('PageController@index'));
 
     }
 

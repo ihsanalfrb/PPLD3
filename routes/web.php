@@ -34,7 +34,6 @@ Route::get('/daftar_batik/', 'PageController@daftar_batik_all');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/dashboard', 'DashboardController@home');
 
 Route::get('/search_batik/{keywords?}', 'PageController@search_batik');
 Route::get('/show_profile/', 'PageController@show_profile');
