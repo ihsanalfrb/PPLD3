@@ -2,7 +2,7 @@
   <div class="container">
     <div id="nav-menu" class="nav-left">
         <a class="nav-item is-brand" href="{{ action('PageController@index') }}">
-          <img src="{{ URL::asset('images/logo.png')}}" alt="Bulma: a modern CSS framework based on Flexbox">
+          <img src="{{ URL::asset('images/batiquelogo.png')}}" alt="">
         </a>
         <a id="nav_knowledge" class="nav-item is-tab is-hidden-mobile" href="{{ action('PageController@index')}}">Knowledge</a>
         <a id="nav_categories" class="nav-item is-tab is-hidden-mobile" href="{{ action('PageController@categories')}}">Categories</a>
