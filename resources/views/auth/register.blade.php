@@ -35,7 +35,7 @@
                 <div class="field">
                     <label for="birthday" class="label">Date of Birth</label>
                     <p class="control">
-                        <input id="birthday" class="input {{ $errors->has('email') ? ' is-danger' : '' }}"
+                        <input id="birthday" class="input {{ $errors->has('birthday') ? ' is-danger' : '' }}"
                             value="{{ old('birthday') }}" type="date" class="input" name="birthday" required>
                         @if ($errors->has('birthday'))
                             <p class="help is-danger">
@@ -49,6 +49,7 @@
                     <p class="control">
                         <input id="gender_male" type="radio" name="gender" {{ old('gender') == 'male' ? 'checked' : ''}} value="male" required>
                         <label for="gender_male" >Male</label>
+
                     </p>
                     <p class="control">
                         <input id="gender_female" type="radio" name="gender" {{ old('gender') == 'female' ? 'checked' : ''}} value="female" required>
