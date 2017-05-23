@@ -88,8 +88,6 @@
                     {{ $batiks->render() }}
                 @endif
             </div>
-            <
-
 
             <div class="column is-4">
 

@@ -20,20 +20,26 @@
             <a id="nav_forums"class="nav-item is-tab is-hidden-mobile" href="{{ action('Auth\LoginController@showLoginForm')}}">Login</a>
     @endif
     <span class="nav-item">
-      <div class="field is-grouped">
-        <p class="control is-expanded">
-          <input id="search_input" class="input" type="text" placeholder="Find a batik" name="keywords">
-        </p>
-        <p class="control">
-          <a id="search_button" href="{{ action('PageController@search_batik', '')}}"><input class="button is-primary" type="submit" value="Search"></a>
-        </p>
-
-      </div>
+      <form id="search_batik" action="">
+        <div class="field is-grouped">
+          <p class="control is-expanded">
+            <input id="search_input" class="input" type="text" placeholder="Find a batik" name="keywords">
+          </p>
+          <p class="control">
+            <a id="search_button" href="{{ action('PageController@search_batik', '')}}"><input class="button is-primary" type="submit" value="Search"></a>
+          </p>
+        </div>
+      </form>
     </span>
     <script>
         $('#search_input').on('input',function(e){
             var url = "{{ action('PageController@search_batik', ':keywords')}}"
             $('#search_button').attr("href", url.replace(':keywords', $('#search_input').val()));
+        });
+
+        $('#search_batik').on('submit',function(e){
+            e.preventDefault();
+            location.href =   $('#search_button').attr("href");
         });
     </script>
     </div>

@@ -204,9 +204,9 @@ class PageController extends Controller
             $cities_sum = 0;
             $categories_sum = 0;
         } else {
-            $batiks = Batik::where('nama_batik', 'ilike', '%'.$keywords.'%')
-                ->orWhere('sejarah_batik', 'ilike', '%'.$keywords.'%')
-                ->orWhere('makna_batik', 'ilike', '%'.$keywords.'%')->paginate(10);
+            $batiks = Batik::whereRaw('lower(nama_batik) like ?', array('%'.strtolower($keywords).'%'))
+                ->orwhereRaw('lower(sejarah_batik) like ?', array('%'.strtolower($keywords).'%'))
+                ->orWhereRaw('lower(makna_batik) like ?', array('%'.strtolower($keywords).'%'))->paginate(10);
             $categories = Batik::where('cluster_batik', 'ilike', '%'.$keywords.'%');
             $cities = Batik::where('asal_daerah', 'ilike', '%'.$keywords.'%');
             $tags = TagBatik::where('tag_batik', 'ilike', '%'.$keywords.'%');
