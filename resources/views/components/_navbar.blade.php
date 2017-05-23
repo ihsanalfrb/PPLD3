@@ -10,7 +10,6 @@
 <nav class="nav has-shadeow">
     <div class="nav-left has-text-centered">
         <a class="nav-item is-brand" href="{{ action('PageController@index') }}">
-            {{--<img src="{{ URL::asset('images/BATIQUE.png')}}">&nbsp;&nbsp;--}}
             <i class="fa fa-home"> </i>
             <h3 class="title is-5">Batique</h3>
         </a>
@@ -30,30 +29,21 @@
 
     </div>
 
-
-    <!-- Using a <label /> here -->
-    <label class="nav-toggle" for="nav-toggle-state">
-        <span></span>           <!-- ^^^^^^^^^^^^^^^^ -->
-        <span></span>
-        <span></span>
-    </label>
-
     <!-- This checkbox is hidden -->
     <input type="checkbox" id="nav-toggle-state" />
 
     <div class="nav-right nav-menu">
-        <a id="nav_knowledge" class="nav-item is-tab " href="{{ action('PageController@index')}}">Knowledge</a>
         <a id="nav_categories" class="nav-item is-tab" href="{{ action('PageController@categories')}}">Categories</a>
-        <a id="nav_forums"class="nav-item is-tab" href="{{ action('PageController@daftar_thread')}}">Forums</a>
+        <a id="nav_forums" class="nav-item is-tab" href="{{ action('PageController@daftar_thread')}}">Forums</a>
 
         @if(isset($user))
-            <a id="nav_forums"class="nav-item is-tab" href="{{ action('PageController@show_profile')}}">Profile</a>
+            <a id="nav_forums" class="nav-item is-tab" href="{{ action('PageController@show_profile')}}">Profile</a>
             <form action={{ action('Auth\LoginController@logout') }} method="POST" class="nav-item is-tab">
                 {{ csrf_field() }}
                 <input id="nav_forums" class="nav-item button is-primary" type="submit" value="Logout"/>
             </form>
         @else
-            <a id="nav_login"class="nav-item is-tab" href="{{ action('Auth\LoginController@showLoginForm')}}">Login</a>
+            <a id="nav_login" class="nav-item is-tab" href="{{ action('Auth\LoginController@showLoginForm')}}">Login</a>
         @endif
         <span class="nav-item">
         <form id="search_batik" action="">

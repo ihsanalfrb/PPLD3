@@ -1,20 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
-      <h1>Categories</h1>
+      <hr>
+      <h1 class="title is-2">Categories</h1>
       <hr>
       <div class="columns" style="height:62vh">
-        <div class="column is-3 part1">
-          <h4>Pilih kategori batik:</h4>
+        <div class="column is-4 part1">
+          <h4 class="title is-4">Pilih kategori batik:</h4>
           <br/>
-          <p id="asal" > <a onclick="show_daerah()" href="#asal">asal daerah </a> </p>
-          <p id="pola" >  <a onclick="show_clusters()" href="#pola"> pola </a></p>
+          <div class="columns list-content">
+            <div class="column is-6">
+              <div class="card hero is-primary">
+                <div class="card-image">
+                  <figure class="image">
+                    <a onclick="show_daerah()" href="#asal">
+                      <img class="is-medium is-1" src="{{ URL::asset('images/map.png')}}"></a>
+                  </figure>
+                </div>
+                <div class="card-content has-text-centered">
+                  <div class="content">
+                    <h3 id="asal" class="subtitle is-5"><a onclick="show_daerah()" href="#asal">Asal daerah</a></h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="column is-6">
+              <div class="card hero is-primary">
+                <div class="card-image">
+                  <figure class="image">
+                    <a onclick="show_clusters()" href="#pola"><img class="is-medium is-1" src="{{ URL::asset('images/group.png')}}"></a>
+                  </figure>
+                </div>
+                <div class="card-content has-text-centered">
+                  <div class="content">
+                    <h3 id="pola" class="subtitle is-5"><a onclick="show_clusters()" href="#pola">Cluster/Pola</a></h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
-        <div class="column is-3 part2">
+        <div class="column is-4 part2">
 
         </div>
-        <div class="column is-6 part3" style="overflow:auto; ">
+        <div class="column is-4 part3" style="overflow:auto; ">
 
         </div>
 
@@ -61,33 +94,35 @@
       });
 
       function show_daerah(){
-        var container = '<h4>Pilih asal daerah batik</h4><br/>';
+        var container = '<h4 class="title is-4">Pilih asal daerah batik:</h4><br/><div class="columns list-content"><div class="column"><table class="table"><tbody>';
         $.each(asal_daerahs, function(key,value){
-          container += '<p id="asal_'+key+'" ><a onclick="show_batik_daerah(\''+key+'\')" href="#asal='+key+'">'+key+'</a></p>';
+          container += '<tr class="subtitle is-5"><th id="asal_'+key+'"><a class="subtitle is-5" onclick="show_batik_daerah(\''+key+'\')" href="#asal='+key+'">'+key+'</a></th></tr>';
         });
+        container += '</tbody></table></div></div>';
         filter = 'asal';
         kategori = '';
         $('.part2').html(container);
-        $('#asal').html('asal daerah');
-        $('#pola').html('<a onclick="show_clusters()" href="#pola"> pola </a>');
+        $('#asal').html('Asal daerah');
+        $('#pola').html('<a onclick="show_clusters()" href="#pola"> Custer/Pola </a>');
         $('.part3').html('');
       }
 
       function show_clusters(){
-        var container = '<h4>Pilih pola batik</h4><br/>';
+        var container = '<h4 class="title is-4">Pilih asal daerah batik:</h4><br/><div class="columns list-content"><div class="column"><table class="table"><tbody>';
         $.each(clusters, function(key,value){
-          container += '<p id="pola_'+key+'"><a onclick="show_batik_cluster(\''+key+'\')" href="#pola='+key+'">'+key+'</a></p>';
+          container += '<tr class="subtitle is-5"><th id="pola_'+key+'"><a class="subtitle is-5" onclick="show_batik_cluster(\''+key+'\')" href="#pola='+key+'">'+key+'</a></th></tr>';
         });
+          container += '</tbody></table></div></div>';
         filter = 'pola';
         kategori = '';
         $('.part2').html(container);
-        $('#asal').html('<a onclick="show_daerah()" href="#asal">asal daerah </a>');
-        $('#pola').html('pola');
+        $('#asal').html('<a onclick="show_daerah()" href="#asal">Asal daerah </a>');
+        $('#pola').html('Cluster/Pola');
         $('.part3').html('');
       }
 
       function show_batik_daerah(asal_daerah){
-        var container = '<h4>Batik yang berasal dari '+asal_daerah+' </h4><br/>';
+        var container = '<h4 class="title is-4">Batik yang berasal dari '+asal_daerah+': </h4><br/><div class="list-content has-text-centered">';
 
         if(kategori !== ''){
           $('#asal_'+kategori+'').html('<a onclick="show_batik_daerah(\''+kategori+'\')" href="#asal='+kategori+'">'+kategori+'</a>');
@@ -101,7 +136,7 @@
           container += display_batik(value);
         });
           var url = "{{action('PageController@daftar_batik_daerah', ':daerah' )}}"
-          container += '<a href="'+url.replace(':daerah', asal_daerah)+'">Show all Batik</a>';
+          container += '<a href="'+url.replace(':daerah', asal_daerah)+'"><h5 class="title is-5">Show all Batik</h5></a></div>';
         $('.part3').html(container);
       }
 
@@ -110,14 +145,14 @@
         var url = '{{ action('PageController@rincian_informasi',':id')}}';
 
         //container += '<p>'+value['nama_batik']+' .' + '</p>';
-        container += '<div class="columns">';
-        container +=  '<div class="column is-2">';
+        container += '<div class="columns has-text-left">';
+        container +=  '<div class="column is-4">';
         container +=    '<img class="img-responsive" src="http://kawung.mhs.cs.ui.ac.id/~rahadyan.awinda/batik_pictures/'+value['gambar_pola_batik']+'" alt="">';
         container +=  '</div>';
-        container +=  '<div class="column is-6">';
-        container +=    '<h3><a href="'+url.replace(':id', value['id'])+'">'+value['nama_batik']+'</a></h3>';
-        container +=    '<p>Asal Batik: '+value['asal_daerah']+'';
-        container +=    '<p>Jenis Pola: ';
+        container +=  '<div class="column is-8">';
+        container +=    '<p class="title is-4"><a href="'+url.replace(':id', value['id'])+'">'+value['nama_batik']+'</a></p>';
+        container +=    '<p class="subtitle is-6">Asal Batik: '+value['asal_daerah']+'</p>';
+        container +=    '<p class="subtitle is-6">Jenis Pola: ';
 
         if(!value['cluster_batik'] || value['cluster_batik'] === '')
           container +=    '<i>pola belum dikenal</i>';
@@ -131,9 +166,9 @@
       }
 
       function show_batik_cluster(cluster){
-        var container = '<h4>Batik dengan pola '+cluster+' </h4><br/>';
+        var container = '<h4 class="title is-4">Batik dengan pola '+cluster+': </h4><br/><div class="list-content has-text-centered">';
         if(cluster === 'uncategorized'){
-          var container = '<h4>Batik dengan pola belum dikenal </h4><br/>';
+          var container = '<h4 class="title is-4">Batik dengan pola belum dikenal: </h4><br/><div class="list-content has-text-centered">';
         }
 
         if(kategori !== ''){
@@ -148,7 +183,7 @@
 
         });
         var url = "{{action('PageController@daftar_batik_cluster', ':cluster' )}}"
-        container += '<a href="'+url.replace(':cluster', cluster)+'">Show all Batik</a>';
+        container += '<a href="'+url.replace(':cluster', cluster)+'"><h5 class="title is-5">Show all Batik</h5></a></div>';
         $('.part3').html(container);
       }
     </script>

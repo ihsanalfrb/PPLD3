@@ -49,17 +49,18 @@
     </section>
 	</div>
 	<div class="columns">
-		<section class="hero most-viewed-list is-primary">
+		<section class="most-viewed-list">
 					<div class="columns">
 						<div class="column has-text-centered" is-12>
-							<h2 class="title is-5">Most Viewed Batik</h2>
+							<h5 class="subtitle is-5">Most Viewed Batik</h5>
 							<div class="columns list-content">
 								@foreach($batiks as $batik)
 									<div class="column is-2">
 									<div class="card">
 											<div class="card-image">
 												<figure class="image">
-													<img src="http://kawung.mhs.cs.ui.ac.id/~rahadyan.awinda/batik_pictures/{{$batik->gambar_pola_batik}}" alt="Image">
+													<a href="{{ action('PageController@rincian_informasi',$batik->id)}}">
+														<img src="http://kawung.mhs.cs.ui.ac.id/~rahadyan.awinda/batik_pictures/{{$batik->gambar_pola_batik}}" alt="Image"></a>
 												</figure>
 											</div>
 											<div class="card-content has-text-centered">
@@ -74,7 +75,7 @@
 						</div>
 						<div class="column is-4">
 							<div class="category-list">
-								<h2 class="title is-5">Tags</h2>
+								<h5 class="subtitle is-5">Tags</h5>
 								@foreach($tag_batiks as $tag)
 									<a class="tag is-dark is-small" href="{{ action('PageController@daftar_batik_tag',$tag->tag_batik)}}">{{ $tag->tag_batik }}</a>
 								@endforeach

@@ -18,10 +18,7 @@
             <!-- left column -->
             <div class="column is-3">
                 <div class="is-centered">
-                    <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-                    <h6>Change Profile Picture</h6>
 
-                    <input type="file" class="input">
                 </div>
             </div>
 
