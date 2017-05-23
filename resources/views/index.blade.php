@@ -56,7 +56,7 @@
   									  </div>
   									  <div class="card-content">
   									    <div class="content">
-  									      <h4 class="text-center"><a href="{{ action('PageController@rincian_informasi',$batik->id)}}">{{$batik->nama_batik}}</h4></a>
+  									      <h4 class="text-center"><a href="{{ action('PageController@rincian_informasi',$batik->id)}}">{{$batik->nama_batik}}</a></h4>
   									    </div>
   									  </div>
   									</div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Batik;
+use App\Comment;
 use App\TagBatik;
 use App\Thread;
 use App\User;

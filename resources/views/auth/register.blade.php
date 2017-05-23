@@ -58,7 +58,7 @@
                     <p class="control">
                         <input id="gender_other" type="radio" name="gender"{{ old('gender') == 'other' ? 'checked' : ''}} value="other" required>
                         <label for="gender_other" >Other</label>
-                    </p
+                    </p>
                 </div>
                 <div class="field">
                     <label for="password" class="label">Password</label>
