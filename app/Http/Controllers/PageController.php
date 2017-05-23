@@ -237,7 +237,6 @@ class PageController extends Controller
             return view('edit_profile', [
                 'title' => 'Edit Information',
                 'user' => $user,
-
             ]);
         }
     }
@@ -263,14 +262,15 @@ class PageController extends Controller
 //            dd($threads);
             $threads_sum = $threads->count();
         }
-
+        $tag_batiks = TagBatik::all();
         return view('search_thread',[
             'title' => 'Pencarian Thread',
             'threads' => $threads,
             'threads_sum' => $threads_sum,
             'keywords' => $keywords,
+            'tag_batiks' => $tag_batiks,
             'header' => 'Hasil Pencarian '.$keywords,
-            'current_user' => Auth::user()
+            'user' => Auth::user()
         ]);
     }
 }

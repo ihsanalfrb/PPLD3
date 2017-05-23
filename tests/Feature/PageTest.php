@@ -75,10 +75,6 @@ class PageTest extends TestCase
         $response->assertStatus(200);
     }
 
-
-
-
-
     public function test_edit_profile_unathenticated_user(){
         $response = $this->get(action('PageController@edit_profile'));
         $response->assertStatus(404);
