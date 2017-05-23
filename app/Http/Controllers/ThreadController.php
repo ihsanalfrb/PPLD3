@@ -27,11 +27,11 @@ class ThreadController extends Controller
     {
         $thread = new Thread($request->all());
         $user = Auth::user();
-        if(is_null($user)){
+        if(is_null($user) || !$user->is_admin){
             return abort(401);
         } else {
             $saved = $user->create_thread()->save($thread);
-            return redirect()->back();
+            return redirect('/daftar_thread');
         }
     }
 
