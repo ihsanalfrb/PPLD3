@@ -9,8 +9,11 @@
     <div class="container">
         <!-- Page Header -->
         <div class="columns">
-            <div class="column is-8">
-                <h1 class="page-header">{{$title}}</h1>
+            <div class="column is-3">
+
+            </div>
+            <div class="column is-6">
+                <p class="title is-2">{{$title}}</p>
             </div>
         </div>
 
@@ -18,27 +21,13 @@
             <!-- left column -->
             <div class="column is-3">
                 <div class="is-centered">
-                    <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-                    <h6>Change Profile Picture</h6>
 
-                    <input type="file" class="input">
                 </div>
             </div>
 
             <!-- edit form column -->
-            <div class="column is-9">
-                {{--<div class="alert alert-info alert-dismissable">--}}
-                    {{--<a class="panel-close close" data-dismiss="alert">×</a>--}}
-                    {{--<i class="fa fa-coffee"></i>--}}
-                    {{--This is an <strong>.alert</strong>. Use this to show important messages to the user.--}}
-                {{--</div>--}}
-                <h3>Edit information</h3>
-                <div class="field">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+            <div class="column is-6">
+                <br>
                 <form class="form-horizontal" role="form" method="POST" action="{{action('UserController@update', $user->id)}}">
                     {{ csrf_field() }}
                     @if(\Illuminate\Support\Facades\Session::has('success_change_password'))
@@ -47,7 +36,7 @@
                         </div>
                     @endif
                     <div class="field">
-                        <label for="name" class="label">Name</label>
+                        <label for="name" class="label is-large">Name</label>
                         <input type="hidden" name="_method" value="PUT">
                         <p class="control">
                             <input id="name" type="text"
@@ -59,7 +48,7 @@
                         <script>
                             wrong_email = false;
                         </script>
-                        <label for="email" class="label">E-Mail Address</label>
+                        <label for="email" class="label is-large">E-Mail Address</label>
                         <p class="control">
                             <input id="email" type="email"
                                    class="input"
@@ -76,7 +65,7 @@
                         </script>
                     @endif
                     <div class="field" id="group_btn_change_pass">
-                        <label for="password" class="label">Password</label>
+                        <label for="password" class="label is-large">Password</label>
                         <button class="button is-primary" id="button_change_password" type="button">
                             Change Password
                         </button>
@@ -87,20 +76,20 @@
                           var wrong_new_password = false;
                         </script>
                         <div class="field">
-                            <label for="old_password" class="label">Old Password</label>
+                            <label for="old_password" class="label is-large">Old Password</label>
                             <p class="control">
                                 <input id="old_password" type="password" class="input" name="old_password" disabled>
                             </p>
                         </div>
                         <div class="field">
-                            <label for="new_password" class="label">New Password</label>
+                            <label for="new_password" class="label is-large">New Password</label>
                             <p class="control">
                                 <input id="new_password" type="password"
                                        class="input " name="new_password" disabled>
                                 </p>
                         </div>
                         <div class="field">
-                            <label for="confirm_password" class="label">Confirm Password</label>
+                            <label for="confirm_password" class="label is-large">Confirm Password</label>
                             <p class="control">
                                 <input id="confirm_password" type="password" class="input" name="confirm_password" disabled>
                             </p>
@@ -114,7 +103,7 @@
                             </script>
                         @endif
                         <div class="form-group">
-                            <button type="submit" class="button is-primary">
+                            <button type="submit" class="button is-warning">
                                 Save Password
                             </button>
 
@@ -125,49 +114,51 @@
                     </div>
 
                     <div class="field">
-                        <label for="birthday" class="label">Date of Birth</label>
+                        <label for="birthday" class="label is-large">Date of Birth</label>
                         <p class="control">
                             <input id="birthday" type="date" class="input" name="birthday" value="{{$user->birthday}}" required>
                         </p>
                     </div>
                     <div class="field">
-                        <label for="gender" class="label">Gender</label>
-                        <p class="control">
-                            <input id="gender_male" type="radio" name="gender" value="male">
-                            <label for="gender_male" >Male</label>
-                        </p>
-                        <p class="control">
-                            <input id="gender_female" type="radio" name="gender" value="female">
-                            <label for="gender_female" >Female</label>
-                        </p>
-                        <p class="control">
-                            <input id="gender_other" type="radio" name="gender" value="other">
-                            <label for="gender_other" >Other</label>
-                        </p>
+                        <div class="field">
+                            <label for="gender" class="label is-large">Gender</label>
+                            <div class="control">
+
+                                <label for="gender_male" class="radio is-medium"><input id="gender_male" type="radio" name="gender" {{ old('gender') == 'male' ? 'checked' : ''}} value="male" required>Male</label>
+                            </div>
+                            <div class="control">
+
+                                <label for="gender_female" class="radio is-medium"><input id="gender_female" type="radio" name="gender" {{ old('gender') == 'female' ? 'checked' : ''}} value="female" required>Female</label>
+                            </div>
+                            <div class="control">
+
+                                <label for="gender_other" class="radio is-medium"><input id="gender_other" type="radio" name="gender"{{ old('gender') == 'other' ? 'checked' : ''}} value="other" required>Other</label>
+                            </div>
+                        </div>
                     </div>
                     <script>
 
                     </script>
                     <div class="field">
-                        <label class="label">Bio</label>
+                        <label class="label is-large">Bio</label>
                         <p class="control">
                             <input id="bio" class="input" type="text" name="bio" value="{{$user->bio}}">
                         </p>
                     </div>
                     <div class="field">
-                        <label class="label">Telephone</label>
+                        <label class="label is-large">Telephone</label>
                         <p class="control">
                             <input id="telephone" class="input" type="text" name="telephone" value="{{$user->telephone}}">
                         </p>
                     </div>
                     <div class="field">
-                        <label class="label">Address</label>
+                        <label class="label is-large">Address</label>
                         <p class="control">
                             <input id="address" class="input" type="text" name="address" value="{{$user->address}}">
                         </p>
                     </div>
                     <div class="form-group" id="group_btn_edit_profile">
-                        <button class="button is-primary" id="button_change_profile" type="button">
+                        <button class="button is-warning" id="button_change_profile" type="button">
                             Save Changes
                         </button>
                         <a href="{{ action('PageController@show_profile')}}">
@@ -191,13 +182,13 @@
                     <div class="field"></div>
                     <div class="form-group" id="change_profile">
                         <div class="field">
-                            <label for="confirm_changes" class="label">Confirm Password</label>
+                            <label for="confirm_changes" class="label is-large">Confirm Password</label>
                             <p class="control">
                                 <input id="confirm_changes" type="password" class="input" name="confirm_changes" disabled>
                             </p>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="button is-primary">
+                            <button type="submit" class="button is-warning">
                                 Save Changes
                             </button>
 

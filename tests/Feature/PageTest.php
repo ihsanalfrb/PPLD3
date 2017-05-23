@@ -36,18 +36,6 @@ class PageTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_search_batik_without_keywords(){
-        factory(Batik::class,16)->create();
-        $response = $this->get(action('PageController@search_batik', null));
-        $response->assertStatus(200);
-    }
-
-//    public function test_search_batik_with_keywords(){
-//        factory(Batik::class,16)->create();
-//        factory(TagBatik::class,4)->create();
-//        $response = $this->get(action('PageController@search_batik', 'example'));
-//        $response->assertStatus(200);
-//    }
 
     public function test_categories(){
         factory(Batik::class,16)->create();
@@ -75,22 +63,6 @@ class PageTest extends TestCase
         $response->assertStatus(200);
     }
 
-
-
-
-
-    public function test_edit_profile_unathenticated_user(){
-        $response = $this->get(action('PageController@edit_profile'));
-        $response->assertStatus(404);
-    }
-
-    public function test_edit_profile_authenticated_user(){
-        $user = factory(User::class)->create();
-        $response = $this
-            ->actingAs($user)
-            ->get(action('PageController@edit_profile'));
-        $response->assertStatus(200);
-    }
 
     public function test_show_profile_unathenticated_user(){
         $response = $this->get(action('PageController@show_profile'));

@@ -16,7 +16,7 @@ class PageController extends Controller
 {
     public function index(){
       $user = Auth::user();
-      $batiks = Batik::orderBy('views','desc')->limit(3)->get();
+      $batiks = Batik::orderBy('views','desc')->limit(6)->get();
       $tag_batiks = TagBatik::all();
 
       return view('index',[
@@ -202,7 +202,7 @@ class PageController extends Controller
                 ->orwhereRaw('lower(sejarah_batik) like ?', array('%'.strtolower($keywords).'%'))
                 ->orWhereRaw('lower(makna_batik) like ?', array('%'.strtolower($keywords).'%'))
                 ->orWhereRaw('lower(cluster_batik) like ?', array('%'.strtolower($keywords).'%'))
-                ->orWhereRaw('lower(asal_daerah) like ?', array('%'.strtolower($keywords).'%'))->paginate(10);
+                ->orWhereRaw('lower(asal_daerah) like ?', array('%'.strtolower($keywords).'%'))->paginate(12);
             $batiks_sum = $batiks->count();
         }
         $tag_batiks = TagBatik::all();
@@ -237,7 +237,6 @@ class PageController extends Controller
             return view('edit_profile', [
                 'title' => 'Edit Information',
                 'user' => $user,
-
             ]);
         }
     }
@@ -263,14 +262,15 @@ class PageController extends Controller
 //            dd($threads);
             $threads_sum = $threads->count();
         }
-
+        $tag_batiks = TagBatik::all();
         return view('search_thread',[
             'title' => 'Pencarian Thread',
             'threads' => $threads,
             'threads_sum' => $threads_sum,
             'keywords' => $keywords,
+            'tag_batiks' => $tag_batiks,
             'header' => 'Hasil Pencarian '.$keywords,
-            'current_user' => Auth::user()
+            'user' => Auth::user()
         ]);
     }
 }
