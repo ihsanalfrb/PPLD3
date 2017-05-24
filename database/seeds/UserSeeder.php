@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     {
      DB::table('users')->delete();
      $this->create_user_model("default","default@example.com",bcrypt('default'),'2000-01-01', 'male');
-     $this->create_user_model("null","null@example.com",bcrypt('null'),'2000-01-01','female') ;
+     $this->create_user_model("awesomeguy","awesomeguy@example.com",bcrypt('awesomeguy'),'2000-01-01','female') ;
      $this->create_user_model("foo","foo@example.com",bcrypt('foo'),'2000-01-01','male');
      $this->create_user_model("boo","boo@example.com",bcrypt('boo'),'2000-01-01','female');
      $this->create_user_model_admin("admin","admin@example.com",bcrypt('admin'),'2000-01-01','other');

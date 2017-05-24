@@ -134,5 +134,10 @@
         $('#tambah_thread').hide();
         $('.form-create-comment').show();
       @endif
+
+      $('#search_thread_form').on('submit',function(e){
+          e.preventDefault();
+          location.href =  $('#search_thread_button').attr("href");
+      });
     </script>
 @endsection
