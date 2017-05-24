@@ -457,7 +457,7 @@ class BatikTableSeeder extends Seeder
         Batik::create([
             'nama_batik' => $namabatik,
             'makna_batik' => 'Batik '.$namabatik.' adalah sebuah batik yang memiliki pola '. $cluster.'.',
-            'sejarah_batik' => 'Batik ' .$namabatik .'pertama kali dibuat dan digunakan di wilayah '. $asaldaerah .'.',
+            'sejarah_batik' => 'Batik ' .$namabatik .' pertama kali dibuat dan digunakan di wilayah '. $asaldaerah .'.',
             'cluster_batik' => $cluster,
             'asal_daerah' => $asaldaerah,
             'gambar_pola_batik' => $gambarpola,
