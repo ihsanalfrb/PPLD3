@@ -35,23 +35,26 @@ class IdentifyBatikController extends Controller
             $res;
             try{
               $res = $client->request('GET', $request->input('link'));
+              $image=$res->getBody();
+              $type=$res->getHeaderLine('content-type');
             }catch (\Exception $e){
               Session::flash('error', 'An error has occured, are you sure it was a valid url?');
               return redirect('/');
             }
-            $image=$res->getBody();
-            $type=$res->getHeaderLine('content-type');
-
-
         }else  {
 
             if(is_null($request['image'])){
               Session::flash('error', 'Please submit an image');
               return redirect('/');
             }
-            $image = file_get_contents($request['image']->getRealPath());
+            try{
+                $image = file_get_contents($request['image']->getRealPath());
+                $type = $request['image']->getMimeType();
+            }catch (\Exception $e){
+                Session::flash('error', 'An error has occured, your image can not been processed');
+                return redirect('/');
+            }
 
-            $type = $request['image']->getMimeType();
 
         }
         if($type!="image/jpeg" and $type!="image/gif" and $type!="image/png" and $type!="image/jpg" and $type!="image/tiff" and $type!="image/svg" and $type !="image/svg+xml"){
