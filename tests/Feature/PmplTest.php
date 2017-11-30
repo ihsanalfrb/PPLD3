@@ -22,41 +22,32 @@ class PmplTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function test_tested_path_7(){
+    /**
+     * Valid Testcase
+     */
+    public function test_tested_path_1(){
         $response = $this
             ->post(action('Auth\RegisterController@register',[
                 'name' => 'name',
                 'email' => 'email@domain.com',
                 'password' => 'password',
-                'password_confirmation' => 'p',
-                'birthday' => '2010-02-02',
-                'gender' => 'female'
-            ]));
-        $this->assertDatabaseMissing('users', [
-            'email' => 'email@domain.com'
-        ]);
-    }
-
-    public function test_tested_path_6(){
-        $response = $this
-            ->post(action('Auth\RegisterController@register',[
-                'name' => 'name',
-                'email' => 'email@domain.com',
-                'password' => '',
                 'password_confirmation' => 'password',
                 'birthday' => '2010-02-02',
                 'gender' => 'female'
             ]));
-        $this->assertDatabaseMissing('users', [
+        $this->assertDatabaseHas('users', [
             'email' => 'email@domain.com'
         ]);
     }
 
-    public function test_tested_path_5(){
+    /**
+     * Name Invalid
+     */
+    public function test_tested_path_2(){
         $response = $this
             ->post(action('Auth\RegisterController@register',[
-                'name' => 'name',
-                'email' => '',
+                'name' => '',
+                'email' => 'email@domain.com',
                 'password' => 'password',
                 'password_confirmation' => 'password',
                 'birthday' => '2010-02-02',
@@ -143,33 +134,4 @@ class PmplTest extends TestCase
         ]);
     }
 
-    public function test_tested_path_2(){
-        $response = $this
-            ->post(action('Auth\RegisterController@register',[
-                'name' => 'name',
-                'email' => '',
-                'password' => 'password',
-                'password_confirmation' => 'password',
-                'birthday' => '2010-02-02',
-                'gender' => 'female'
-            ]));
-        $this->assertDatabaseMissing('users', [
-            'email' => 'email@domain.com'
-        ]);
-    }
-
-    public function test_tested_path_1(){
-        $response = $this
-            ->post(action('Auth\RegisterController@register',[
-                'name' => 'name',
-                'email' => 'email@domain',
-                'password' => 'password',
-                'password_confirmation' => 'password',
-                'birthday' => '2010-02-02',
-                'gender' => 'female'
-            ]));
-        $this->assertDatabaseMissing('users', [
-            'email' => 'email@domain.com'
-        ]);
-    }
 }
